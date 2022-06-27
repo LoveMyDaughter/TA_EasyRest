@@ -1,4 +1,4 @@
-namespace Test
+namespace TestFramework
 {
     public class Tests
     {
