@@ -37,7 +37,8 @@ namespace TestFramework.Test
 
             //Act
             page.GoToUrl(url)
-                .EnterData(email, password);
+                .EnterData(email, password)
+                .Click_LogIn();
 
             Thread.Sleep(3000);
 
@@ -63,7 +64,8 @@ namespace TestFramework.Test
 
             //Act
             page.GoToUrl(url)
-                .EnterData(email, password);
+                .EnterData(email, password)
+                .Click_LogIn();
 
             Thread.Sleep(3000);
 

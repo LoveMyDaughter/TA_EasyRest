@@ -14,6 +14,7 @@ namespace TestFramework.Pages
 
         public IWebElement Email_Field => driver.FindElement(By.Name("email"));
         public IWebElement Password_Field => driver.FindElement(By.Name("password"));
+        public IWebElement LogIn_Button => driver.FindElement(By.XPath("/html/body/div/main/div/div[2]/form/div/div[3]/div/button"));
 
         public BasePage(IWebDriver driver)
         {
@@ -36,7 +37,13 @@ namespace TestFramework.Pages
             Email_Field.Click();
             Email_Field.SendKeys(email);
             Password_Field.Click();
-            Password_Field.SendKeys(password + Keys.Enter);
+            Password_Field.SendKeys(password);
+            return this;
+        }
+
+        public BasePage Click_LogIn()
+        {
+            LogIn_Button.Click();
             return this;
         }
     }
