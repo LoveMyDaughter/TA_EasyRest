@@ -1,15 +1,18 @@
-//using OpenQA.Selenium.Chrome;
+using TestFramework.Pages;
+
 
 namespace TestFramework.Test
 {
     public class Tests
     {
-        IWebDriver driver;
+        IWebDriver Chromedriver;
+        private static string password;
+        private static string email;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
-            driver = new ChromeDriver();
+            Chromedriver = new ChromeDriver();
         }
 
         [SetUp]
@@ -20,25 +23,58 @@ namespace TestFramework.Test
         [Test]
         public void PositiveTestLoginToEasyrest() 
         {
-            driver.Navigate().GoToUrl("http://localhost:3000/log-in");
-            driver.FindElement(By.Name("email")).SendKeys("angelabrewer@test.com");
-            driver.FindElement(By.Name("password")).SendKeys("1111"+Keys.Enter); Thread.Sleep(3000);
-            Assert.AreEqual("http://localhost:3000/restaurants", driver.Url);
+            //Arrange
+            BasePage page = new BasePage(Chromedriver);
+
+            string url = "/log-in";
+            string expected = $"{BasePage.baseUrl}/restaurants";
+
+
+            password = "1111";
+            email = "angelabrewer@test.com";
+
+
+
+            //Act
+            page.GoToUrl(url)
+                .EnterData(email, password);
+
+            Thread.Sleep(3000);
+
+
+            //Assert
+            Assert.AreEqual(expected, page.Get_CurrentUrl());
         }
 
         [Test]
         public void NegativeTestLoginToEasyrest()
         {
-            driver.Navigate().GoToUrl("http://localhost:3000/log-in");
-            driver.FindElement(By.Name("email")).SendKeys("abc@1.com");
-            driver.FindElement(By.Name("password")).SendKeys("12345678" + Keys.Enter); Thread.Sleep(3000);
-            Assert.AreEqual("http://localhost:3000/restaurants", driver.Url);
+            //Arrange
+            BasePage page = new BasePage(Chromedriver);
+
+            string url = "/log-in";
+            string expected = $"{BasePage.baseUrl}/restaurants";
+
+
+            password = "12345678";
+            email = "abc@1.com";
+
+
+
+            //Act
+            page.GoToUrl(url)
+                .EnterData(email, password);
+
+            Thread.Sleep(3000);
+
+            //Assert
+            Assert.AreEqual(expected, page.Get_CurrentUrl());
         }
 
         [OneTimeTearDown]
         public void AfterAllTests()
         {
-            driver.Quit();
+            Chromedriver.Quit();
         }
     }
 }
