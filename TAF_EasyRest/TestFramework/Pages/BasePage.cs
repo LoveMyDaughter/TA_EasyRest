@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TestFramework.Pages
 {
     public class BasePage
@@ -41,7 +36,7 @@ namespace TestFramework.Pages
             return this;
         }
 
-        public BasePage Click_LogIn()
+        public BasePage Click_LogIn_Button()
         {
             LogIn_Button.Click();
             return this;

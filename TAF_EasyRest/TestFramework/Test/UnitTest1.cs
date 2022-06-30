@@ -29,16 +29,14 @@ namespace TestFramework.Test
             string url = "/log-in";
             string expected = $"{BasePage.baseUrl}/restaurants";
 
-
             password = "1111";
             email = "angelabrewer@test.com";
-
 
 
             //Act
             page.GoToUrl(url)
                 .EnterData(email, password)
-                .Click_LogIn();
+                .Click_LogIn_Button();
 
             Thread.Sleep(3000);
 
@@ -56,19 +54,18 @@ namespace TestFramework.Test
             string url = "/log-in";
             string expected = $"{BasePage.baseUrl}/restaurants";
 
-
             password = "12345678";
             email = "abc@1.com";
-
 
 
             //Act
             page.GoToUrl(url)
                 .EnterData(email, password)
-                .Click_LogIn();
+                .Click_LogIn_Button();
 
             Thread.Sleep(3000);
 
+            
             //Assert
             Assert.AreEqual(expected, page.Get_CurrentUrl());
         }
