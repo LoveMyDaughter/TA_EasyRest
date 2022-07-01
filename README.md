@@ -2,6 +2,7 @@
 RV-093.Net Team-1 Test Automation
 
 ## Easyrest deployment
+Repo:
 https://bitbucket.org/katemalash/easyrest/src/master/
 
 If you deploy Easyrest on docker:
