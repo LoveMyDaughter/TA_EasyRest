@@ -24,10 +24,10 @@ namespace TestFramework.Test
         public void PositiveTestLoginToEasyrest() 
         {
             //Arrange
-            BasePage page = new BasePage(Chromedriver);
+            HomePage page = new HomePage(Chromedriver);
 
             string url = "/log-in";
-            string expected = $"{BasePage.baseUrl}/restaurants";
+            string expected = $"{HomePage.baseUrl}/restaurants";
 
             password = "1111";
             email = "angelabrewer@test.com";
@@ -49,10 +49,10 @@ namespace TestFramework.Test
         public void NegativeTestLoginToEasyrest()
         {
             //Arrange
-            BasePage page = new BasePage(Chromedriver);
+            HomePage page = new HomePage(Chromedriver);
 
             string url = "/log-in";
-            string expected = $"{BasePage.baseUrl}/restaurants";
+            string expected = $"{HomePage.baseUrl}/restaurants";
 
             password = "12345678";
             email = "abc@1.com";
