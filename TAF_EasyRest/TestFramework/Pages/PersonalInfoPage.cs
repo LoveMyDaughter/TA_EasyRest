@@ -10,25 +10,25 @@ namespace TestFramework.Pages
         private IWebElement _orderHistoryButton => driver.FindElement(By.XPath("//span[text()='Order History']/parent::span/parent::span/parent::a"));
         private IWebElement _myRestaurantsButton => driver.FindElement(By.XPath("//span[text()='My Restaurants']/parent::span/parent::span/parent::a"));
 
-        public PersonalInfoPage PersonalInfoButtonClick()
+        public PersonalInfoPage ClickPersonalInfoButton()
         {
             _personalInfoButton.Click();
             return this;
         }
 
-        public PersonalInfoPage СurrentOrdersButtonClick()
+        public PersonalInfoPage ClickСurrentOrdersButton()
         {
             _currentOrdersButton.Click();
             return this;
         }
 
-        public PersonalInfoPage OrderHistoryButtonClick()
+        public PersonalInfoPage ClickOrderHistoryButton()
         {
             _orderHistoryButton.Click();
             return this;
         }
 
-        public PersonalInfoPage MyRestaurantsButtonClick()
+        public PersonalInfoPage ClickMyRestaurantsButton()
         {
             _myRestaurantsButton.Click();
             return this;
