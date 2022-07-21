@@ -14,6 +14,11 @@ namespace TestFramework.Pages
         private IWebElement _SignIn => driver.FindElement(By.XPath("//span[text()='Sign In']"));
         private IWebElement _SignUp => driver.FindElement(By.XPath("//span[text()='Sign Up']"));
 
+        private IWebElement _UserMenu => driver.FindElement(By.XPath("MuiIconButton-label-267"));
+        private IWebElement _MyProfile => driver.FindElement(By.XPath("//a[text()='My Profile']"));
+        private IWebElement _LogOut => driver.FindElement(By.XPath("//li[text()='Log Out']"));
+
+
         public NavigationMenuPageComponent(IWebDriver driver) : base(driver) { }
 
         public NavigationMenuPageComponent ClickEasyRestButton()
@@ -43,6 +48,12 @@ namespace TestFramework.Pages
         public NavigationMenuPageComponent ClickSignUpButton()
         {
             _SignUp.Click();
+            return this;
+        }
+
+        public NavigationMenuPageComponent ClickUserMenuButton()
+        {
+            _UserMenu.Click();
             return this;
         }
 
