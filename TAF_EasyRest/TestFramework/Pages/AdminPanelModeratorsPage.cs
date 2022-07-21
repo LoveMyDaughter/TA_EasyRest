@@ -3,37 +3,29 @@
     public class AdminPanelModeratorsPage : BasePage
     {
 
+        public AdminPanelModeratorsPageComponent adminPanelModeratorsPageComponent { get; }
 
-        #region Elements
 
         private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
-        private IWebElement _usersButton => driver.FindElement(By.XPath("//span[text() = 'Users']/ancestor::a"));
-        private IWebElement _ownersButton => driver.FindElement(By.XPath("//span[text() = 'Owners']/ancestor::a"));
-        private IWebElement _moderatorsButton => driver.FindElement(By.XPath("//span[text() = 'Moderators']/ancestor::a"));
-        private IWebElement _restaurantsButton => driver.FindElement(By.XPath("//span[text() = 'Restaurants']/ancestor::a"));
+
         // Corresponding entry button. It's better to find 1-st row instead of certain user name
         private IWebElement _padlockButton => driver.FindElement(By.XPath("//th[text()='Peter Moderator']/following-sibling::td/button"));
         private IWebElement _statusRecord => driver.FindElement(By.XPath("//th[text()='Peter Moderator']/following-sibling::td/p"));
-        private IWebElement _padlockButtonForCertainUser (string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/button"));
-        
-        #endregion
-
-
-        public AdminPanelModeratorsPage(IWebDriver driver) : base(driver) { }
+        private IWebElement _padlockButtonForCertainUser(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/button"));
 
 
 
-        #region Methods
-        public AdminPanelModeratorsPage GoToUrl(string url)
+        public AdminPanelModeratorsPage(IWebDriver driver) : base(driver)
         {
-            driver.Navigate().GoToUrl(baseUrl + url);
-            return this;
+            adminPanelModeratorsPageComponent = new AdminPanelModeratorsPageComponent(driver);
         }
 
 
-        public AdminPanelModeratorsPage ClickModeratorsButton()
+
+
+        public AdminPanelModeratorsPage GoToUrl(string url)
         {
-            _moderatorsButton.Click();
+            driver.Navigate().GoToUrl(baseUrl + url);
             return this;
         }
 
@@ -54,7 +46,6 @@
             return _statusRecord.Text;
         }
 
-        #endregion
 
     }
 }
