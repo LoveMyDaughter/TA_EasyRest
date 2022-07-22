@@ -3,6 +3,7 @@
     public class AdminPanelCreateModeratorPage : BasePage
     {
         public AdminPanelPageComponent adminPanelPageComponent { get; }
+
         public AdminPanelCreateModeratorPage (IWebDriver driver) : base(driver)
         {
             adminPanelPageComponent = new AdminPanelPageComponent(driver);
@@ -25,6 +26,93 @@
 
         #region Methods
 
+
+        public AdminPanelCreateModeratorPage ClickNameField()
+        {
+            _nameField.Click();
+            return this;
+        }        
+        
+        public AdminPanelCreateModeratorPage ClickEmailField()
+        {
+            _emailField.Click();
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage ClickPhoneNumberField()
+        {
+            _phoneNumberField.Click();
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage ClickBirthDateField()
+        {
+            _birthDateField.Click();
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage ClickPasswordrField()
+        {
+            _passwordField.Click();
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage ClickRepeatedPasswordField()
+        {
+            _repeatedPasswordField.Click();
+            return this;
+        }
+
+
+        public AdminPanelCreateModeratorPage SendKeysToNameField(string name)
+        {
+            _nameField.SendKeys(name);
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage SendKeysToEmailField(string email)
+        {
+            _emailField.SendKeys(email);
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage SendKeysToPhoneNumberField(string phone)
+        {
+            _phoneNumberField.SendKeys(phone);
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage SendKeysToBirthDateField(string birthDate)
+        {
+            _birthDateField.SendKeys(birthDate);
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage SendKeysToPasswordField(string password)
+        {
+            _passwordField.SendKeys(password);
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage SendKeysToRepeatedPasswordField(string password)
+        {
+            _repeatedPasswordField.SendKeys(password);
+            return this;
+        }
+
+
+
+        public AdminPanelCreateModeratorPage ClickCancelButton()
+        {
+            _cancelButton.Click();
+            return this;
+        }
+
+        public AdminPanelCreateModeratorPage ClickCreateAccountButton()
+        {
+            _createAccountButton.Click();
+            return this;
+        }
 
         #endregion
 
