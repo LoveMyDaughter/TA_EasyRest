@@ -3,7 +3,7 @@
     public class AdminPanelModeratorsPage : BasePage
     {
 
-        public AdminPanelModeratorsPageComponent adminPanelModeratorsPageComponent { get; }
+        public AdminPanelPageComponent adminPanelPageComponent { get; }
 
 
         private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
@@ -17,7 +17,7 @@
 
         public AdminPanelModeratorsPage(IWebDriver driver) : base(driver)
         {
-            adminPanelModeratorsPageComponent = new AdminPanelModeratorsPageComponent(driver);
+            adminPanelPageComponent = new AdminPanelPageComponent(driver);
         }
 
 
