@@ -1,8 +1,8 @@
 ﻿namespace TestFramework.Pages
 {
-    public class AdminPanelModeratorsPageComponent : BasePage
+    public class AdminPanelPageComponent : BasePage
     {
-        public AdminPanelModeratorsPageComponent(IWebDriver driver) : base(driver) { }
+        public AdminPanelPageComponent(IWebDriver driver) : base(driver) { }
 
         #region Elements
 
@@ -16,22 +16,22 @@
 
         #region Methods
 
-        public AdminPanelModeratorsPageComponent ClickUsersButton()
+        public AdminPanelPageComponent ClickUsersButton()
         {
             _usersButton.Click();
             return this;
         }
-        public AdminPanelModeratorsPageComponent ClickOwnersButton()
+        public AdminPanelPageComponent ClickOwnersButton()
         {
             _ownersButton.Click();
             return this;
         }
-        public AdminPanelModeratorsPageComponent ClickModeratorsButton()
+        public AdminPanelPageComponent ClickModeratorsButton()
         {
             _moderatorsButton.Click();
             return this;
         }
-         public AdminPanelModeratorsPageComponent ClickRestaurantsButton()
+         public AdminPanelPageComponent ClickRestaurantsButton()
         {
             _restaurantsButton.Click();
             return this;
