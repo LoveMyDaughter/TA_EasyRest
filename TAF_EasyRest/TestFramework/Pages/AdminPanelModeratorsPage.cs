@@ -8,7 +8,7 @@
 
         private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
 
-        // Corresponding entry button. It's better to find 1-st row instead of certain user name
+        // Corresponding entry button. It's better to find 1-st row instead of certain user name. Like //tbody/tr[1]
         private IWebElement _padlockButton => driver.FindElement(By.XPath("//th[text()='Peter Moderator']/following-sibling::td/button"));
         private IWebElement _statusRecord => driver.FindElement(By.XPath("//th[text()='Peter Moderator']/following-sibling::td/p"));
         private IWebElement _padlockButtonForCertainUser(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/button"));
