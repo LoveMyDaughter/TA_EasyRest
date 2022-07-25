@@ -22,5 +22,47 @@ namespace TestFramework.Pages
         private IWebElement _passwordField => driver.FindElement(By.XPath("//input [@name='password']"));
         private IWebElement _confirmPasswordField => driver.FindElement(By.XPath("//input [@name='repeated_password']"));
         private IWebElement _createAccountButton => driver.FindElement(By.XPath("//button[@type='submit']"));
+
+        public SignUpPage ClickNameField()
+        {
+            _nameField.Click();
+            return this;
+        }
+
+        public SignUpPage ClickEmailField()
+        {
+            _emailField.Click();
+            return this;
+        }
+
+        public SignUpPage ClickPhoneNumberField()
+        {
+            _phoneNumberField.Click();
+            return this;
+        }
+
+        public SignUpPage ClickBirthDateField()
+        {
+            _birthDateField.Click();
+            return this;
+        }
+
+        public SignUpPage ClickPasswordField()
+        {
+            _passwordField.Click();
+            return this;
+        }
+
+        public SignUpPage ClickConfirmPasswordField()
+        {
+            _confirmPasswordField.Click();
+            return this;
+        }
+
+        public SignUpPage ClickCreateAccountButton()
+        {
+            _createAccountButton.Click();
+            return this;
+        }
     }
 }
