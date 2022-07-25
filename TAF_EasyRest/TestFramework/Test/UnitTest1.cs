@@ -1,18 +1,18 @@
-using TestFramework.Pages;
-
-
 namespace TestFramework.Test
 {
+    [TestFixture]
     public class Tests
     {
         IWebDriver Chromedriver;
         private static string password;
         private static string email;
+        private static string baseUrl;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
             Chromedriver = new ChromeDriver();
+            baseUrl = "http://localhost:3000"; //move to json
         }
 
         [SetUp]
@@ -26,16 +26,15 @@ namespace TestFramework.Test
             //Arrange
             SignInPage page = new SignInPage(Chromedriver);
 
-            string url = "/log-in";
-            string expected = $"{BasePage.baseUrl}/restaurants";
+            string expected = $"{baseUrl}/restaurants";
 
             password = "1111";
             email = "angelabrewer@test.com";
 
 
             //Act
-            page.GoToUrl(url)
-                .ClickEmailField()
+            page.GoToUrl();
+            page.ClickEmailField()
                 .SendKeysToEmailField(email)
                 .ClickPasswordField()
                 .SendKeysToPasswordField(password)

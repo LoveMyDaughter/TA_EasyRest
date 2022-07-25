@@ -1,4 +1,6 @@
-﻿namespace TestFramework.Pages
+﻿using TestFramework.PagesComponents;
+
+namespace TestFramework.Pages
 {
     public class BasePage
     {
@@ -20,6 +22,12 @@
         public string Get_CurrentUrl()
         {
             return driver.Url;
+        }
+
+        //override where url != baseurl
+        public virtual void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl);
         }
     }
 }

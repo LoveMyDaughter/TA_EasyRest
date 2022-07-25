@@ -1,12 +1,16 @@
-﻿namespace TestFramework.Pages
+﻿using TestFramework.PagesComponents;
+
+namespace TestFramework.Pages
 {
     public class AdminPanelCreateModeratorPage : BasePage
     {
-        public AdminPanelPageComponent adminPanelPageComponent { get; }
+        public AdminPanelPageComponent AdminPanelPageComponent { get; }
+        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
 
         public AdminPanelCreateModeratorPage (IWebDriver driver) : base(driver)
         {
-            adminPanelPageComponent = new AdminPanelPageComponent(driver);
+            AdminPanelPageComponent = new AdminPanelPageComponent(driver);
+            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
         }
 
         #region Elements

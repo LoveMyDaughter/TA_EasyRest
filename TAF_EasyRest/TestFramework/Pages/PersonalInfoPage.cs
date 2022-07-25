@@ -1,13 +1,16 @@
-﻿
+﻿using TestFramework.PagesComponents;
+
 namespace TestFramework.Pages
 {
     public class PersonalInfoPage : BasePage
     {
+        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public PersonalInfoPageComponent PersonalInfoPageComponent { get;  }
+
         public PersonalInfoPage(IWebDriver driver) : base(driver) 
         {
-            personalInfoPageComponent = new PersonalInfoPageComponent(driver);
+            PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
+            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
         }
-
-        private PersonalInfoPageComponent personalInfoPageComponent;
     }
 }
