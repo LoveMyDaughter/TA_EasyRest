@@ -11,26 +11,15 @@ namespace TestFramework.Pages
         protected static TimeSpan timeout = TimeSpan.FromSeconds(10);
         protected static WebDriverWait wait;
 
-        //private IWebElement _EasyRestButton => driver.FindElement(By.XPath("//a[text()='Easy-rest']"));
         private IWebElement _HomeButton => driver.FindElement(By.XPath("//span[text()='Home']"));
         private IWebElement _RestaurantsList => driver.FindElement(By.XPath("//span[text()='Restaurants List']"));
         private IWebElement _SignIn => driver.FindElement(By.XPath("//span[text()='Sign In']"));
         private IWebElement _SignUp => driver.FindElement(By.XPath("//span[text()='Sign Up']"));
 
-
         private IWebElement _UserMenu = wait.Until(drv => drv.FindElement(By.XPath("//button/span/div")));
-        private IWebElement _MyProfile = wait.Until(drv => drv.FindElement(By.XPath("//a[text()='My Profile']")));
+        private IWebElement _MyProfile = wait.Until(drv => drv.FindElement(By.XPath("//a[@role='menuitem']")));
         private IWebElement _LogOut = wait.Until(drv => drv.FindElement(By.XPath("//li[text()='Log Out']")));
 
-
-
-
-
-        //public NavigationMenuPageComponent ClickEasyRestButton()
-        //{
-        //    _EasyRestButton.Click();
-        //    return this;
-        //}
 
         public NavigationMenuPageComponent ClickHomeButton()
         {
