@@ -1,4 +1,6 @@
-﻿namespace TestFramework.Pages
+﻿using TestFramework.PagesComponents;
+
+namespace TestFramework.Pages
 {
     public class AdminPanelModeratorsPage : BasePage
     {

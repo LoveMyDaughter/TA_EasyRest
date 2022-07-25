@@ -1,4 +1,5 @@
-﻿
+﻿using TestFramework.PagesComponents;
+
 namespace TestFramework.Pages
 {
     public class PersonalInfoPage : BasePage
