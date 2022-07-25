@@ -61,9 +61,5 @@ namespace TestFramework.PagesComponents
             _LogOut.Click();
             return this;
         }
-
-
-
-
     }
 }
