@@ -65,6 +65,13 @@ namespace TestFramework.Pages
             return this;
         }
 
+        public SignUpPage ChooseCurrentDate()
+        {
+            _birthDateField.Click();
+            driver.FindElement(By.XPath("//span[text()='OK']")).Click();
+            return this;
+        }
+
         public SignUpPage ClickPasswordField()
         {
             _passwordField.Click();

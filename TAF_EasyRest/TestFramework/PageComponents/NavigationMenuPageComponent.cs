@@ -58,9 +58,5 @@ namespace TestFramework.Pages
             _LogOut.Click();
             return this;
         }
-
-
-
-
     }
 }
