@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestFramework.PagesComponents;
 
 namespace TestFramework.Pages
 {
@@ -69,7 +65,6 @@ namespace TestFramework.Pages
 
         public SignUpPage ChooseCurrentDate()
         {
-            _birthDateField.Click();
             driver.FindElement(By.XPath("//span[text()='OK']")).Click();
             return this;
         }
