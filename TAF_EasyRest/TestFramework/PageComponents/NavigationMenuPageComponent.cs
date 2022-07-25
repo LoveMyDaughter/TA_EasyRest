@@ -13,8 +13,11 @@ namespace TestFramework.PagesComponents
 
         private IWebElement _HomeButton => driver.FindElement(By.XPath("//span[text()='Home']"));
         private IWebElement _RestaurantsList => driver.FindElement(By.XPath("//span[text()='Restaurants List']"));
+        
+        //lets move those buttons to certain pages
         private IWebElement _SignIn => driver.FindElement(By.XPath("//span[text()='Sign In']"));
         private IWebElement _SignUp => driver.FindElement(By.XPath("//span[text()='Sign Up']"));
+        //
 
         private IWebElement _UserMenu = wait.Until(drv => drv.FindElement(By.XPath("//button/span/div")));
         private IWebElement _MyProfile = wait.Until(drv => drv.FindElement(By.XPath("//a[@role='menuitem']")));

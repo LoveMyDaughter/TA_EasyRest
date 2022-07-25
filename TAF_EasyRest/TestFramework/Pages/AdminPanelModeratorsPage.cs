@@ -5,7 +5,8 @@ namespace TestFramework.Pages
     public class AdminPanelModeratorsPage : BasePage
     {
 
-        public AdminPanelPageComponent adminPanelPageComponent { get; }
+        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public AdminPanelPageComponent AdminPanelPageComponent { get; }
 
 
         private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
@@ -19,16 +20,8 @@ namespace TestFramework.Pages
 
         public AdminPanelModeratorsPage(IWebDriver driver) : base(driver)
         {
-            adminPanelPageComponent = new AdminPanelPageComponent(driver);
-        }
-
-
-
-
-        public AdminPanelModeratorsPage GoToUrl(string url)
-        {
-            driver.Navigate().GoToUrl(baseUrl + url);
-            return this;
+            AdminPanelPageComponent = new AdminPanelPageComponent(driver);
+            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
         }
 
         public AdminPanelModeratorsPage ClickPadlockButton()

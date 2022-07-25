@@ -4,12 +4,15 @@ namespace TestFramework.Pages
 {
     public class CurrentOrdersPage : BasePage
     {
+        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
+
         public CurrentOrdersPage(IWebDriver driver) : base(driver)
         {
-            personalInfoPageComponent = new PersonalInfoPageComponent(driver);
+            PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
+            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
         }
 
-        public PersonalInfoPageComponent personalInfoPageComponent { get; }
 
         private IWebElement _allButton => driver.FindElement(By.XPath("//span[contains(text(),'All')]/parent::span/parent::span/parent::a"));
         private IWebElement _draftButton => driver.FindElement(By.XPath("//span[contains(text(),'Draft')]/parent::span/parent::span/parent::a"));
