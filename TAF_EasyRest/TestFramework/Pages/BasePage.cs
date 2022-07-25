@@ -23,5 +23,11 @@ namespace TestFramework.Pages
         {
             return driver.Url;
         }
+
+        //override where url != baseurl
+        public virtual void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl);
+        }
     }
 }
