@@ -29,15 +29,33 @@ namespace TestFramework.Pages
             return this;
         }
 
+        public SignUpPage SendKeysToNameField(string name)
+        {
+            _nameField.SendKeys(name);
+            return this;
+        }
+
         public SignUpPage ClickEmailField()
         {
             _emailField.Click();
             return this;
         }
 
+        public SignUpPage SendKeysToEmailField(string email)
+        {
+            _emailField.SendKeys(email);
+            return this;
+        }
+
         public SignUpPage ClickPhoneNumberField()
         {
             _phoneNumberField.Click();
+            return this;
+        }
+
+        public SignUpPage SendKeysToPhoneNumberField(string phoneNumber)
+        {
+            _phoneNumberField.SendKeys(phoneNumber);
             return this;
         }
 
@@ -53,9 +71,21 @@ namespace TestFramework.Pages
             return this;
         }
 
+        public SignUpPage SendKeysToPasswordField(string password)
+        {
+            _passwordField.SendKeys(password);
+            return this;
+        }
+
         public SignUpPage ClickConfirmPasswordField()
         {
             _confirmPasswordField.Click();
+            return this;
+        }
+
+        public SignUpPage SendKeysToConfirmPasswordField(string password)
+        {
+            _confirmPasswordField.SendKeys(password);
             return this;
         }
 
