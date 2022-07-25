@@ -7,7 +7,12 @@ namespace TestFramework.Pages
         private IWebElement _passwordField => driver.FindElement(By.Name("password"));
         private IWebElement _logInButton => driver.FindElement(By.XPath("//span[text()='Sign In']/parent::button"));
 
-        public SignInPage(IWebDriver driver) : base(driver) { }
+        public NavigationMenuPageComponent NavigationMenu { get; set; }
+
+        public SignInPage(IWebDriver driver) : base(driver) 
+        {
+            NavigationMenu = new NavigationMenuPageComponent(driver);
+        }
 
         public SignInPage GoToUrl(string url)
         {
