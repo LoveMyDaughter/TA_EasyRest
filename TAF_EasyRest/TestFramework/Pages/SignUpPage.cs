@@ -8,6 +8,8 @@ namespace TestFramework.Pages
 {
     internal class SignUpPage : BasePage
     {
+        private static string _signUpUrl = "/sign-up";
+
         public NavigationMenuPageComponent NavigationMenu { get; set; }
 
         public SignUpPage(IWebDriver driver) : base(driver)
@@ -100,6 +102,11 @@ namespace TestFramework.Pages
         {
             _createAccountButton.Click();
             return this;
+        }
+
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _signUpUrl);
         }
     }
 }
