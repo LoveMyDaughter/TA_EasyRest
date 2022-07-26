@@ -65,7 +65,6 @@ namespace TestFramework.Pages
 
         public SignUpPage ChooseCurrentDate()
         {
-            _birthDateField.Click();
             driver.FindElement(By.XPath("//span[text()='OK']")).Click();
             return this;
         }
