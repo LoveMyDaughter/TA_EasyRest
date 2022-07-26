@@ -1,4 +1,4 @@
-﻿namespace TestFramework.PagesComponents
+﻿namespace TestFramework.PageComponents
 {
     public class AdminPanelPageComponent : BasePage
     {

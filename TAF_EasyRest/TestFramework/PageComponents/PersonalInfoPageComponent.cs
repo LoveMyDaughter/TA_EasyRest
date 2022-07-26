@@ -1,5 +1,5 @@
 ﻿
-namespace TestFramework.PagesComponents
+namespace TestFramework.PageComponents
 {
     public class PersonalInfoPageComponent : BasePage
     {
