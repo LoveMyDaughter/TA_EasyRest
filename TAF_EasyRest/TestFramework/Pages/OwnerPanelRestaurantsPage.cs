@@ -1,4 +1,4 @@
-﻿using TestFramework.PagesComponents;
+﻿using TestFramework.PageComponents;
 
 namespace TestFramework.Pages
 {
@@ -18,6 +18,7 @@ namespace TestFramework.Pages
 
         // This button is bind to not archived restaurants. Otherwise we can't archive the restaurant
         private IWebElement _threeDotButton => driver.FindElement(By.XPath("//span[text() != 'ARCHIVED']/ancestor::div/button"));
+        private IWebElement _addRestaurantButton => driver.FindElement(By.XPath("//button[@title = 'Add restaurant']"));
 
         // For this buttons: use wait until threeDotButton expands
         private IWebElement _manageButton => driver.FindElement(By.XPath("//span[text() = 'Manage']/ancestor::a"));
@@ -36,15 +37,23 @@ namespace TestFramework.Pages
 
         public OwnerPanelRestaurantsPage ClickArchiveButton()
         {
+            _threeDotButton.Click();
             _archiveButton.Click();
             return this;
         }
 
         public OwnerPanelRestaurantsPage ClickManageButton()
         {
+            _threeDotButton.Click();
             _manageButton.Click();
             return this;
         }
+        public OwnerPanelRestaurantsPage ClickAddRestaurantButton()
+        {
+            _addRestaurantButton.Click();
+            return this;
+        }
+
 
         #endregion
 
