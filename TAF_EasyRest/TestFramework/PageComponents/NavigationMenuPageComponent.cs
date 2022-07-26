@@ -1,5 +1,5 @@
 ﻿
-namespace TestFramework.PagesComponents
+namespace TestFramework.PageComponents
 {
     public class NavigationMenuPageComponent : BasePage
     {
@@ -8,7 +8,7 @@ namespace TestFramework.PagesComponents
             wait = new WebDriverWait(driver, timeout);
         }
 
-        protected static TimeSpan timeout = TimeSpan.FromSeconds(10);
+        protected static TimeSpan timeout = TimeSpan.FromSeconds(3);
         protected static WebDriverWait wait;
 
         private IWebElement _HomeButton => driver.FindElement(By.XPath("//span[text()='Home']"));
