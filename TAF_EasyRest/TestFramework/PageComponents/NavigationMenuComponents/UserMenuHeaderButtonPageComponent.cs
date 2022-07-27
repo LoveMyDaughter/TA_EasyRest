@@ -2,7 +2,7 @@
 {
     public class UserMenuHeaderButtonPageComponent
     {
-        IWebDriver driver { get; set; }
+        IWebDriver driver { get; }
 
         public UserMenuHeaderButtonPageComponent(IWebDriver driver)
         {
