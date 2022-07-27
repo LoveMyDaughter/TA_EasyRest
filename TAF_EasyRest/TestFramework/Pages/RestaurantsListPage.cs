@@ -1,9 +1,10 @@
 ﻿using TestFramework.PageComponents;
+using TestFramework.PageComponents.NavigationMenuComponents;
 
 
 namespace TestFramework.Pages
 {
-    internal class RestaurantsListPage : BasePage
+    public class RestaurantsListPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenu { get; }
 
