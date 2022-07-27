@@ -1,5 +1,4 @@
-﻿
-namespace TestFramework.PageComponents.RestaurantMenuComponents
+﻿namespace TestFramework.PageComponents.RestaurantMenuComponents
 {
     public class CartPageComponent
     {
