@@ -22,9 +22,7 @@ namespace TestFramework.Pages
         private IWebElement _assignedWaiterButton => driver.FindElement(By.XPath("//span[contains(text(),'Assigned waiter')]/parent::span/parent::span/parent::a"));
         private IWebElement _inProgressButton => driver.FindElement(By.XPath("//span[contains(text(),'In progress')]/parent::span/parent::span/parent::a"));
         private IWebElement _orderField => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-2528']/child::div)[1]"));
-        private IWebElement _declineButton => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-2528']/child::div)[1]//button"));
-
-
+        
         public CurrentOrdersPage ClickAllButton()
         {
             _allButton.Click();
@@ -61,16 +59,11 @@ namespace TestFramework.Pages
             return this;
         }
 
-        public CurrentOrdersPage ExpandOrderField()
+        public WaitingForConfirmOrderPageComponent ExpandOrderField()
         {
             _orderField.Click();
-            return this;
+            return new WaitingForConfirmOrderPageComponent(driver);
         }
 
-        public CurrentOrdersPage ClickDeclineButton()
-        {
-            _declineButton.Click();
-            return this;
-        }
     }
 }
