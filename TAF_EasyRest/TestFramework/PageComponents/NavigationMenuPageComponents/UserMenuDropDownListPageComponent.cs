@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestFramework.PageComponents 
+namespace TestFramework.PageComponents.NavigationMenuComponents
 {
     internal class UserMenuDropDownListPageComponent
     {
@@ -13,7 +13,7 @@ namespace TestFramework.PageComponents
         protected static WebDriverWait wait { get; set; }
 
 
-        public UserMenuDropDownListPageComponent(IWebDriver driver) 
+        public UserMenuDropDownListPageComponent(IWebDriver driver)
         {
             wait = new WebDriverWait(driver, timeout);
             this.driver = driver;
@@ -22,16 +22,14 @@ namespace TestFramework.PageComponents
         private IWebElement _MyProfile = wait.Until(drv => drv.FindElement(By.XPath("//a[@role='menuitem']")));
         private IWebElement _LogOut = wait.Until(drv => drv.FindElement(By.XPath("//li[text()='Log Out']")));
 
-        public UserMenuDropDownListPageComponent ClickGoToMyProfileButton()
+        public void ClickGoToMyProfileButton()
         {
             _MyProfile.Click();
-            return this;
         }
 
-        public UserMenuDropDownListPageComponent ClickLogOutButton()
+        public void ClickLogOutButton()
         {
             _LogOut.Click();
-            return this;
         }
     }
 }

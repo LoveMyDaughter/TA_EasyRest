@@ -2,7 +2,7 @@
 
 namespace TestFramework.Pages
 {
-    internal class HomePage : BasePage
+    public class HomePage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenu { get; }
 
