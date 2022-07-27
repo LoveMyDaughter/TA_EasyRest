@@ -1,4 +1,5 @@
-﻿using TestFramework.PagesComponents;
+﻿using TestFramework.PageComponents;
+using TestFramework.PageComponents.NavigationMenuComponents;
 
 namespace TestFramework.Pages
 {
@@ -20,9 +21,6 @@ namespace TestFramework.Pages
         private IWebElement _historyButton => driver.FindElement(By.XPath("//span[contains(text(),'History (')]/ancestor::a"));
         private IWebElement _declinedButton => driver.FindElement(By.XPath("//span[contains(text(),'Declined')]/ancestor::a"));
         private IWebElement _orderField => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-1340']/child::div)[1]"));
-        private IWebElement _reorderButton => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-1340']/child::div)[1]//button"));
-
-        //add other buttons, when they will be needed
 
         #endregion
 
@@ -46,16 +44,10 @@ namespace TestFramework.Pages
             return this;
         }
 
-        public OrderHistoryPage ExpandOrderField()
+        public OrderPageComponent ExpandOrderField()
         {
             _orderField.Click();
-            return this;
-        }
-
-        public OrderHistoryPage ClickReorderButton()
-        {
-            _reorderButton.Click();
-            return this;
+            return new OrderPageComponent(driver);
         }
 
         #endregion
