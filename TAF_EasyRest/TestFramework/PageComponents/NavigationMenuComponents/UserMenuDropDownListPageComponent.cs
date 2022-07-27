@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestFramework.PageComponents.NavigationMenuComponents
+﻿namespace TestFramework.PageComponents.NavigationMenuComponents
 {
     public class UserMenuDropDownListPageComponent
     {
@@ -19,17 +13,17 @@ namespace TestFramework.PageComponents.NavigationMenuComponents
             this.driver = driver;
         }
 
-        private IWebElement _MyProfile = wait.Until(drv => drv.FindElement(By.XPath("//a[@role='menuitem']")));
-        private IWebElement _LogOut = wait.Until(drv => drv.FindElement(By.XPath("//li[text()='Log Out']")));
+        private IWebElement _myProfile = wait.Until(drv => drv.FindElement(By.XPath("//a[@role='menuitem']")));
+        private IWebElement _logOut = wait.Until(drv => drv.FindElement(By.XPath("//li[text()='Log Out']")));
 
         public void ClickGoToMyProfileButton()
         {
-            _MyProfile.Click();
+            _myProfile.Click();
         }
 
         public void ClickLogOutButton()
         {
-            _LogOut.Click();
+            _logOut.Click();
         }
     }
 }

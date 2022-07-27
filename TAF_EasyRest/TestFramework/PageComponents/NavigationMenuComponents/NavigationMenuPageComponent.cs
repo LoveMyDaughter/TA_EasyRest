@@ -10,18 +10,18 @@
         protected static TimeSpan timeout = TimeSpan.FromSeconds(3);
         protected static WebDriverWait wait;
 
-        private IWebElement _HomeButton => driver.FindElement(By.XPath("//span[text()='Home']"));
-        private IWebElement _RestaurantsList => driver.FindElement(By.XPath("//span[text()='Restaurants List']"));
+        private IWebElement _homeButton => driver.FindElement(By.XPath("//span[text()='Home']"));
+        private IWebElement _restaurantsList => driver.FindElement(By.XPath("//span[text()='Restaurants List']"));
 
-        public HomePageNonAuthorizedUser ClickHomeButton()
+        public HomePageNonAuthorizedUserPage ClickHomeButton()
         {
-            _HomeButton.Click();
-            return new HomePageNonAuthorizedUser(driver);
+            _homeButton.Click();
+            return new HomePageNonAuthorizedUserPage(driver);
         }
 
         public RestaurantsListPage ClickRestaurantsListButton()
         {
-            _RestaurantsList.Click();
+            _restaurantsList.Click();
             return new RestaurantsList(driver);
         }
     }
