@@ -6,11 +6,11 @@ namespace TestFramework.Pages
     public class OwnerPanelRestaurantsPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
-        public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
+        public ManageWa PersonalInfoPageComponent { get; }
 
         public OwnerPanelRestaurantsPage(IWebDriver driver) : base(driver)
         {
-            PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
+            PersonalInfoPageComponent = new ManageWa(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
         }
 
