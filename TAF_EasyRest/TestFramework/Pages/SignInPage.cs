@@ -1,5 +1,4 @@
-﻿
-namespace TestFramework.Pages
+﻿namespace TestFramework.Pages
 {
     public class SignInPage : BasePage
     {

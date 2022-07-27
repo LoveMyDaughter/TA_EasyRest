@@ -1,7 +1,8 @@
+﻿using TestFramework.PageComponents.NavigationMenuComponents;
 
 namespace TestFramework.Pages
 {
-    internal class SignUpPage : BasePage
+    public class SignUpPage : BasePage
     {
         private static string _signUpUrl = "/sign-up";
 
