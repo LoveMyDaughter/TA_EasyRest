@@ -13,10 +13,10 @@
         private IWebElement _HomeButton => driver.FindElement(By.XPath("//span[text()='Home']"));
         private IWebElement _RestaurantsList => driver.FindElement(By.XPath("//span[text()='Restaurants List']"));
 
-        public HomePage ClickHomeButton()
+        public HomePageNonAuthorizedUser ClickHomeButton()
         {
             _HomeButton.Click();
-            return new HomePage(driver);
+            return new HomePageNonAuthorizedUser(driver);
         }
 
         public RestaurantsListPage ClickRestaurantsListButton()

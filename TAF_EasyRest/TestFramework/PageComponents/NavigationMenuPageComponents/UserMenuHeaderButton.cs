@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestFramework.PageComponents.NavigationMenuComponents
 {
-    internal class UserMenuHeaderButton
+    public class UserMenuHeaderButton
     {
         IWebDriver driver { get; set; }
 

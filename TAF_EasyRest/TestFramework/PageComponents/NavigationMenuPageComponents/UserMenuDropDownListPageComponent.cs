@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestFramework.PageComponents.NavigationMenuComponents
 {
-    internal class UserMenuDropDownListPageComponent
+    public class UserMenuDropDownListPageComponent
     {
         protected IWebDriver driver { get; set; }
         protected static TimeSpan timeout = TimeSpan.FromSeconds(3);
