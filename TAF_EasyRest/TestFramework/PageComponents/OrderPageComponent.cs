@@ -3,18 +3,20 @@
     public class OrderPageComponent
     {
         private IWebDriver driver;
+        private int index;
 
-        public OrderPageComponent(IWebDriver driver)
+        public OrderPageComponent(IWebDriver driver, int index)
         {
             this.driver = driver;
+            this.index = index;
         }
 
-        private IWebElement _reorderButton => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-1340']/child::div)[1]//button"));
-
-        public OrderPageComponent ClickReorderButton()
+        private IWebElement _orderField => driver.FindElement(By.XPath($"((//div[@class='MuiPaper-root-10 MuiPaper-elevation1-13 MuiPaper-rounded-11 MuiExpansionPanel-root-404 MuiExpansionPanel-rounded-405'])[{index}]"));
+    
+        public HistoryOrderDetailsPageComponent ExpandOrderDetails()
         {
-            _reorderButton.Click();
-            return this;
+            _orderField.Click();
+            return new HistoryOrderDetailsPageComponent(driver, index);
         }
     }
 }

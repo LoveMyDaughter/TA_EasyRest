@@ -3,18 +3,20 @@
     public class WaitingForConfirmOrderPageComponent
     {
         private IWebDriver driver;
+        private int index;
 
-        public WaitingForConfirmOrderPageComponent(IWebDriver driver)
+        public WaitingForConfirmOrderPageComponent(IWebDriver driver, int index)
         {
             this.driver = driver;
+            this.index = index;
         }
 
-        private IWebElement _declineButton => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-2528']/child::div)[1]//button"));
+        private IWebElement _orderField => driver.FindElement(By.XPath($"(//div[@class='MuiButtonBase-root-106 MuiExpansionPanelSummary-root-981'])[{index}]"));
 
-        public WaitingForConfirmOrderPageComponent ClickDeclineButton()
+        public WaitingForConfirmOrderDetailsPageComponent ExpandOrderField()
         {
-            _declineButton.Click();
-            return this;
+            _orderField.Click();
+            return new WaitingForConfirmOrderDetailsPageComponent(driver, index);
         }
     }
 }

@@ -7,62 +7,47 @@ namespace TestFramework.Pages
     {
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
+        public List<WaitingForConfirmOrderPageComponent> orders { get; set; }
 
         public CurrentOrdersPage(IWebDriver driver) : base(driver)
         {
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+            FillOdersList();
         }
 
 
         private IWebElement _allButton => driver.FindElement(By.XPath("//span[contains(text(),'All')]/parent::span/parent::span/parent::a"));
-        private IWebElement _draftButton => driver.FindElement(By.XPath("//span[contains(text(),'Draft')]/parent::span/parent::span/parent::a"));
         private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//span[contains(text(),'Waiting for confirm')]/parent::span/parent::span/parent::a"));
-        private IWebElement _acceptedButton => driver.FindElement(By.XPath("//span[contains(text(),'Accepted')]/parent::span/parent::span/parent::a"));
-        private IWebElement _assignedWaiterButton => driver.FindElement(By.XPath("//span[contains(text(),'Assigned waiter')]/parent::span/parent::span/parent::a"));
-        private IWebElement _inProgressButton => driver.FindElement(By.XPath("//span[contains(text(),'In progress')]/parent::span/parent::span/parent::a"));
-        private IWebElement _orderField => driver.FindElement(By.XPath("(//div[@class='UserOrders-root-2528']/child::div)[1]"));
-        
+
+        private int СountOrders()
+        {
+            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[@class='MuiButtonBase-root-106 MuiExpansionPanelSummary-root-573']"));
+            return items.Count();
+        }
+
+        private void FillOdersList()
+        {
+            orders = new List<WaitingForConfirmOrderPageComponent>(СountOrders());
+            for (int i = 0; i < orders.Count; i++)
+            {
+                orders.Add(new WaitingForConfirmOrderPageComponent(driver, (i + 1)));
+            }
+        }
+
         public CurrentOrdersPage ClickAllButton()
         {
+            FillOdersList();
             _allButton.Click();
             return this;
         }
 
-        public CurrentOrdersPage ClickDraftButton()
-        {
-            _draftButton.Click();
-            return this;
-        }
 
         public CurrentOrdersPage ClickWaitingForConfirmButton()
         {
+            FillOdersList();
             _waitingForConfirmButton.Click();
             return this;
-        }
-
-        public CurrentOrdersPage ClickAcceptedButton()
-        {
-            _acceptedButton.Click();
-            return this;
-        }
-
-        public CurrentOrdersPage ClickAssignedWaiterButton()
-        {
-            _assignedWaiterButton.Click();
-            return this;
-        }
-
-        public CurrentOrdersPage ClickInProgressButton()
-        {
-            _inProgressButton.Click();
-            return this;
-        }
-
-        public WaitingForConfirmOrderPageComponent ExpandOrderField()
-        {
-            _orderField.Click();
-            return new WaitingForConfirmOrderPageComponent(driver);
         }
 
     }
