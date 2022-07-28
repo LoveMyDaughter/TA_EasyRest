@@ -99,10 +99,10 @@
         }
 
         //List of restaurants are needed
-        public NewRestaurantPageComponet ClickAddButton()
+        public OwnerPanelRestaurantsPage ClickAddButton()
         {
             _addButton.Click();
-            return new NewRestaurantPageComponet(driver);
+            return new OwnerPanelRestaurantsPage(driver);
         }
 
         #endregion
