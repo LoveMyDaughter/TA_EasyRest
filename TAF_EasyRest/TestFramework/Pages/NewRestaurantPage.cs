@@ -3,11 +3,11 @@ using TestFramework.PageComponents;
 
 namespace TestFramework.Pages 
 {
-    public class NewRestaurantPageObject : BasePage
+    public class NewRestaurantPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenu { get;}
 
-        public NewRestaurantPageObject(IWebDriver driver) : base(driver)
+        public NewRestaurantPage(IWebDriver driver) : base(driver)
         {
             NavigationMenu = new NavigationMenuPageComponent(driver);
         }

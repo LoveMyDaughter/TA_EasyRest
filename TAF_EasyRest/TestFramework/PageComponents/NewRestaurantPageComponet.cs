@@ -92,10 +92,10 @@
             return this;
         }
 
-        public NewRestaurantPageObject ClickCancelButton()
+        public NewRestaurantPage ClickCancelButton()
         {
             _cancelButton.Click();
-            return new NewRestaurantPageObject(driver);
+            return new NewRestaurantPage(driver);
         }
 
         //List of restaurants are needed
