@@ -26,7 +26,7 @@ namespace TestFramework.Pages
 
         #region Methods
 
-        private int countOrders()
+        private int СountOrders()
         {
             IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[@class='MuiButtonBase-root-106 MuiExpansionPanelSummary-root-573']"));
             return items.Count();
@@ -34,7 +34,7 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            orders = new List<OrderPageComponent>(countOrders());
+            orders = new List<OrderPageComponent>(СountOrders());
             for (int i = 0; i < orders.Count; i++)
             {
                 orders.Add(new OrderPageComponent(driver, (i+1)));
