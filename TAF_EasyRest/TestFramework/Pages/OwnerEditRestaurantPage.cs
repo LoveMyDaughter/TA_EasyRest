@@ -5,29 +5,17 @@ public class OwnerEditRestaurantPage : BasePage
 {
     public OwnerEditRestaurantPage(IWebDriver driver) : base(driver)
     {
-        ManageRestaurantPageComponent = new ManageRestaurantPageComponent(driver);
-        NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+        ManageRestaurantPageComponent = new ManageRestaurantPageComponent(driver);       
     }
     public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
-    public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+    
+    private IWebElement _editInformationButton => driver.FindElement(By.XPath("//button[@title = 'Edit Information']"));
 
-    private IWebElement _editRestaurantButton => driver.FindElement(By.XPath("//button[@title = 'Edit Information']"));
-    private IWebElement _updateRestaurantButton => driver.FindElement(By.XPath("//span[contains(text(),'Update')]/parent::button"));
-    private IWebElement _cancelEditRestaurantButton => driver.FindElement(By.XPath("//span[contains(text(),'Cancel')]/parent::button"));
 
-    public OwnerEditRestaurantPage ClickEditRestaurantButton()
+    public OwnerEditRestaurantPageComponent ClickEditRestaurantButton()
     {
-        _editRestaurantButton.Click();
-        return this;
+        _editInformationButton.Click();
+        return new OwnerEditRestaurantPageComponent(driver);
     }
-    public OwnerEditRestaurantPage UpdateEditRestaurantButton()
-    {
-        _updateRestaurantButton.Click();
-        return this;
-    }
-    public OwnerEditRestaurantPage CancelRestaurantButton()
-    {
-        _cancelEditRestaurantButton.Click();
-        return this;
-    }
+   
 }
