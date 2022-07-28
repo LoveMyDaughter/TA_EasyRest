@@ -1,16 +1,17 @@
 ﻿using TestFramework.PageComponents;
+using TestFramework.PageComponents.NavigationMenuComponents;
 
 namespace TestFramework.Pages
 {
     public class ModeratorPanelRestaurantsPage : BasePage
     {
-        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public NavigationMenuPageComponent NavigationMenu { get; }
 
         public AdminPanelPageComponent AdminPanelPageComponent { get; }
 
         public ModeratorPanelRestaurantsPage(IWebDriver driver) : base(driver)
         {
-            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+            NavigationMenu = new NavigationMenuPageComponent(driver);
             
             // Panel's button "Moderators" is not visible on the current page. We don't use it
             AdminPanelPageComponent = new AdminPanelPageComponent(driver);
