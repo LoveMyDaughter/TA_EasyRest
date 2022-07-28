@@ -9,7 +9,7 @@ namespace TestFramework.Pages
         }
         public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
 
-        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter")); // change XPath
+        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter")); 
        
 
         public CreateNewWaiterPageComponent ClickAddWaiterButton()
