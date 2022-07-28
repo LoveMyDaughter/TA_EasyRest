@@ -9,7 +9,7 @@ namespace TestFramework.Pages
 
         public AdminPanelPageComponent AdminPanelPageComponent { get; }
 
-        public List<RestaurantPageComponent> restaurants { get; set; }
+        public List<UnapprovedRestaurantPageComponent> restaurants { get; set; }
 
 
         public ModeratorPanelRestaurantsPage(IWebDriver driver) : base(driver)
@@ -44,10 +44,10 @@ namespace TestFramework.Pages
 
         private void FillRestaurantsGrid()
         {
-            restaurants = new List<RestaurantPageComponent>(СountRestaurants());
+            restaurants = new List<UnapprovedRestaurantPageComponent>(СountRestaurants());
             for (int i = 0; i < restaurants.Count; i++)
             {
-                restaurants.Add(new RestaurantPageComponent(driver, (i + 1)));
+                restaurants.Add(new UnapprovedRestaurantPageComponent(driver));
             }
         }
 
