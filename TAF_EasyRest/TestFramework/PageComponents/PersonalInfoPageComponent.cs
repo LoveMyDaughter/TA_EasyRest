@@ -16,22 +16,22 @@ namespace TestFramework.PageComponents
             return this;
         }
 
-        public PersonalInfoPageComponent ClickСurrentOrdersButton()
+        public CurrentOrdersPage ClickСurrentOrdersButton()
         {
             _currentOrdersButton.Click();
-            return this;
+            return new CurrentOrdersPage(driver);
         }
 
-        public PersonalInfoPageComponent ClickOrderHistoryButton()
+        public OrderHistoryPage ClickOrderHistoryButton()
         {
             _orderHistoryButton.Click();
-            return this;
+            return new OrderHistoryPage(driver);
         }
 
-        public PersonalInfoPageComponent ClickMyRestaurantsButton()
+        public NewRestaurantPage ClickMyRestaurantsButton()
         {
             _myRestaurantsButton.Click();
-            return this;
+            return new NewRestaurantPage(driver);
         }
     }
 }
