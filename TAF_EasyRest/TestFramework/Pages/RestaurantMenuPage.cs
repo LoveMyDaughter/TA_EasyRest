@@ -19,7 +19,7 @@ namespace TestFramework.Pages
 
             for (int i = 0; i < MenuItemSummaryWebElements.Count; i++)
             {
-                MenuItemSummaryPageComponentsList.Add(new MenuItemSummaryPageComponent(driver));
+                MenuItemSummaryPageComponentsList.Add(new MenuItemSummaryPageComponent(driver, i+1));
             }
         }
 
