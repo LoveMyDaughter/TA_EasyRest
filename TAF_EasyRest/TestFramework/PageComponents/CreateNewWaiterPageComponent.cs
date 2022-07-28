@@ -27,7 +27,6 @@
             _emailField.Click();
             return this;
         }
-
         public CreateNewWaiterPageComponent ClickPasswordField()
         {
             _passwordField.Click();
@@ -58,8 +57,7 @@
             _emailField.SendKeys(email);
             return this;
         }
-
-        public CreateNewWaiterPageComponent SendKeysToPasswordField(string password)
+       public CreateNewWaiterPageComponent SendKeysToPasswordField(string password)
         {
             _passwordField.SendKeys(password);
             return this;
