@@ -1,7 +1,6 @@
 ﻿using TestFramework.PageComponents;
 using TestFramework.PageComponents.NavigationMenuComponents;
 
-
 namespace TestFramework.Pages
 {
     public class RestaurantsListPage : BasePage
