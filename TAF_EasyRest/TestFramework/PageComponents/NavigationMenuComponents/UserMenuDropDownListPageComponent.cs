@@ -2,7 +2,7 @@
 {
     public class UserMenuDropDownListPageComponent
     {
-        protected IWebDriver driver { get; }
+        IWebDriver driver { get; }
 
         public UserMenuDropDownListPageComponent(IWebDriver driver)
         {
