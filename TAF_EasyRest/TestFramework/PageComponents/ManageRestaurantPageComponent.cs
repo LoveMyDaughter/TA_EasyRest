@@ -10,9 +10,6 @@ namespace TestFramework.PageComponents
         protected IWebElement _waitersButton => driver.FindElement(By.XPath("//span[contains(text(), 'Waiters')]/parent::div/parent::a"));
         protected IWebElement _administratorsButton => driver.FindElement(By.XPath("//span[contains(text(), 'Administrators')]/parent::div/parent::a"));
 
-
-
-
         public ManageRestaurantPageComponent ClickDetailsButton()
         {
             _detailsButton.Click();
