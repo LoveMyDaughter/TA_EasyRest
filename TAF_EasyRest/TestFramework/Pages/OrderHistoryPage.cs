@@ -8,11 +8,13 @@ namespace TestFramework.Pages
 
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
+        public List<OrderPageComponent> orders { get; }
 
         public OrderHistoryPage(IWebDriver driver): base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
+            FillOdersList(orders);
         }
 
         #region Elements
@@ -25,6 +27,21 @@ namespace TestFramework.Pages
         #endregion
 
         #region Methods
+
+        private int countOrders()
+        {
+            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath(""));
+            return items.Count();
+        }
+
+        private void FillOdersList(List<OrderPageComponent> orders)
+        {
+            orders = new List<OrderPageComponent>(countOrders());
+            for (int i = 0; i < orders.Count; i++)
+            {
+                orders.Add(new OrderPageComponent(driver, (i+1)));
+            }
+        }
 
         public OrderHistoryPage ClickAllButton()
         {
