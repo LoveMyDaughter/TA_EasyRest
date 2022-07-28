@@ -5,12 +5,11 @@ namespace TestFramework.Pages
     {
         public ManageWaitersPage(IWebDriver driver) : base(driver)
         {
-            personalInfoPageComponent = new ManageWa(driver);
+            ManageRestaurantPageComponent = new ManageRestaurantPageComponent(driver);
         }
-        public ManageWa personalInfoPageComponent { get; }
+        public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
 
-        private IWebElement _removeWaiterButton(string username) => driver.FindElement(By.XPath($"//span[contains(text(), '{username}')]/parent::div//following-sibling::button"));
-        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//*[@id='root']/div/main/div[2]/button")); // change XPath
+        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter")); // change XPath
        
 
         public CreateNewWaiterPageComponent ClickAddWaiterButton()

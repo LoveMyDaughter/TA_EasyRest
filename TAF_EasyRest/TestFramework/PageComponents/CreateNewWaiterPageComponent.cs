@@ -1,15 +1,20 @@
 ﻿namespace TestFramework.PageComponents
 {
-    public class CreateNewWaiterPageComponent : BasePage
+    public class CreateNewWaiterPageComponent 
     {
-        public CreateNewWaiterPageComponent(IWebDriver driver) : base(driver) { }
+        IWebDriver driver { get; }
+
+        public CreateNewWaiterPageComponent(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
 
         private IWebElement _nameField => driver.FindElement(By.Name("name"));
         private IWebElement _emailField => driver.FindElement(By.Name("email"));
         private IWebElement _passwordField => driver.FindElement(By.Name("password"));
         private IWebElement _phoneNumberField => driver.FindElement(By.Name("phone_number"));
-        private IWebElement _addToSubmitRegistrationWaiterButton => driver.FindElement(By.XPath("//span[contains(text(),'Add')]/parent::button"));
-        private IWebElement _cancelRegistrationWaiterButton => driver.FindElement(By.XPath("//span[contains(text(),'Cancel')]/parent::button"));
+        private IWebElement _addButton => driver.FindElement(By.XPath("//span[contains(text(),'Add')]/parent::button"));
+        private IWebElement _cancelButton => driver.FindElement(By.XPath("//span[contains(text(),'Cancel')]/parent::button"));
 
 
         public CreateNewWaiterPageComponent ClickNameField()
@@ -35,13 +40,13 @@
         }
         public CreateNewWaiterPageComponent ClickAddToSubmitRegistrationWaiterButton()
         {
-            _addToSubmitRegistrationWaiterButton.Click();
-            return this;
+            _addButton.Click();
+            return new CreateNewWaiterPageComponent(driver); 
         }
         public CreateNewWaiterPageComponent ClickCancelRegistrationWaiterButton()
         {
-            _cancelRegistrationWaiterButton.Click();
-            return this;
+            _cancelButton.Click();
+            return new CreateNewWaiterPageComponent(driver);
         }
         public CreateNewWaiterPageComponent SendKeysToNameField(string name)
         {
