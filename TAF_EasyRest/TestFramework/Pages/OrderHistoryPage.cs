@@ -8,13 +8,13 @@ namespace TestFramework.Pages
 
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
-        public List<OrderPageComponent> orders { get; }
+        public List<OrderPageComponent> orders { get; set; }
 
         public OrderHistoryPage(IWebDriver driver): base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
-            FillOdersList(orders);
+            FillOdersList();
         }
 
         #region Elements
@@ -32,7 +32,7 @@ namespace TestFramework.Pages
             return items.Count();
         }
 
-        private void FillOdersList(List<OrderPageComponent> orders)
+        private void FillOdersList()
         {
             orders = new List<OrderPageComponent>(countOrders());
             for (int i = 0; i < orders.Count; i++)
@@ -49,7 +49,7 @@ namespace TestFramework.Pages
 
         public OrderHistoryPage ClickHistoryButton()
         {
-            FillOdersList(orders);
+            FillOdersList();
             _historyButton.Click();
             return this;
         }
