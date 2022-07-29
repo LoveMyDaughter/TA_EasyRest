@@ -56,7 +56,7 @@ namespace TestFramework.Pages
             IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class, 'Grid-grid')]']"));
             return items.Count();
         }
-    }
+    
 
     public ModeratorPanelRestaurantsPage ClickUnapprovedTabButton()
         {
