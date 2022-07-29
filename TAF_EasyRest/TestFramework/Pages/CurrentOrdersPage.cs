@@ -37,16 +37,16 @@ namespace TestFramework.Pages
 
         public CurrentOrdersPage ClickAllButton()
         {
-            FillOdersList();
             _allButton.Click();
+            FillOdersList();
             return this;
         }
 
 
         public CurrentOrdersPage ClickWaitingForConfirmButton()
         {
-            FillOdersList();
             _waitingForConfirmButton.Click();
+            FillOdersList();
             return this;
         }
 
