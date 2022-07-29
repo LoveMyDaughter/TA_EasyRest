@@ -44,13 +44,14 @@ namespace TestFramework.Pages
         public OrderHistoryPage ClickAllButton()
         {
             _allButton.Click();
+            FillOdersList();
             return this;
         }
 
         public OrderHistoryPage ClickHistoryButton()
         {
-            FillOdersList();
             _historyButton.Click();
+            FillOdersList();
             return this;
         }
 
