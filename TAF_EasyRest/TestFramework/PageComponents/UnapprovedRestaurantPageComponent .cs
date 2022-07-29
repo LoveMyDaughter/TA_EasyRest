@@ -17,12 +17,14 @@ namespace TestFramework.PageComponents
         public UnapprovedRestaurantPageComponent ClickApproveButton()
         {
             _approveButton.Click();
+            // Refill list of restaurants
             return this;
         }
         
         public UnapprovedRestaurantPageComponent ClickDisapproveButton()
         {
             _disapproveButton.Click();
+            // Refill list of restaurants
             return this;
         }
     }
