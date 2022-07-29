@@ -16,17 +16,14 @@ namespace TestFramework.Pages
         {
             NavigationMenu = new NavigationMenuPageComponent(driver);
             
-            // Panel's button "Moderators" is not visible on the current page. We don't use it
             AdminPanelPageComponent = new AdminPanelPageComponent(driver);
 
-            FillRestaurantsGrid();
-        }
+         }
 
 
         #region Elements
 
         // Top-line tab-buttons: All, Unapproved, Approved, Archived
-        private IWebElement _allTabButton;
         private IWebElement _unapprovedTabButton => driver.FindElement(By.XPath("//span[contains (text() , 'Unapproved')]/ancestor::button"));
         private IWebElement _approvedTabButton => driver.FindElement(By.XPath("//span[contains (text() , 'Approved')]/ancestor::button"));
         private IWebElement _archivedTabButton => driver.FindElement(By.XPath("//span[contains (text() , 'Archived')]/ancestor::button"));
@@ -41,22 +38,7 @@ namespace TestFramework.Pages
 
 
         #region Methods
-
-        private void FillRestaurantsGrid()
-        {
-            restaurants = new List<UnapprovedRestaurantPageComponent>(СountRestaurants());
-            for (int i = 0; i < restaurants.Count; i++)
-            {
-                restaurants.Add(new UnapprovedRestaurantPageComponent(driver));
-            }
-        }
-
-        private int СountRestaurants()
-        {
-            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class, 'Grid-grid')]']"));
-            return items.Count();
-        }
-    
+            
 
     public ModeratorPanelRestaurantsPage ClickUnapprovedTabButton()
         {
@@ -66,6 +48,7 @@ namespace TestFramework.Pages
         public ModeratorPanelRestaurantsPage ClickApprovedTabButton()
         {
             _approvedTabButton.Click();
+
             return this;
         }
         public ModeratorPanelRestaurantsPage ClickArchivedTabButton()
