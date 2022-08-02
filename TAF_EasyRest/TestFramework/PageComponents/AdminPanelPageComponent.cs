@@ -16,7 +16,7 @@
 
         #region Methods
 
-         public AdminPanelModeratorsPage ClickModeratorsButton()
+        public AdminPanelModeratorsPage ClickModeratorsButton()
         {
             _moderatorsButton.Click();
             return new AdminPanelModeratorsPage(driver);
