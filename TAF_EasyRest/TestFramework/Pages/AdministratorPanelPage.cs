@@ -1,4 +1,4 @@
-﻿using TestFramework.PageComponents;
+﻿using TestFramework.PageComponents.AdministratorPanelComponents;
 using TestFramework.PageComponents.NavigationMenuComponents;
 
 namespace TestFramework.Pages
@@ -18,16 +18,16 @@ namespace TestFramework.Pages
         private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//header//span[text()='Waiting for confirm']"));
         private IWebElement _acceptedButton => driver.FindElement(By.XPath("//header//span[text()='Accepted']"));
 
-        public WaitingForConfirmTabPageComponent ClickWaitingForConfirmButton()
+        public WaitingForConfirmListPageComponent ClickWaitingForConfirmButton()
         {
             _waitingForConfirmButton.Click();
-            return new WaitingForConfirmTabPageComponent(driver);
+            return new WaitingForConfirmListPageComponent(driver);
         }
 
-        public AcceptedTabPageComponent ClickAcceptedButton()
+        public AcceptedListPageComponent ClickAcceptedButton()
         {
             _acceptedButton.Click();
-            return new AcceptedTabPageComponent(OrdersContainer);
+            return new AcceptedListPageComponent(driver);
         }
 
     }
