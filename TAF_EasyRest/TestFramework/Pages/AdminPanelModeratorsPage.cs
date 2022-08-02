@@ -18,16 +18,15 @@ namespace TestFramework.Pages
             UserButton = new UserMenuHeaderButtonPageComponent(driver);
         }
 
+        private IReadOnlyCollection<IWebElement> _moderatorsList => driver.FindElements(By.XPath("//tbody/tr"));
+
 
         #region Elements
 
         private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
 
-        // Table body with the list of moderators. This is a parent for any moderator line
-        private IWebElement _moderatorsList => driver.FindElement(By.XPath("//tbody"));
 
-
-        // These elements are only available inside the _moderatorsList component
+        // These elements are only available inside the _moderatorsList component. Move them.
         private IWebElement _statusRecord(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/p"));
         private IWebElement _padlockButtonForUser(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/button"));
 
