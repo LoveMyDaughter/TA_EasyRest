@@ -25,28 +25,24 @@ namespace TestFramework.Pages
 
         private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
 
-
-        // These elements are only available inside the _moderatorsList component. Move them.
-        private IWebElement _statusRecord(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/p"));
-        private IWebElement _padlockButtonForUser(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/button"));
-
         #endregion
 
 
         #region Methods
 
-        public AdminPanelModeratorsPage ClickPadlockButton(string username)
+        // Find first row of the moderators list. Find button and status for it. Click button. Check if the status has changed
+        public bool ChangeModeratorStatus()
         {
-            _padlockButtonForUser(username).Click();
-            return this;
-            // Add exception: User not found
-        }
+            var firstModeratorFromList = _moderatorsList.ElementAt(0);
+            var padlockButton = firstModeratorFromList.FindElement(By.XPath("./td/button"));
+            var statusRecord = firstModeratorFromList.FindElement(By.XPath("./td/p"));
+            string startStatus = statusRecord.Text;
 
-        // "Active" or "Banned" status for required user - to check if user's activity changes
-        public string StatusRecordGetText(string username)
-        {
-            return _statusRecord(username).Text;
-            // Add exception: User not found
+            padlockButton.Click();
+
+            string endStatus = statusRecord.Text;
+
+            return startStatus == endStatus;
         }
 
         public AdminPanelCreateModeratorPage ClickAddModeratorButton()
