@@ -5,14 +5,14 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
     {
         IWebDriver driver { get; }
         
-        private IReadOnlyCollection<IWebElement> _orders => driver.FindElements(By.XPath("//div[contains(@class, 'MuiTypography-root')]//div[contains(@class, ' MuiExpansionPanelSummary-root-450')]"));
+        private IReadOnlyCollection<IWebElement> _orders => driver.FindElements(By.XPath("//div[contains(@class, 'AdministratorPanel')]/div/div/div/div"));
 
         public AcceptedListPageComponent(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public AcceptedCardPageComponent ExpandAnyOrder()
+        public AcceptedCardPageComponent ExpandTheFirstOrder()
         {
             var card = _orders.ElementAt(0);
 

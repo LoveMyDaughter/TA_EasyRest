@@ -3,7 +3,13 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
 {
     public class AcceptedCardPageComponent
     {
-        IWebDriver driver { get; }
+        private IWebDriver driver { get; }
+
+        //return number of web elements which represent order cards with status "Accepted" before assigning an order to a waiter
+        private int cardsBeforeAssigning;
+
+        //return number of web elements which represent order cards with status "Accepted" after assigning the order to a waiter
+        private int cardsAfterAssigning;
 
         public AcceptedCardPageComponent(IWebDriver driver)
         {
@@ -13,23 +19,27 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
         private IWebElement _selectWaiterRadioButton => driver.FindElement(By.XPath("(//input)[1]"));
         private IWebElement _assignButton => driver.FindElement(By.XPath("(//span[text()='Assign'])[1]"));
 
-        public AcceptedCardPageComponent SelectAnyWaiter()
+        public AcceptedCardPageComponent SelectTheFirstWaiter()
         {
             _selectWaiterRadioButton.Click();
             return this;
         }
 
-        //method to check that the order was assigned by checking if the number of orders decreased in the current tab
-        public bool ClickAssignButton()
+        public AcceptedCardPageComponent ClickAssignButton()
         {
-            //return list of web elements which represent order cards with status "Accepted" 
-            var cardsBeforeAssigning = driver.FindElements(By.XPath("//main/div/div/div/div/div"));
-
+            cardsBeforeAssigning = driver.FindElements(By.XPath("//main/div/div/div/div/div")).Count;
+            
             _assignButton.Click();
 
-            var cardsAfterAssigning = driver.FindElements(By.XPath("//main/div/div/div/div/div"));
+            cardsAfterAssigning = driver.FindElements(By.XPath("//main/div/div/div/div/div")).Count;
+            
+            return this;
+        }
 
-            return cardsBeforeAssigning.Count == cardsAfterAssigning.Count + 1;
+        //method to check that the order was assigned by checking if the number of orders decreased in the current tab
+        public bool CheckThatCountOfAcceptedOrdersHaveDecreasedByOne()
+        {
+            return cardsBeforeAssigning == cardsAfterAssigning + 1;
         }
     }
 }

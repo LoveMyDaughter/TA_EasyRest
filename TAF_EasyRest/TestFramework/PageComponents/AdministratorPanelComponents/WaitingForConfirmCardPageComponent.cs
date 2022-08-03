@@ -2,7 +2,13 @@
 {
     public class WaitingForConfirmCardPageComponent
     {
-        IWebDriver driver;
+        private IWebDriver driver { get; }
+
+        //return number of web elements which represent order cards with status "Waiting for confirm" before accepting an order
+        private int cardsBeforeAccepting;
+
+        //return number of web elements which represent order cards with status "Waiting for confirm" after accepting the order
+        private int cardsAfterAccepting;
 
         public WaitingForConfirmCardPageComponent(IWebDriver driver)
         {
@@ -11,17 +17,21 @@
 
         private IWebElement _acceptButton => driver.FindElement(By.XPath("//button//span[text()='Accept']"));
 
-        //method to check that the order was accepted by checking if the number of orders decreased in the current tab
-        public bool AcceptAnyOrder()
+        public WaitingForConfirmCardPageComponent ClickAcceptButton()
         {
-            //return list of web elements which represent order cards with status "Waiting for confirm"
-            var cardsBeforeAccepting = driver.FindElements(By.XPath("//main/div/div/div/div/div"));
-
+            cardsBeforeAccepting = driver.FindElements(By.XPath("//main/div/div/div/div/div")).Count;
+            
             _acceptButton.Click();
-
-            var cardsAfterAccepting = driver.FindElements(By.XPath("//main/div/div/div/div/div"));
-
-            return cardsBeforeAccepting.Count == cardsAfterAccepting.Count + 1;
+            
+            cardsAfterAccepting = driver.FindElements(By.XPath("//main/div/div/div/div/div")).Count;
+           
+            return this;
+        }
+        
+        //method to check that the order was accepted by checking if the number of orders decreased by one in the current tab
+        public bool CheckThatCountOfWaitingForConfirmOrdersHaveDecreasedByOne()
+        {
+            return cardsBeforeAccepting == cardsAfterAccepting + 1;
         }
     }
 }

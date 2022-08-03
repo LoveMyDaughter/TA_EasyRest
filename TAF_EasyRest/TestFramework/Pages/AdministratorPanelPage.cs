@@ -11,7 +11,7 @@ namespace TestFramework.Pages
 
         public AdministratorPanelPage(IWebDriver driver) : base(driver)
         {
-            NavigationMenuPageComponent NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             UserMenuHeaderButtonPageComponent UserMenuHeaderButton = new UserMenuHeaderButtonPageComponent(driver);
         }
 
