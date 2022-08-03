@@ -30,16 +30,16 @@ namespace TestFramework.Pages
             }
         }
 
-        public OrderConfirmationPageComponent ClickCancelButton()
+        public RestaurantMenuPage ClickCancelButton()
         {
             _cancelButton.Click();
-            return new OrderConfirmationPageComponent(driver);
+            return new RestaurantMenuPage(driver);
         }
 
-        public OrderConfirmationPageComponent ClickSubmitButton()
+        public RestaurantMenuPage ClickSubmitButton()
         {
             _submitButton.Click();
-            return new OrderConfirmationPageComponent(driver);
+            return new RestaurantMenuPage(driver);
         }
         #endregion
     }
