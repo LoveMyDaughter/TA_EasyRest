@@ -14,7 +14,7 @@
         #region Elements
         private IWebElement _currentElement => driver.FindElement(By.XPath($"(//td[@class='MuiTableCell-root-3326 MuiTableCell-body-3328 MuiTableCell-paddingCheckbox-3332']//parent::tr)[{index}]"));
         private IWebElement _removeButton => _currentElement.FindElement(By.XPath(".//button[@aria-label='Remove item']"));
-        private IWebElement _quantityField => _currentElement.FindElement(By.XPath(""));
+        private IWebElement _quantityField => _currentElement.FindElement(By.XPath(".//input[@type='number']"));
         #endregion
 
         #region Methods
