@@ -8,6 +8,7 @@
 
         private IWebElement _usersButton => driver.FindElement(By.XPath("//span[text() = 'Users']/ancestor::a"));
         private IWebElement _ownersButton => driver.FindElement(By.XPath("//span[text() = 'Owners']/ancestor::a"));
+        private IWebElement _moderatorsButton => driver.FindElement(By.XPath("//span[text() = 'Moderators']/ancestor::a"));
         private IWebElement _restaurantsButton => driver.FindElement(By.XPath("//span[text() = 'Restaurants']/ancestor::a"));
 
         #endregion
@@ -15,23 +16,11 @@
 
         #region Methods
 
-        public AdminPanelPageComponent ClickUsersButton()
+        public AdminPanelModeratorsPage ClickModeratorsButton()
         {
-            _usersButton.Click();
-            return this;
+            _moderatorsButton.Click();
+            return new AdminPanelModeratorsPage(driver);
         }
-        public AdminPanelPageComponent ClickOwnersButton()
-        {
-            _ownersButton.Click();
-            return this;
-        }
-
-         public AdminPanelPageComponent ClickRestaurantsButton()
-        {
-            _restaurantsButton.Click();
-            return this;
-        }
-
 
         #endregion
 
