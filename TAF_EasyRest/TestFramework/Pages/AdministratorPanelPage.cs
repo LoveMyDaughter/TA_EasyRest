@@ -5,8 +5,8 @@ namespace TestFramework.Pages
 {
     public class AdministratorPanelPage : BasePage
     {
-        NavigationMenuPageComponent NavigationMenuPageComponent { get; }
-        UserMenuHeaderButtonPageComponent UserMenuHeaderButton { get; }
+        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public UserMenuHeaderButtonPageComponent UserMenuHeaderButton { get; }
         
 
         public AdministratorPanelPage(IWebDriver driver) : base(driver)
@@ -29,6 +29,5 @@ namespace TestFramework.Pages
             _acceptedButton.Click();
             return new AcceptedListPageComponent(driver);
         }
-
     }
 }
