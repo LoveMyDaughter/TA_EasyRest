@@ -30,19 +30,29 @@ namespace TestFramework.Pages
 
         #region Methods
 
-        // Find first row of the moderators list. Find button and status for it. Click button. Check if the status has changed
-        public bool ChangeModeratorStatus()
+        /// <summary>
+        /// Find a button to ban/unban the first moderator in the list and click it
+        /// </summary>
+        public AdminPanelModeratorsPage FindAndClickPadlockButton()
         {
             var firstModeratorFromList = _moderatorsList.ElementAt(0);
             var padlockButton = firstModeratorFromList.FindElement(By.XPath("./td/button"));
-            var statusRecord = firstModeratorFromList.FindElement(By.XPath("./td/p"));
-            string startStatus = statusRecord.Text;
 
             padlockButton.Click();
 
-            string endStatus = statusRecord.Text;
+            return this;
+        }
 
-            return startStatus == endStatus;
+        /// <summary>
+        /// With this method we'll check if moderator status changes after click on padlockButton
+        /// </summary>
+        public string ShowModeratorStatus()
+        {
+            var firstModeratorFromList = _moderatorsList.ElementAt(0);
+            var moderatorStatusLabel = firstModeratorFromList.FindElement(By.XPath("./td/p"));
+            string moderatorStatus = moderatorStatusLabel.Text;
+
+            return moderatorStatus;
         }
 
         public AdminPanelCreateModeratorPage ClickAddModeratorButton()
