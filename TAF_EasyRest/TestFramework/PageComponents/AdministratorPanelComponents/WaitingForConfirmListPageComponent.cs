@@ -3,7 +3,7 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
 {
     public class WaitingForConfirmListPageComponent
     {
-        public IWebDriver driver { get; }
+        private IWebDriver driver { get; }
 
         private IReadOnlyCollection<IWebElement> _orders => driver.FindElements(By.XPath("//div[contains(@class, 'AdministratorPanel')]/div/div/div/div"));
 
