@@ -6,8 +6,8 @@ namespace TestFramework.Pages
     public class ModeratorPanelRestaurantsPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenu { get; }
-
-        public AdminPanelPageComponent AdminPanelPageComponent { get; }
+        public UserMenuHeaderButtonPageComponent UserButton { get; }
+        public ModeratorPanelPageComponent ModeratorLeftsideMenu { get; }
 
         public List<UnapprovedRestaurantPageComponent> restaurants { get; set; }
 
@@ -15,8 +15,8 @@ namespace TestFramework.Pages
         public ModeratorPanelRestaurantsPage(IWebDriver driver) : base(driver)
         {
             NavigationMenu = new NavigationMenuPageComponent(driver);
-            
-            AdminPanelPageComponent = new AdminPanelPageComponent(driver);
+            UserButton = new UserMenuHeaderButtonPageComponent(driver);
+            ModeratorLeftsideMenu = new ModeratorPanelPageComponent(driver);
 
          }
 
