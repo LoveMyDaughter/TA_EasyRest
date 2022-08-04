@@ -22,7 +22,7 @@
 
             approveButton.Click();
 
-            return this;
+            return new UnapprovedRestaurantsPageComponent(driver);
         }
 
 

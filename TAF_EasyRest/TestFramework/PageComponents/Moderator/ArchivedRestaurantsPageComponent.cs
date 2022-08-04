@@ -20,7 +20,7 @@
 
             restoreButton.Click();
 
-            return this;
+            return new ArchivedRestaurantsPageComponent(driver);
         }
     }
 }
