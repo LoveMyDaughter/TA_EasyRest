@@ -6,41 +6,62 @@ namespace TestFramework.Pages
     public class AdminPanelModeratorsPage : BasePage
     {
 
-        public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
-        public AdminPanelPageComponent AdminPanelPageComponent { get; }
-
-
-        private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
-
-        // Corresponding entry button. It's better to find 1-st row instead of certain user name. Like //tbody/tr[1]
-        private IWebElement _padlockButton => driver.FindElement(By.XPath("//th[text()='Peter Moderator']/following-sibling::td/button"));
-        private IWebElement _statusRecord => driver.FindElement(By.XPath("//th[text()='Peter Moderator']/following-sibling::td/p"));
-        private IWebElement _padlockButtonForCertainUser(string username) => driver.FindElement(By.XPath($"//th[text()='{username}']/following-sibling::td/button"));
-
+        public AdminPanelPageComponent AdminLeftsideMenu { get; }
+        public NavigationMenuPageComponent NavigationMenu { get; }
+        public UserMenuHeaderButtonPageComponent UserButton { get; }
 
 
         public AdminPanelModeratorsPage(IWebDriver driver) : base(driver)
         {
-            AdminPanelPageComponent = new AdminPanelPageComponent(driver);
-            NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+            AdminLeftsideMenu = new AdminPanelPageComponent(driver);
+            NavigationMenu = new NavigationMenuPageComponent(driver);
+            UserButton = new UserMenuHeaderButtonPageComponent(driver);
         }
 
-        public AdminPanelModeratorsPage ClickPadlockButton()
+        private IReadOnlyCollection<IWebElement> _moderatorsList => driver.FindElements(By.XPath("//tbody/tr"));
+
+
+        #region Elements
+
+        private IWebElement _addModeratorButton => driver.FindElement(By.XPath("//*[@id = 'root']/div/main/a"));
+
+        #endregion
+
+
+        #region Methods
+
+        /// <summary>
+        /// Find a button to ban/unban the first moderator in the list and click it
+        /// </summary>
+        public AdminPanelModeratorsPage FindAndClickPadlockButton()
         {
-            _padlockButton.Click();
+            var firstModeratorFromList = _moderatorsList.ElementAt(0);
+            var padlockButton = firstModeratorFromList.FindElement(By.XPath("./td/button"));
+
+            padlockButton.Click();
+
             return this;
         }
 
-        public AdminPanelModeratorsPage ClickAddModeratorButton()
+        /// <summary>
+        /// With this method we'll check if moderator status changes after click on padlockButton
+        /// </summary>
+        public string ShowModeratorStatus()
+        {
+            var firstModeratorFromList = _moderatorsList.ElementAt(0);
+            var moderatorStatusLabel = firstModeratorFromList.FindElement(By.XPath("./td/p"));
+            string moderatorStatus = moderatorStatusLabel.Text;
+
+            return moderatorStatus;
+        }
+
+        public AdminPanelCreateModeratorPage ClickAddModeratorButton()
         {
             _addModeratorButton.Click();
-            return this;
+            return new AdminPanelCreateModeratorPage(driver);
         }
 
-        public string StatusRecordGetText()
-        {
-            return _statusRecord.Text;
-        }
+        #endregion
 
 
     }
