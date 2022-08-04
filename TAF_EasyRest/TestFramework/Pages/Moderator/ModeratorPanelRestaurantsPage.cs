@@ -9,7 +9,8 @@ namespace TestFramework.Pages
         public UserMenuHeaderButtonPageComponent UserButton { get; }
         public ModeratorPanelPageComponent ModeratorLeftsideMenu { get; }
 
-        public List<UnapprovedRestaurantPageComponent> restaurants { get; set; }
+        //public List<UnapprovedRestaurantPageComponent> restaurants { get; set; }
+        private IReadOnlyCollection<IWebElement> _restaurantsGrid => driver.FindElements(By.XPath("//div[contains(@class, 'Grid-item')]"));
 
 
         public ModeratorPanelRestaurantsPage(IWebDriver driver) : base(driver)
@@ -23,58 +24,38 @@ namespace TestFramework.Pages
 
         #region Elements
 
-        // Top-line tab-buttons: All, Unapproved, Approved, Archived
-        private IWebElement _unapprovedTabButton => driver.FindElement(By.XPath("//span[contains (text() , 'Unapproved')]/ancestor::button"));
-        private IWebElement _approvedTabButton => driver.FindElement(By.XPath("//span[contains (text() , 'Approved')]/ancestor::button"));
-        private IWebElement _archivedTabButton => driver.FindElement(By.XPath("//span[contains (text() , 'Archived')]/ancestor::button"));
+        // Top-line tab-buttons: All, Unapproved, Approved, Archived. We need only 2 of them
+        private IWebElement _unapprovedTab => driver.FindElement(By.XPath("//span[contains (text() , 'Unapproved')]/ancestor::button"));
+        private IWebElement _archivedTab => driver.FindElement(By.XPath("//span[contains (text() , 'Archived')]/ancestor::button"));
 
 
-        // Change restaurant status buttons
-        private IWebElement _deleteButton => driver.FindElement(By.XPath("//span[text() = 'Delete']/parent::button"));
+
+
+        // Change restaurant status buttons. Move to corresponding components
         private IWebElement _approveButton => driver.FindElement(By.XPath("//span[text() = 'Approve']/parent::button"));
+        private IWebElement _disapproveButton => driver.FindElement(By.XPath("//span[text() = 'Disapprove']/parent::button"));
         private IWebElement _restoreButton => driver.FindElement(By.XPath("//span[text() = 'Restore']/parent::button"));
 
         #endregion
 
 
+
+
         #region Methods
             
 
-    public ModeratorPanelRestaurantsPage ClickUnapprovedTabButton()
+    public ModeratorPanelRestaurantsPage ClickUnapprovedTab()
         {
-            _unapprovedTabButton.Click();
-            return this;
-        }
-        public ModeratorPanelRestaurantsPage ClickApprovedTabButton()
-        {
-            _approvedTabButton.Click();
-
-            return this;
-        }
-        public ModeratorPanelRestaurantsPage ClickArchivedTabButton()
-        {
-            _archivedTabButton.Click();
+            _unapprovedTab.Click();
             return this;
         }
 
-
-        public ModeratorPanelRestaurantsPage ClickDeleteButton()
+        public ModeratorPanelRestaurantsPage ClickArchivedTab()
         {
-            _deleteButton.Click();
+            _archivedTab.Click();
             return this;
         }
 
-        public ModeratorPanelRestaurantsPage ClickApproveButton()
-        {
-            _approveButton.Click();
-            return this;
-        }
-
-        public ModeratorPanelRestaurantsPage ClickRestoreButton()
-        {
-            _restoreButton.Click();
-            return this;
-        }
 
         #endregion
 
