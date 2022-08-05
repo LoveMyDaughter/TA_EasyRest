@@ -20,10 +20,10 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
             _threeDotsButton.Click();
             return this;
         }
-        public CreateListMenuComponent ClickNextButton()
+        public CreateListMenuAndComponent ClickNextButton()
         {
             _nextButton.Click();
-            return this;
+            return new CreateListMenuAndComponent(driver);
         }
 
         public CreateMenuPage ClickBackButton(

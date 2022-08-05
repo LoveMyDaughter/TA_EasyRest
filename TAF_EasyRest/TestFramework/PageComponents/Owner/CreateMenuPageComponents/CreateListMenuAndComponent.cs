@@ -13,7 +13,7 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
             private IWebElement _finishButton => driver.FindElement(By.XPath("//p[contains(text(), 'Try out')]/parent::div/following-sibling::div[2]"));
             private IWebElement _backButton => driver.FindElement(By.XPath("//p[contains(text(), 'Try out')]/parent::div/following-sibling::div[1]"));
 
-            public CreateListMenuAndComponent ClickThreeDotsButton()
+            public CreateListMenuAndComponent ClickFinishButton()
             {
                 _finishButton.Click();
                 return this;
