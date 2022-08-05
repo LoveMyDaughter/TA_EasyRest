@@ -12,7 +12,7 @@ namespace TestFramework.Pages
         public WaiterPanelPage(IWebDriver driver) : base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
-            UserMenuHeaderButtonPageComponent UserMenuHeaderButton = new UserMenuHeaderButtonPageComponent(driver);
+            UserMenuHeaderButton = new UserMenuHeaderButtonPageComponent(driver);
         }
 
         private IWebElement _assignedWaiterButton => driver.FindElement(By.XPath("//header//span[contains (text(), 'Assigned waiter')]"));

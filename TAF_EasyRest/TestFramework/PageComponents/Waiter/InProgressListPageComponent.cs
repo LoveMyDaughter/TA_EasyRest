@@ -19,7 +19,12 @@ namespace TestFramework.PageComponents.Waiter
             var expandButton = card.FindElement(By.XPath("//main//span[contains( @class, 'MuiIconButton-label')]"));
             expandButton.Click();
 
-            return new InProgressCardPageComponent(driver, card);
+            return new InProgressCardPageComponent(card);
+        }
+
+        public int CheckTheNumberOfOrdersInTheCurrentTab()
+        {
+            return _orders.Count;
         }
     }
 }
