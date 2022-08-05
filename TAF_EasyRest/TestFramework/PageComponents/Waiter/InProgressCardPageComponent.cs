@@ -5,9 +5,9 @@ namespace TestFramework.PageComponents.Waiter
     {
         private IWebElement _card { get; }
 
-        public InProgressCardPageComponent(IWebElement _card)
+        public InProgressCardPageComponent(IWebElement card)
         {
-            this._card = _card;
+            _card = card;
         }
 
         private IWebElement _closeOrderButton => _card.FindElement(By.XPath(".//span[text()='Close order']"));

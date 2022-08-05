@@ -5,9 +5,9 @@ namespace TestFramework.PageComponents.Waiter
     {
         private IWebElement _card { get; }
 
-        public AssignedWaiterCardPageComponent(IWebElement _card)
+        public AssignedWaiterCardPageComponent(IWebElement card)
         {
-            this._card = _card;
+            _card = card;
         }
 
         private IWebElement _startButton => _card.FindElement(By.XPath(".//span[text()='Start order']"));

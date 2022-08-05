@@ -4,9 +4,9 @@
     {
         private IWebElement _card { get; }
 
-        public WaitingForConfirmCardPageComponent(IWebElement _card)
+        public WaitingForConfirmCardPageComponent(IWebElement card)
         {
-            this._card = _card;
+            _card = card;
         }
 
         private IWebElement _acceptButton => _card.FindElement(By.XPath(".//button//span[text()='Accept']"));

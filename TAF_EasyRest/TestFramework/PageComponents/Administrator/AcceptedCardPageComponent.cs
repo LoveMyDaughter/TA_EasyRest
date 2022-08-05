@@ -5,9 +5,9 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
     {
         private IWebElement _card { get; }
 
-        public AcceptedCardPageComponent(IWebElement _card)
+        public AcceptedCardPageComponent(IWebElement card)
         {
-            this._card = _card;
+            _card = card;
         }
 
         private IWebElement _selectWaiterRadioButton => _card.FindElement(By.XPath("(.//input)[1]"));
