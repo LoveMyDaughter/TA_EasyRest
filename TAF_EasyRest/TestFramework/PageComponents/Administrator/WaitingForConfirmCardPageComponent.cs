@@ -2,14 +2,14 @@
 {
     public class WaitingForConfirmCardPageComponent
     {
-        private IWebElement card { get; }
+        private IWebElement _card { get; }
 
-        public WaitingForConfirmCardPageComponent(IWebElement card)
+        public WaitingForConfirmCardPageComponent(IWebElement _card)
         {
-            this.card = card;
+            this._card = _card;
         }
 
-        private IWebElement _acceptButton => card.FindElement(By.XPath(".//button//span[text()='Accept']"));
+        private IWebElement _acceptButton => _card.FindElement(By.XPath(".//button//span[text()='Accept']"));
 
         public WaitingForConfirmCardPageComponent ClickAcceptButton()
         {           

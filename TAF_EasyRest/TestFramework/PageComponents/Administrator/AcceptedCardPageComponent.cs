@@ -3,15 +3,15 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
 {
     public class AcceptedCardPageComponent
     {
-        private IWebElement card { get; }
+        private IWebElement _card { get; }
 
-        public AcceptedCardPageComponent(IWebElement card)
+        public AcceptedCardPageComponent(IWebElement _card)
         {
-            this.card = card;
+            this._card = _card;
         }
 
-        private IWebElement _selectWaiterRadioButton => card.FindElement(By.XPath("(.//input)[1]"));
-        private IWebElement _assignButton => card.FindElement(By.XPath("(.//span[text()='Assign'])[1]"));
+        private IWebElement _selectWaiterRadioButton => _card.FindElement(By.XPath("(.//input)[1]"));
+        private IWebElement _assignButton => _card.FindElement(By.XPath("(.//span[text()='Assign'])[1]"));
 
         public AcceptedCardPageComponent SelectTheFirstWaiter()
         {
