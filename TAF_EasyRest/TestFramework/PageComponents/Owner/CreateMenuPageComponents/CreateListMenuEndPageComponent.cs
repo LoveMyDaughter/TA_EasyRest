@@ -1,11 +1,11 @@
 ﻿
 namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
 {
-    public class CreateListMenuAndComponent
+    public class CreateListMenuEndPageComponent
     {
             IWebDriver driver { get; }
 
-            public CreateListMenuAndComponent(IWebDriver driver)
+            public CreateListMenuEndPageComponent(IWebDriver driver)
             {
                 this.driver = driver;
             }
@@ -13,15 +13,15 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
             private IWebElement _finishButton => driver.FindElement(By.XPath("//p[contains(text(), 'Try out')]/parent::div/following-sibling::div[2]"));
             private IWebElement _backButton => driver.FindElement(By.XPath("//p[contains(text(), 'Try out')]/parent::div/following-sibling::div[1]"));
 
-            public CreateListMenuAndComponent ClickFinishButton()
+            public CreateListMenuEndPageComponent ClickFinishButton()
             {
                 _finishButton.Click();
                 return this;
             }
-            public CreateListMenuComponent ClickBackButton()
+            public CreateListMenuPageComponent ClickBackButton()
             {
                 _backButton.Click();
-                return new CreateListMenuComponent(driver);
+                return new CreateListMenuPageComponent(driver);
             }
 
          

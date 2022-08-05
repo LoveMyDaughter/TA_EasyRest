@@ -39,10 +39,10 @@ namespace TestFramework.Pages.Owner
             _imageMenuRaioButton.Click();
             return this;
         }
-        public CreateListMenuComponent ClickNextButton()
+        public CreateListMenuPageComponent ClickNextButton()
         {
             _nextButton.Click();
-            return new CreateListMenuComponent(driver);
+            return new CreateListMenuPageComponent(driver);
         }
     }
 }
