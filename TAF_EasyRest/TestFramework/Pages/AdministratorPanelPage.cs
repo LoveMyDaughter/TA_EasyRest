@@ -12,7 +12,7 @@ namespace TestFramework.Pages
         public AdministratorPanelPage(IWebDriver driver) : base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
-            UserMenuHeaderButtonPageComponent UserMenuHeaderButton = new UserMenuHeaderButtonPageComponent(driver);
+            UserMenuHeaderButton = new UserMenuHeaderButtonPageComponent(driver);
         }
 
         private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//header//span[text()='Waiting for confirm']"));

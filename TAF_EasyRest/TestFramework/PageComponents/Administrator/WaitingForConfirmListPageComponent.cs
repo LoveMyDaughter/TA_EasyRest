@@ -5,7 +5,7 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
     {
         private IWebDriver driver { get; }
 
-        private IReadOnlyCollection<IWebElement> _orders => driver.FindElements(By.XPath("//div[contains(@class, 'AdministratorPanel')]/div/div/div/div"));
+        private IReadOnlyCollection<IWebElement> _orders => driver.FindElements(By.XPath("//div[contains(@class, 'MuiExpansionPanel-root')]"));
 
         public WaitingForConfirmListPageComponent(IWebDriver driver)
         {
@@ -16,10 +16,15 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
         {
             var card = _orders.ElementAt(0);
 
-            var expandButton = card.FindElement(By.XPath("./div[@role='button']"));
+            var expandButton = card.FindElement(By.XPath(".//div[contains(@class, 'MuiExpansionPanelSummary-content')]/following-sibling::div"));
             expandButton.Click();
 
-            return new WaitingForConfirmCardPageComponent(driver);
+            return new WaitingForConfirmCardPageComponent(card);
+        }
+
+        public int CheckTheNumberOfOrdersInTheCurrentTab()
+        {
+            return _orders.Count;
         }
     }
 }
