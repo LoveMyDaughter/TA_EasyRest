@@ -3,14 +3,14 @@ namespace TestFramework.PageComponents.Waiter
 {
     public class InProgressCardPageComponent
     {
-        private IWebElement card { get; }
+        private IWebElement _card { get; }
 
-        public InProgressCardPageComponent(IWebElement card)
+        public InProgressCardPageComponent(IWebElement _card)
         {
-            this.card = card;
+            this._card = _card;
         }
 
-        private IWebElement _closeOrderButton => card.FindElement(By.XPath(".//span[text()='Close order']"));
+        private IWebElement _closeOrderButton => _card.FindElement(By.XPath(".//span[text()='Close order']"));
 
         public InProgressCardPageComponent ClickCloseButton()
         {

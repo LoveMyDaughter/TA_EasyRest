@@ -3,14 +3,14 @@ namespace TestFramework.PageComponents.Waiter
 {
     public class AssignedWaiterCardPageComponent
     {
-        private IWebElement card { get; }
+        private IWebElement _card { get; }
 
-        public AssignedWaiterCardPageComponent(IWebElement card)
+        public AssignedWaiterCardPageComponent(IWebElement _card)
         {
-            this.card = card;
+            this._card = _card;
         }
 
-        private IWebElement _startButton => card.FindElement(By.XPath(".//span[text()='Start order']"));
+        private IWebElement _startButton => _card.FindElement(By.XPath(".//span[text()='Start order']"));
 
         public AssignedWaiterCardPageComponent ClickStartButton()
         {
