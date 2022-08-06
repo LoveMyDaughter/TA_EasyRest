@@ -4,8 +4,7 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
 {
     public class CreateListMenuPageComponent 
     {
-        IWebDriver driver { get; }
-
+        private IWebDriver driver { get; }
         public CreateListMenuPageComponent(IWebDriver driver)
         {
             this.driver = driver;
@@ -25,9 +24,7 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
             _nextButton.Click();
             return new CreateListMenuEndPageComponent(driver);
         }
-
-        public CreateMenuPage ClickBackButton(
-            )
+        public CreateMenuPage ClickBackButton()
         {
             _backButton.Click();
             return new CreateMenuPage(driver);
