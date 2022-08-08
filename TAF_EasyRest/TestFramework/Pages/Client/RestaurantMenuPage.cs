@@ -24,9 +24,11 @@ namespace TestFramework.Pages
 
         public RestaurantMenuPage AddTheFistDishToTheCart()
         {
-            var _menuItem = _menuItemSummaryCards.ElementAt(0);
+            var menuItem = _menuItemSummaryCards.ElementAt(0);
             
-            var _addToCartButton = _menuItem.FindElement(By.XPath(".//button[contains(@class,'addButton')]"));
+            var addToCartButton = menuItem.FindElement(By.XPath(".//button[contains(@class,'addButton')]"));
+
+            addToCartButton.Click();
 
             return this;
         }
