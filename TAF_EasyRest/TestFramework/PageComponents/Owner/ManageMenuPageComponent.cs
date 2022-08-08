@@ -1,4 +1,6 @@
-﻿namespace TestFramework.PageComponents.Owner
+﻿using TestFramework.Pages.Owner;
+
+namespace TestFramework.PageComponents.Owner
 {
     public class ManageMenuesPageComponent
     {
@@ -18,6 +20,12 @@
             firstMenu.Click();
 
             return new MenuItemsPageComponent(driver);
+        }
+
+        public CreateMenuPage ClickCreateMenu()
+        {
+            _createMenu.Click();
+            return new CreateMenuPage(driver);
         }
     }
 }
