@@ -1,5 +1,6 @@
 ﻿using TestFramework.PageComponents;
 using TestFramework.PageComponents.NavigationMenuComponents;
+using TestFramework.PageComponents.Owner;
 
 namespace TestFramework.Pages
 {

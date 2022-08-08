@@ -14,12 +14,12 @@ namespace TestFramework.PageComponents.Owner
         private IWebElement _menuParent => driver.FindElement(By.XPath("//div[contains(@class,'MuiCollapse-container-')]"));
         private IWebElement _createMenu => driver.FindElement(By.XPath("//span[text()='Create menu']//ancestor::a"));
 
-        public MenuItemsPageComponent ClickFirstMenu()
+        public MenuItemsPage ClickFirstMenu()
         {
             var firstMenu = _items.ElementAt(0);
             firstMenu.Click();
 
-            return new MenuItemsPageComponent(driver);
+            return new MenuItemsPage(driver);
         }
 
         public CreateMenuPage ClickCreateMenu()
