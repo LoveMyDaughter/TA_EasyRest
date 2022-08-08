@@ -1,5 +1,5 @@
 ﻿
-namespace TestFramework.PageComponents
+namespace TestFramework.PageComponents.Owner
 {
     public class ManageRestaurantPageComponent : BasePage
     {
