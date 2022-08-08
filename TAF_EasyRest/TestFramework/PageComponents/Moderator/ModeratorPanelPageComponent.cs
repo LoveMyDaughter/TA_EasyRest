@@ -1,4 +1,6 @@
-﻿namespace TestFramework.PageComponents.Moderator
+﻿using TestFramework.Pages.Moderator;
+
+namespace TestFramework.PageComponents.Moderator
 {
     public class ModeratorPanelPageComponent
     {
