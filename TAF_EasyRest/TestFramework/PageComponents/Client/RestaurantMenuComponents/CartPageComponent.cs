@@ -11,10 +11,10 @@
 
         private IWebElement _submitButton => driver.FindElement(By.XPath("//button/span[text()='Submit order']"));
 
-        public OrderConfirmationWindowPageComponent ClickSubmitButton()
+        public OrderConfirmationPageComponent ClickSubmitButton()
         {
             _submitButton.Click();
-            return new OrderConfirmationWindowPageComponent(driver);
+            return new OrderConfirmationPageComponent(driver);
         }
     }
 }
