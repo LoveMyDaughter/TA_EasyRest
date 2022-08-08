@@ -30,5 +30,4 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
             return new CreateMenuPage(driver);
         }
     }
-
 }

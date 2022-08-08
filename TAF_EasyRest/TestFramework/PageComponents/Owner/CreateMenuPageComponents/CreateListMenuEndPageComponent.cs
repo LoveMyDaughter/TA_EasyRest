@@ -20,9 +20,6 @@ namespace TestFramework.PageComponents.Owner.CreateMenuPageComponents
             {
                 _backButton.Click();
                 return new CreateListMenuPageComponent(driver);
-            }
-
-         
-        
+            }      
     }
 }

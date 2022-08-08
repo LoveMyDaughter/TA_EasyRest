@@ -8,11 +8,13 @@ namespace TestFramework.Pages.Owner
     {
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
+        public UserMenuHeaderButtonPageComponent UserMenuHeaderButtonPageComponent { get;}
 
         public CreateMenuPage(IWebDriver driver) : base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             ManageRestaurantPageComponent = new ManageRestaurantPageComponent(driver);
+            UserMenuHeaderButtonPageComponent = new UserMenuHeaderButtonPageComponent(driver);
         }
         private IWebElement _menuNameField => driver.FindElement(By.Name("Menu Name"));
         private IWebElement _listMenuRaioButton => driver.FindElement(By.XPath("//span[text() = 'List menu']"));
