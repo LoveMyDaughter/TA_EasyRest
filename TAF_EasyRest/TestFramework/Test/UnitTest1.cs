@@ -1,18 +1,18 @@
-using TestFramework.Pages;
-
-
 namespace TestFramework.Test
 {
+    [TestFixture]
     public class Tests
     {
         IWebDriver Chromedriver;
         private static string password;
         private static string email;
+        private static string baseUrl;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
             Chromedriver = new ChromeDriver();
+            baseUrl = "http://localhost:3000"; //move to json
         }
 
         [SetUp]
@@ -24,19 +24,21 @@ namespace TestFramework.Test
         public void PositiveTestLoginToEasyrest() 
         {
             //Arrange
-            BasePage page = new BasePage(Chromedriver);
+            SignInPage page = new SignInPage(Chromedriver);
 
-            string url = "/log-in";
-            string expected = $"{BasePage.baseUrl}/restaurants";
+            string expected = $"{baseUrl}/restaurants";
 
             password = "1111";
             email = "angelabrewer@test.com";
 
 
             //Act
-            page.GoToUrl(url)
-                .EnterData(email, password)
-                .Click_LogIn_Button();
+            page.GoToUrl();
+            page.ClickEmailField()
+                .SendKeysToEmailField(email)
+                .ClickPasswordField()
+                .SendKeysToPasswordField(password)
+                .ClickSignInButton();
 
             Thread.Sleep(3000);
 
@@ -45,30 +47,7 @@ namespace TestFramework.Test
             Assert.AreEqual(expected, page.Get_CurrentUrl());
         }
 
-        [Test]
-        public void NegativeTestLoginToEasyrest()
-        {
-            //Arrange
-            BasePage page = new BasePage(Chromedriver);
 
-            string url = "/log-in";
-            string expected = $"{BasePage.baseUrl}/restaurants";
-
-            password = "12345678";
-            email = "abc@1.com";
-
-
-            //Act
-            page.GoToUrl(url)
-                .EnterData(email, password)
-                .Click_LogIn_Button();
-
-            Thread.Sleep(3000);
-
-            
-            //Assert
-            Assert.AreEqual(expected, page.Get_CurrentUrl());
-        }
 
         [OneTimeTearDown]
         public void AfterAllTests()
