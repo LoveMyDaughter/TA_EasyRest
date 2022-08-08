@@ -1,15 +1,17 @@
 ﻿using TestFramework.PageComponents;
 namespace TestFramework.Pages
 {
-    public class OrderConfirmationPageComponent : BasePage
+    public class OrderConfirmationPageComponent
     {
-        public OrderConfirmationPageComponent(IWebDriver driver) : base(driver)
+        public List<OrderSummaryDetailsPageComponent> _summaryDetails { get; private set; }
+        private IWebDriver driver;
+        public OrderConfirmationPageComponent(IWebDriver driver)
         {
+            this.driver = driver;
             FillOdersList();
         }
 
         #region Elements
-        public List<OrderSummaryDetailsPageComponent> _summaryDetails { get; private set; }
         private IWebElement _cancelButton => driver.FindElement(By.XPath("//span[text()='Cancel']//parent::button"));
         private IWebElement _submitButton => driver.FindElement(By.XPath("//span[text()='Submit']//parent::button"));
         #endregion
@@ -17,7 +19,7 @@ namespace TestFramework.Pages
         #region Methods
         private int СountOrders()
         {
-            IReadOnlyCollection<IWebElement> _summaryDetails = driver.FindElements(By.XPath("//td[@class='MuiTableCell-root-3018 MuiTableCell-body-3020 MuiTableCell-paddingCheckbox-3024']//parent::tr"));
+            IReadOnlyCollection<IWebElement> _summaryDetails = driver.FindElements(By.XPath("//td[contains(@class,'MuiTableCell-body')and contains(@class,'MuiTableCell-paddingCheckbox')]//parent::tr"));
             return _summaryDetails.Count();
         }
 
