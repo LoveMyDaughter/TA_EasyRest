@@ -2,7 +2,7 @@
 {
     public class UnapprovedRestaurantsPageComponent
     {
-        private IWebDriver driver;
+        private IWebDriver driver { get; }
 
         public UnapprovedRestaurantsPageComponent(IWebDriver driver)
         {
@@ -10,7 +10,6 @@
         }
 
         private IReadOnlyCollection<IWebElement> _restaurantsGrid => driver.FindElements(By.XPath("//div[contains(@class, 'Grid-item')]"));
-
 
         public UnapprovedRestaurantsPageComponent ClickApproveButton()
         {
