@@ -1,9 +1,9 @@
 ﻿namespace TestFramework.PageComponents.Owner
 {
-    public class ChangeItemComonMenuPageComponent
+    public class ChangeItemMenuPageComponent
     {
         private IWebDriver driver;
-        public ChangeItemComonMenuPageComponent(IWebDriver driver)
+        public ChangeItemMenuPageComponent(IWebDriver driver)
         {
             this.driver = driver;
         }
@@ -19,42 +19,42 @@
         #endregion
 
         #region Methods
-        public ChangeItemComonMenuPageComponent SetName(string keys)
+        public ChangeItemMenuPageComponent SetName(string keys)
         {
             _nameField.Click();
             _nameField.SendKeys(keys);
             return this;
         }
 
-        public ChangeItemComonMenuPageComponent SetDescription(string keys)
+        public ChangeItemMenuPageComponent SetDescription(string keys)
         {
             _descriptionField.Click();
             _descriptionField.SendKeys(keys);
             return this;
         }
 
-        public ChangeItemComonMenuPageComponent SetIngredients(string keys)
+        public ChangeItemMenuPageComponent SetIngredients(string keys)
         {
             _ingredientsField.Click();
             _ingredientsField.SendKeys(keys);
             return this;
         }
 
-        public ChangeItemComonMenuPageComponent SetValue(double keys)
+        public ChangeItemMenuPageComponent SetValue(double keys)
         {
             _valueField.Click();
             _valueField.SendKeys(keys.ToString());
             return this;
         }
 
-        public ChangeItemComonMenuPageComponent SetPrice(double keys)
+        public ChangeItemMenuPageComponent SetPrice(double keys)
         {
             _priceField.Click();
             _priceField.SendKeys(keys.ToString());
             return this;
         }
 
-        public ChangeItemComonMenuPageComponent SetCategory(int index)
+        public ChangeItemMenuPageComponent SetCategory(int index)
         {
             _categoryField.Click();
             var category = _categoryField.FindElement(By.XPath($"//option[@value='{index}']"));
