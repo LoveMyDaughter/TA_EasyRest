@@ -15,10 +15,10 @@ namespace TestFramework.PageComponents
             _detailsButton.Click();
             return this;
         }
-        public ManageRestaurantPageComponent ClickMenuesButton()
+        public ManageMenuesPageComponent ClickMenuesButton()
         {
             _menuesButton.Click();
-            return this;
+            return new ManageMenuesPageComponent(driver);
         }
         public ManageRestaurantPageComponent ClickWaiterssButton()
         {
