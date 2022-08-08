@@ -108,7 +108,6 @@
         #endregion
 
 
-
         #region SendKeys Methods
 
         public NewRestaurantPageComponet SendKeysNameField(string name)
