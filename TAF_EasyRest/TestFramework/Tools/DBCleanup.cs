@@ -1,5 +1,4 @@
 ﻿namespace TestFramework.Tools
-
 {
     public class DBCleanup
     {

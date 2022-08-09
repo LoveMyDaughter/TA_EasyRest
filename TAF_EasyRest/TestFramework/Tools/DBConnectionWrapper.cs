@@ -7,16 +7,16 @@ namespace TestFramework.Tools
 
         private static readonly string pg_connectionString = "Host=localhost;Username=admin;Password=12345678;Database=easyrest";
 
-        static void ShowHeaders(NpgsqlDataReader reader)
+        public static void ShowHeaders(NpgsqlDataReader reader)
         {
             var columnNames = Enumerable.Range(0, reader.FieldCount)
-                        .Select(reader.GetName)
-                        .ToArray();
+                .Select(reader.GetName)
+                .ToArray();
             foreach (var column in columnNames) { Console.Write($"{column}\t"); }
             Console.WriteLine();
         }
 
-        static void ShowRows(NpgsqlDataReader reader)
+        public static void ShowRows(NpgsqlDataReader reader)
         {
             while (reader.Read())
             {
@@ -41,7 +41,11 @@ namespace TestFramework.Tools
                     ShowHeaders(reader);
                     ShowRows(reader);
                 }
-                else { Console.WriteLine("No rows in the table."); }
+                else
+                {
+                    Console.WriteLine("No rows in the table."); 
+                }
+
             }
         }
     }
