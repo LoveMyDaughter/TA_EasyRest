@@ -44,18 +44,5 @@ namespace TestFramework.Tools
                 else { Console.WriteLine("No rows in the table."); }
             }
         }
-
-        public static void Show_User_Roles()
-        {
-            string show_user_roles = "SELECT * FROM user_roles";
-            ExecuteQuery(show_user_roles);
-        }
-
-        public static void Show_Users()
-        {
-            string show_user_roles = "SELECT id, name, email, role_id FROM users";
-            ExecuteQuery(show_user_roles);
-        }
-
     }
 }
