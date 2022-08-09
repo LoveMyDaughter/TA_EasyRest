@@ -1,4 +1,6 @@
 ﻿using TestFramework.PageComponents.NavigationMenuComponents;
+using TestFramework.PageComponents.Moderator;
+
 namespace TestFramework.Pages.Moderator
 {
     public class ModeratorPanelOwnersPage : BasePage
@@ -34,7 +36,7 @@ namespace TestFramework.Pages.Moderator
         // With this method we'll check if owner status changes after click on padlockButton
         public string ShowOwnerStatus()
         {
-            var firstOwnerFromList = _ownersList.ElementAt(0)
+            var firstOwnerFromList = _ownersList.ElementAt(0);
             var ownerStatusLabel = firstOwnerFromList.FindElement(By.XPath("./td/p"));
             string ownerStatus = ownerStatusLabel.Text;
 
