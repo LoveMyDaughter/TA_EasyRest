@@ -4,7 +4,7 @@
     public class DBCleanup
     {
 
-        public void DeleteUser(string userEmail)
+        public static void DeleteUserByEmail(string userEmail)
         {
             string deleteUser = $"DELETE FROM users WHERE email = '{userEmail}'";
             DBConnectionWrapper.ExecuteQuery(deleteUser);
