@@ -12,7 +12,10 @@ namespace TestFramework.Tools
             var columnNames = Enumerable.Range(0, reader.FieldCount)
                 .Select(reader.GetName)
                 .ToArray();
-            foreach (var column in columnNames) { Console.Write($"{column}\t"); }
+            foreach (var column in columnNames) 
+            { 
+                Console.Write($"{column}\t"); 
+            }
             Console.WriteLine();
         }
 
@@ -22,7 +25,10 @@ namespace TestFramework.Tools
             {
                 var row = Enumerable.Range(0, reader.FieldCount)
                     .Select(reader.GetValue).ToArray();
-                foreach (var column in row) { Console.Write($"{column}\t"); }
+                foreach (var column in row) 
+                {
+                    Console.Write($"{column}\t"); 
+                }
                 Console.WriteLine();
             }
         }
