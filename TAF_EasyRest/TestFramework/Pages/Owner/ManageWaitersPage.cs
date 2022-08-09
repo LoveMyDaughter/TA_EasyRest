@@ -8,11 +8,13 @@ namespace TestFramework.Pages
     {
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
-        
+        public UserMenuHeaderButtonPageComponent UserMenuHeaderButtonPageComponent { get; }
+
         public ManageWaitersPage(IWebDriver driver) : base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             ManageRestaurantPageComponent = new ManageRestaurantPageComponent(driver);
+            UserMenuHeaderButtonPageComponent = new UserMenuHeaderButtonPageComponent(driver);
         }
 
         private IList<IWebElement> _items => _waitersParent.FindElements(By.XPath("//li/child::button"));
