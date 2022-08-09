@@ -6,21 +6,12 @@ namespace TestFramework.Pages
     public class RestaurantMenuPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenu { get; }
-        private IReadOnlyCollection <IWebElement> MenuItemSummaryWebElements { get; }
-        public List <MenuItemSummaryPageComponent> MenuItemSummaryPageComponentsList { get; }
+        private IReadOnlyCollection<IWebElement> _menuItemSummaryCards => driver.FindElements(By.XPath("//div[contains(@class,'MenuItem-root')]"));
+
 
         public RestaurantMenuPage(IWebDriver driver) : base(driver)
         {
-            NavigationMenu = new NavigationMenuPageComponent(driver);
-            
-            MenuItemSummaryWebElements = driver.FindElements(By.XPath("//div[@class='MenuItem-root-2484']"));
-
-            MenuItemSummaryPageComponentsList = new List<MenuItemSummaryPageComponent>();
-
-            for (int i = 0; i < MenuItemSummaryWebElements.Count; i++)
-            {
-                MenuItemSummaryPageComponentsList.Add(new MenuItemSummaryPageComponent(driver, i+1));
-            }
+            NavigationMenu = new NavigationMenuPageComponent(driver);          
         }
 
         private IWebElement _showCartButton => driver.FindElement(By.XPath("//button[@aria-label='Show cart']"));
@@ -29,6 +20,17 @@ namespace TestFramework.Pages
         {
             _showCartButton.Click();
             return new CartPageComponent(driver);
+        }
+
+        public RestaurantMenuPage AddTheFistDishToTheCart()
+        {
+            var menuItem = _menuItemSummaryCards.ElementAt(0);
+            
+            var addToCartButton = menuItem.FindElement(By.XPath(".//button[contains(@class,'addButton')]"));
+
+            addToCartButton.Click();
+
+            return this;
         }
     }
 }

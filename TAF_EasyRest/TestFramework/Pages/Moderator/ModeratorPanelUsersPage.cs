@@ -1,5 +1,5 @@
 ﻿using TestFramework.PageComponents.NavigationMenuComponents;
-
+using TestFramework.PageComponents.Moderator;
 
 namespace TestFramework.Pages.Moderator
 {

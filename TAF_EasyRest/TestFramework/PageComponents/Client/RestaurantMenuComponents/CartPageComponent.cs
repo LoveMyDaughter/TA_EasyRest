@@ -2,7 +2,7 @@
 {
     public class CartPageComponent
     {
-        IWebDriver driver { get; }
+        private IWebDriver driver { get; }
 
         public CartPageComponent(IWebDriver driver)
         {
