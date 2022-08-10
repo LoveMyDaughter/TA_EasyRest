@@ -21,16 +21,13 @@ namespace TestFramework.Test
         }
 
         [Test]
-        public void PositiveTestLoginToEasyrest() 
+        public void PositiveTestLoginToEasyrest()
         {
             //Arrange
             SignInPage page = new SignInPage(Chromedriver);
-
             string expected = $"{baseUrl}/restaurants";
-
             password = "1111";
             email = "angelabrewer@test.com";
-
 
             //Act
             page.GoToUrl();
@@ -39,15 +36,11 @@ namespace TestFramework.Test
                 .ClickPasswordField()
                 .SendKeysToPasswordField(password)
                 .ClickSignInButton();
-
-            Thread.Sleep(3000);
-
+            Thread.Sleep(1000);
 
             //Assert
             Assert.AreEqual(expected, page.Get_CurrentUrl());
         }
-
-
 
         [OneTimeTearDown]
         public void AfterAllTests()
