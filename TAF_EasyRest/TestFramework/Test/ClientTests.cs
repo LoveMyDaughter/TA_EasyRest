@@ -32,20 +32,26 @@ namespace TestFramework.Test
         {
             //Arrange
             CurrentOrdersPage currentOrdersPage = new CurrentOrdersPage(Chromedriver);
+
+
             currentOrdersPage.GoToUrl();
             Thread.Sleep(1000); //change to waiter
 
             //Act
-            currentOrdersPage
-                .ClickWaitingForConfirmButton()
-                .orders[0]
+            currentOrdersPage.ClickWaitingForConfirmButton();
+
+            int expected = currentOrdersPage.ÑountOrders() - 1;
+
+            currentOrdersPage.orders[0]
                 .ExpandOrderField() //tread.sleep in method
                 .ClickDeclineButton();
 
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
+            int actual = currentOrdersPage.ÑountOrders();
+            Thread.Sleep(1000);
 
             //Assert
-            Assert.IsTrue(true);
+            Assert.AreEqual(expected, actual);
         }
 
         [TearDown]
