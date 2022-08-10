@@ -15,8 +15,16 @@ namespace TestFramework.Pages
             ManageRestaurantPageComponent = new ManageRestaurantPageComponent(driver);
         }
 
-        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter")); 
-       
+        private IList<IWebElement> _items => _waitersParent.FindElements(By.XPath("//li/child::button"));
+        private IWebElement _waitersParent => driver.FindElement(By.XPath("//li/parent::ul/parent::div"));
+        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter"));
+        public ManageWaitersPage ClickFirstWaiterRemoveButton()
+        {
+            var firstWaiterRemoveButton = _items.ElementAt(0);
+            firstWaiterRemoveButton.Click();
+
+            return new ManageWaitersPage(driver);
+        }
         public CreateNewWaiterPageComponent ClickAddWaiterButton()
         {
             _addWaiterButton.Click();
