@@ -1,7 +1,7 @@
 ﻿{
   "enabled": true,
   "server": {
-    "url": "http://127.0.0.1:8080/api/v1/",
+    "url": "http://127.0.0.1:8090/api/v1/",
     "project": "TAF_EasyRest",
     "authentication": {
       "uuid": "50ee4cfb-1466-4823-aa53-4925619dee91"
