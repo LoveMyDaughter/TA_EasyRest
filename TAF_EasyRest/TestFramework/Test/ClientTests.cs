@@ -33,7 +33,6 @@ namespace TestFramework.Test
             //Arrange
             CurrentOrdersPage currentOrdersPage = new CurrentOrdersPage(Chromedriver);
 
-
             currentOrdersPage.GoToUrl();
             Thread.Sleep(1000); //change to waiter
 
@@ -48,16 +47,13 @@ namespace TestFramework.Test
 
             Thread.Sleep(1000);
             int actual = currentOrdersPage.ÑountOrders();
-            Thread.Sleep(1000);
+
+            currentOrdersPage.UserButton
+                .ClickUserMenuButton()
+                .ClickLogOutButton();
 
             //Assert
             Assert.AreEqual(expected, actual);
-        }
-
-        [TearDown]
-        public void LogOut()
-        {
-
         }
 
         [OneTimeTearDown]

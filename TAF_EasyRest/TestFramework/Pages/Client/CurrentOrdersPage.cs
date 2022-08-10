@@ -10,7 +10,6 @@ namespace TestFramework.Pages
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
         public List<WaitingForConfirmOrderPageComponent> orders { get; set; }
         private static string _pageUrl = "/profile/current_orders/";
-        public int CountOrders { get; private set; }
 
         public CurrentOrdersPage(IWebDriver driver) : base(driver)
         {
@@ -32,7 +31,7 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            CountOrders = СountOrders();
+            int CountOrders = СountOrders();
 
             orders = new List<WaitingForConfirmOrderPageComponent>();
             for (int i = 0; i < CountOrders; i++)
