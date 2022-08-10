@@ -8,6 +8,7 @@ namespace TestFramework.Pages
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
         public List<WaitingForConfirmOrderPageComponent> orders { get; set; }
+        private static string _pageUrl = "/profile/current_orders/";
 
         public CurrentOrdersPage(IWebDriver driver) : base(driver)
         {
@@ -50,5 +51,9 @@ namespace TestFramework.Pages
             return this;
         }
 
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _pageUrl);
+        }
     }
 }
