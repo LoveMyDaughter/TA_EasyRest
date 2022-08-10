@@ -4,7 +4,6 @@ namespace TestFramework.Test
     public class ClientTests
     {
         public IWebDriver Chromedriver { get; private set; }
-        
 
         [OneTimeSetUp]
         public void BeforeAllTests()
@@ -20,11 +19,10 @@ namespace TestFramework.Test
             string password = "1111";
 
             signInPage.GoToUrl();
-            signInPage.ClickEmailField()
-                .SendKeysToEmailField(email)
-                .ClickPasswordField()
+            signInPage.SendKeysToEmailField(email)
                 .SendKeysToPasswordField(password)
                 .ClickSignInButton();
+            Thread.Sleep(3000);
         }
 
         [Category("Smoke")]
@@ -32,7 +30,28 @@ namespace TestFramework.Test
         [Test]
         public void DeclineOrderTest()
         {
+            //Arrange
+            CurrentOrdersPage currentOrdersPage = new CurrentOrdersPage(Chromedriver);
+            currentOrdersPage.GoToUrl();
+            Thread.Sleep(1000); //change to waiter
+
+            //Act
+            currentOrdersPage
+                .ClickWaitingForConfirmButton()
+                .orders[0]
+                .ExpandOrderField() //tread.sleep in method
+                .ClickDeclineButton();
+
+            Thread.Sleep(3000);
+
+            //Assert
             Assert.IsTrue(true);
+        }
+
+        [TearDown]
+        public void LogOut()
+        {
+
         }
 
         [OneTimeTearDown]

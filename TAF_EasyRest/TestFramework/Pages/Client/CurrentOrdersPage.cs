@@ -6,6 +6,7 @@ namespace TestFramework.Pages
     public class CurrentOrdersPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public UserMenuHeaderButtonPageComponent UserButton { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
         public List<WaitingForConfirmOrderPageComponent> orders { get; set; }
         private static string _pageUrl = "/profile/current_orders/";
@@ -14,6 +15,7 @@ namespace TestFramework.Pages
         {
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+            UserButton = new UserMenuHeaderButtonPageComponent(driver);
             FillOdersList();
         }
 
@@ -23,14 +25,14 @@ namespace TestFramework.Pages
 
         private int СountOrders()
         {
-            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[@class='MuiButtonBase-root-106 MuiExpansionPanelSummary-root-573']"));
+            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class,'MuiExpansionPanel-rounded')]"));
             return items.Count();
         }
 
         private void FillOdersList()
         {
-            orders = new List<WaitingForConfirmOrderPageComponent>(СountOrders());
-            for (int i = 0; i < orders.Count; i++)
+            orders = new List<WaitingForConfirmOrderPageComponent>();
+            for (int i = 0; i < СountOrders(); i++)
             {
                 orders.Add(new WaitingForConfirmOrderPageComponent(driver, (i + 1)));
             }

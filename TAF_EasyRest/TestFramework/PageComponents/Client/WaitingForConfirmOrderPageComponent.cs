@@ -11,11 +11,12 @@
             this.index = index;
         }
 
-        private IWebElement _orderField => driver.FindElement(By.XPath($"(//div[@class='MuiButtonBase-root-106 MuiExpansionPanelSummary-root-981'])[{index}]"));
+        private IWebElement _orderField => driver.FindElement(By.XPath($"//div[contains(@class,'MuiExpansionPanel-rounded')][{index}]"));
 
         public WaitingForConfirmOrderDetailsPageComponent ExpandOrderField()
         {
             _orderField.Click();
+            Thread.Sleep(1000);
             return new WaitingForConfirmOrderDetailsPageComponent(driver, index);
         }
     }
