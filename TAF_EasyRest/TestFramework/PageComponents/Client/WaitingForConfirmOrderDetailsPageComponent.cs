@@ -10,7 +10,6 @@
             this.index = index;
         }
 
-        private IWebElement _declineButton => driver.FindElement(By.XPath($"(//button[@class='MuiButtonBase-root-106 MuiButton-root-80 MuiButton-contained-91 MuiButton-containedPrimary-92 MuiButton-raised-94 MuiButton-raisedPrimary-95'])[{index}]"));
         private IWebElement _declineButton => driver.FindElement(By.XPath($"//span[text()='Decline'][{index}]"));
 
         public WaitingForConfirmOrderDetailsPageComponent ClickDeclineButton()
