@@ -20,10 +20,10 @@ namespace TestFramework.PageComponents
             return new OwnerEditRestaurantPage(driver);
         }
 
-        public OwnerPanelPageComponent ClickArchiveButton()
+        public OwnerPanelRestaurantsPage ClickArchiveButton()
         {
             _archiveButton.Click();
-            return new OwnerPanelPageComponent(driver);
+            return new OwnerPanelRestaurantsPage(driver);
         }
     }
 }
