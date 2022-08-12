@@ -2,23 +2,18 @@ namespace TestFramework.Test
 {
     public class BaseTest
     {
-        IWebDriver Chromedriver;
-        private static string baseUrl;
+        private static string baseUrl = "http://localhost:3000";
 
-
-        [OneTimeSetUp]
-        public void BeforeAllTests()
+        public void UserLogin(IWebDriver driver, string userEmail, string password)
         {
-            Chromedriver = new ChromeDriver();
-            baseUrl = "http://localhost:3000"; //move to json
+            SignInPage signInPage = new SignInPage(driver);
+
+            signInPage.GoToUrl();
+            signInPage.SendKeysToEmailField(userEmail)
+                .SendKeysToPasswordField(password)
+                .ClickSignInButton();
+            Thread.Sleep(2000);
         }
 
-
-
-        [OneTimeTearDown]
-        public void AfterAllTests()
-        {
-            Chromedriver.Quit();
-        }
     }
 }
