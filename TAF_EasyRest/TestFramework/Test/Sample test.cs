@@ -27,7 +27,7 @@ namespace TestFramework.Test
             SignInPage page = new SignInPage(Chromedriver);
             string expected = $"{baseUrl}/restaurants";
             password = "1";
-            email = "randyrichards@test.com";
+            email = "eringonzales@test.com";
 
             //Act
             page.GoToUrl();
@@ -38,9 +38,11 @@ namespace TestFramework.Test
                 .ClickSignInButton();
 
             AdministratorPanelPage admPage = new AdministratorPanelPage(Chromedriver);
-            admPage.UserMenuHeaderButton.ClickUserMenuButton2(3).ClickLogOutButton(3);
+            admPage.ClickWaitingForConfirmButton2(3)
+                .ExpandTheFirstOrder(5)
+                .ClickAcceptButton(3);
 
-            Thread.Sleep(11000);
+            Thread.Sleep(9000);
 
 
             //Assert

@@ -1,6 +1,6 @@
 ﻿namespace TestFramework.PageComponents.NavigationMenuComponents
 {
-    public class UserMenuHeaderButtonPageComponent
+    public class UserMenuHeaderButtonPageComponent : BasePageComponent
     {
         IWebDriver driver { get; }
 
@@ -24,6 +24,13 @@
         {
             new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
                 .Until(ExpectedConditions.ElementIsVisible(_userMenu))
+                .Click();
+            return new UserMenuDropDownListPageComponent(driver);
+        }
+
+        public UserMenuDropDownListPageComponent ClickUserMenuButton3(int timeToWait)
+        {
+            WaitUntilElementIsVisible(_userMenu, driver, timeToWait)
                 .Click();
             return new UserMenuDropDownListPageComponent(driver);
         }

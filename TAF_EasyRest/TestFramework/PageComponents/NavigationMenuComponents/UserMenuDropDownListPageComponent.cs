@@ -1,6 +1,6 @@
 ﻿namespace TestFramework.PageComponents.NavigationMenuComponents
 {
-    public class UserMenuDropDownListPageComponent
+    public class UserMenuDropDownListPageComponent : BasePageComponent
     {
         IWebDriver driver { get; }
 
@@ -14,15 +14,13 @@
 
         public void ClickMyProfileButton(int timeToWait)
         {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.ElementIsVisible(_myProfile))
+            WaitUntilElementIsVisible(_myProfile, driver, timeToWait)
                 .Click();
         }
 
         public void ClickLogOutButton(int timeToWait)
         {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.ElementIsVisible(_logOut))
+            WaitUntilElementIsVisible(_logOut, driver, timeToWait)
                 .Click();
         }
     }

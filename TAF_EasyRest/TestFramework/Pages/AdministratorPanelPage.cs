@@ -15,18 +15,21 @@ namespace TestFramework.Pages
             UserMenuHeaderButton = new UserMenuHeaderButtonPageComponent(driver);
         }
 
-        private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//header//span[text()='Waiting for confirm']"));
-        private IWebElement _acceptedButton => driver.FindElement(By.XPath("//header//span[text()='Accepted']"));
+        private By _waitingForConfirmButton = By.XPath("//header//span[text()='Waiting for confirm']");
+        private By _acceptedButton = By.XPath("//header//span[text()='Accepted']");
 
-        public WaitingForConfirmListPageComponent ClickWaitingForConfirmButton()
+        
+        public WaitingForConfirmListPageComponent ClickWaitingForConfirmButton2(int timeToWait)
         {
-            _waitingForConfirmButton.Click();
+            WaitUntilElementIsVisible(_waitingForConfirmButton, timeToWait)
+                .Click();
             return new WaitingForConfirmListPageComponent(driver);
         }
 
-        public AcceptedListPageComponent ClickAcceptedButton()
+        public AcceptedListPageComponent ClickAcceptedButton(int tomeToWait)
         {
-            _acceptedButton.Click();
+            WaitUntilElementIsVisible(_acceptedButton, tomeToWait)
+                .Click();
             return new AcceptedListPageComponent(driver);
         }
     }

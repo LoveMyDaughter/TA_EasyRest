@@ -1,7 +1,7 @@
 ﻿
 namespace TestFramework.PageComponents.AdministratorPanelComponents
 {
-    public class WaitingForConfirmListPageComponent
+    public class WaitingForConfirmListPageComponent : BasePageComponent
     {
         private IWebDriver driver { get; }
 
@@ -14,8 +14,10 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
 
         public WaitingForConfirmCardPageComponent ExpandTheFirstOrder()
         {
-            var card = _orders.ElementAt(0);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(d=>_orders.Count>0);
 
+            var card = _orders.ElementAt(0);
             var expandButton = card.FindElement(By.XPath(".//div[contains(@class, 'MuiExpansionPanelSummary-content')]/following-sibling::div"));
             expandButton.Click();
 
