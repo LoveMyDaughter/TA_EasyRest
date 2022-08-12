@@ -39,7 +39,7 @@ namespace TestFramework.Test
 
             AdministratorPanelPage admPage = new AdministratorPanelPage(Chromedriver);
             admPage.ClickWaitingForConfirmButton2(3)
-                .ExpandTheFirstOrder(5)
+                .ExpandTheFirstOrder()
                 .ClickAcceptButton(3);
 
             Thread.Sleep(9000);
