@@ -6,13 +6,16 @@ namespace TestFramework.Pages
     public class CurrentOrdersPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
+        public UserMenuHeaderButtonPageComponent UserButton { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
         public List<WaitingForConfirmOrderPageComponent> orders { get; set; }
+        private static string _pageUrl = "/profile/current_orders/";
 
         public CurrentOrdersPage(IWebDriver driver) : base(driver)
         {
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
+            UserButton = new UserMenuHeaderButtonPageComponent(driver);
             FillOdersList();
         }
 
@@ -20,16 +23,18 @@ namespace TestFramework.Pages
         private IWebElement _allButton => driver.FindElement(By.XPath("//span[contains(text(),'All')]/parent::span/parent::span/parent::a"));
         private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//span[contains(text(),'Waiting for confirm')]/parent::span/parent::span/parent::a"));
 
-        private int СountOrders()
+        public int СountOrders()
         {
-            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[@class='MuiButtonBase-root-106 MuiExpansionPanelSummary-root-573']"));
+            IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class,'MuiExpansionPanel-rounded')]"));
             return items.Count();
         }
 
         private void FillOdersList()
         {
-            orders = new List<WaitingForConfirmOrderPageComponent>(СountOrders());
-            for (int i = 0; i < orders.Count; i++)
+            int CountOrders = СountOrders();
+
+            orders = new List<WaitingForConfirmOrderPageComponent>();
+            for (int i = 0; i < CountOrders; i++)
             {
                 orders.Add(new WaitingForConfirmOrderPageComponent(driver, (i + 1)));
             }
@@ -50,5 +55,9 @@ namespace TestFramework.Pages
             return this;
         }
 
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _pageUrl);
+        }
     }
 }

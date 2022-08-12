@@ -9,11 +9,12 @@
             this.driver = driver;
         }
 
-        private IWebElement _userMenu => driver.FindElement(By.XPath("//button/span[@class='MuiIconButton-label-2477']/div"));
+        private IWebElement _userMenu => driver.FindElement(By.XPath("//div[contains(@class, 'UserMenu-avatar')]"));
 
         public UserMenuDropDownListPageComponent ClickUserMenuButton()
         {
             _userMenu.Click();
+            Thread.Sleep(1000);
             return new UserMenuDropDownListPageComponent(driver);
         }
     }
