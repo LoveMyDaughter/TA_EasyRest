@@ -10,6 +10,11 @@ namespace TestFramework.Pages
         public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
         public UserMenuHeaderButtonPageComponent UserMenuHeaderButtonPageComponent { get; }
 
+        public List<WaiterItemPageComponent> WaiterItems
+        {
+            get { return _items.Select(i => new WaiterItemPageComponent(i)).ToList(); }
+        }
+
         public ManageWaitersPage(IWebDriver driver) : base(driver)
         {
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
@@ -17,16 +22,10 @@ namespace TestFramework.Pages
             UserMenuHeaderButtonPageComponent = new UserMenuHeaderButtonPageComponent(driver);
         }
 
-        private IList<IWebElement> _items => _waitersParent.FindElements(By.XPath("//li/child::button"));
+        private IList<IWebElement> _items => _waitersParent.FindElements(By.XPath("//li"));
         private IWebElement _waitersParent => driver.FindElement(By.XPath("//li/parent::ul/parent::div"));
         private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter"));
-        public ManageWaitersPage ClickFirstWaiterRemoveButton()
-        {
-            var firstWaiterRemoveButton = _items.ElementAt(0);
-            firstWaiterRemoveButton.Click();
 
-            return new ManageWaitersPage(driver);
-        }
         public CreateNewWaiterPageComponent ClickAddWaiterButton()
         {
             _addWaiterButton.Click();
