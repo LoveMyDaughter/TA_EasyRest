@@ -9,17 +9,21 @@
             this.driver = driver;
         }
 
-        private IWebElement _myProfile => driver.FindElement(By.XPath("//a[@role='menuitem']"));
-        private IWebElement _logOut => driver.FindElement(By.XPath("//li[text()='Log Out']"));
+        private By _myProfile = By.XPath("//a[@role='menuitem']");
+        private By _logOut = By.XPath("//li[text()='Log Out']");
 
-        public void ClickMyProfileButton()
+        public void ClickMyProfileButton(int timeToWait)
         {
-            _myProfile.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+                .Until(ExpectedConditions.ElementIsVisible(_myProfile))
+                .Click();
         }
 
-        public void ClickLogOutButton()
+        public void ClickLogOutButton(int timeToWait)
         {
-            _logOut.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+                .Until(ExpectedConditions.ElementIsVisible(_logOut))
+                .Click();
         }
     }
 }
