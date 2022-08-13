@@ -1,3 +1,4 @@
+using TestFramework.Tools;
 namespace TestFramework.Test
 {
     public class BaseTest
@@ -12,7 +13,12 @@ namespace TestFramework.Test
             signInPage.SendKeysToEmailField(userEmail)
                 .SendKeysToPasswordField(password)
                 .ClickSignInButton();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);  //TODO: change to wait until
+        }
+
+        public void UserLogout(string userEmail)
+        {
+            DBCleanup.DeleteLastTokenOfUserByEmail(userEmail);
         }
 
     }
