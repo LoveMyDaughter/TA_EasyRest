@@ -23,13 +23,14 @@ namespace TestFramework.PageComponents.Owner
         public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(1000); //change to waiter
             return new ManageWaitersPage(driver);
         }
-        public ManageRestaurantPageComponent ClickAdministratorsButton()
+        public ManageAdministratorPage ClickAdministratorsButton()
         {
             _administratorsButton.Click();
-            return this;
+            Thread.Sleep(1000); //change to waiter
+            return new ManageAdministratorPage(driver);
         }
     }
 

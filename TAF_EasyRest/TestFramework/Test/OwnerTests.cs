@@ -1,4 +1,6 @@
-﻿namespace TestFramework.Test
+﻿using TestFramework.PageComponents;
+
+namespace TestFramework.Test
 {
     [TestFixture]
     public class OwnerTests
@@ -48,6 +50,41 @@
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
+        public void AddAdministratorTest()
+        {
+            //Arrange
+            OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(ChromeDriver);
+            ownerPanelRestaurantsPage.GoToUrl();
+            var expected = new
+            {
+                Name = "Test Admin",
+                Email = "admin.test@test.com",
+                Password = "12345678",
+                PhoneNumber = "0987654321"
+            };
+
+            //Act
+            OwnerEditRestaurantPage editRestaurantPage = ownerPanelRestaurantsPage.RestaurantItems[0]
+                .ClickThreeDotButton()
+                .ClickManageButton();
+
+            CreateNewAdministratorPageComponent createAdminComponent = editRestaurantPage.ManageRestaurantPageComponent
+                .ClickAdministratorsButton()
+                .ClickAddAdministratorButton();
+
+            ManageAdministratorPage manageAdminPage = createAdminComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
+                .ClickAddButton();
+
+            var actual = manageAdminPage.AdministratorItem;
+
+            //Assert
+            Assert.AreEqual(expected.Name, actual.Name);
+            Assert.AreEqual($"{expected.PhoneNumber} / {expected.Email}", actual.Contacts);
         }
 
         [OneTimeTearDown]
