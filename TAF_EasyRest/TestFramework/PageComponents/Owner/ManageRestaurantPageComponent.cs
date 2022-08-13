@@ -20,10 +20,11 @@ namespace TestFramework.PageComponents.Owner
             _menuesButton.Click();
             return new ManageMenuesPageComponent(driver);
         }
-        public ManageRestaurantPageComponent ClickWaiterssButton()
+        public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            return this;
+            Thread.Sleep(1000);
+            return new ManageWaitersPage(driver);
         }
         public ManageRestaurantPageComponent ClickAdministratorsButton()
         {
