@@ -23,7 +23,7 @@ namespace TestFramework.Pages
         private IWebElement _allButton => driver.FindElement(By.XPath("//span[contains(text(),'All')]/parent::span/parent::span/parent::a"));
         private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//span[contains(text(),'Waiting for confirm')]/parent::span/parent::span/parent::a"));
 
-        public int СountOrders()
+        public int CountOrders()
         {
             IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class,'MuiExpansionPanel-rounded')]"));
             return items.Count();
@@ -31,10 +31,10 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            int CountOrders = СountOrders();
+            int countOrders = CountOrders();
 
             orders = new List<WaitingForConfirmOrderPageComponent>();
-            for (int i = 0; i < CountOrders; i++)
+            for (int i = 0; i < countOrders; i++)
             {
                 orders.Add(new WaitingForConfirmOrderPageComponent(driver, (i + 1)));
             }
