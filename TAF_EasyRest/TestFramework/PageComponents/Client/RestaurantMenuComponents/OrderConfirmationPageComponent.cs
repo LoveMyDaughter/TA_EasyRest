@@ -3,7 +3,7 @@ namespace TestFramework.Pages
 {
     public class OrderConfirmationPageComponent
     {
-        public List<OrderSummaryDetailsPageComponent> _summaryDetails { get; private set; }
+        public List<OrderSummaryDetailsPageComponent> SummaryDetails { get; private set; }
         private IWebDriver driver;
         public OrderConfirmationPageComponent(IWebDriver driver)
         {
@@ -25,10 +25,10 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            _summaryDetails = new List<OrderSummaryDetailsPageComponent>(СountOrders());
-            for (int i = 0; i < _summaryDetails.Count; i++)
+            SummaryDetails = new List<OrderSummaryDetailsPageComponent>(СountOrders());
+            for (int i = 0; i < SummaryDetails.Count; i++)
             {
-                _summaryDetails.Add(new OrderSummaryDetailsPageComponent(driver, (i + 1)));
+                SummaryDetails.Add(new OrderSummaryDetailsPageComponent(driver, (i + 1)));
             }
         }
 

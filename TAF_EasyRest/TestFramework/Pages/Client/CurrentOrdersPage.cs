@@ -31,10 +31,10 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            int CountOrders = СountOrders();
+            int countOrders = СountOrders();
 
             orders = new List<WaitingForConfirmOrderPageComponent>();
-            for (int i = 0; i < CountOrders; i++)
+            for (int i = 0; i < countOrders; i++)
             {
                 orders.Add(new WaitingForConfirmOrderPageComponent(driver, (i + 1)));
             }
