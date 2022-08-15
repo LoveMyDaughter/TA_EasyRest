@@ -31,7 +31,7 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            int countOrders = СountOrders();
+            int countOrders = CountOrders();
 
             orders = new List<WaitingForConfirmOrderPageComponent>();
             for (int i = 0; i < countOrders; i++)
