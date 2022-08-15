@@ -11,7 +11,6 @@ namespace TestFramework.Test
             signInPage.SendKeysToEmailField(userEmail)
                 .SendKeysToPasswordField(password)
                 .ClickSignInButton();
-            Thread.Sleep(1000);  //TODO: change to wait until
         }
 
         public void UserLogout(string userEmail)
