@@ -16,12 +16,5 @@ namespace TestFramework.PageComponents
             var driver = parent.GetWebDriverFromWebElement();
             return WaitUntilElementIsVisible(locator, driver, timeToWait);
         }
-
-
-        protected void WaitUntilCollectionIsFilled(IReadOnlyCollection<IWebElement> elements, IWebDriver driver, int timeToWait)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(d => elements.Count > 0);
-        }
     }
 }
