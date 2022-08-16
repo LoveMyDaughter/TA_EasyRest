@@ -35,5 +35,12 @@ namespace TestFramework.Pages
             var el = wait.Until(ExpectedConditions.ElementIsVisible(locator));
             return el;  
         }
+
+        protected void WaitUntilPageIsLoaded(int timeToWait)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
+        }
     }
 }
