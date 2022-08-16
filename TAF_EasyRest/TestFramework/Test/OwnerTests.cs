@@ -47,7 +47,7 @@
             int actual = manageWaitersPage.WaiterItems.Count;
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [OneTimeTearDown]

@@ -2,10 +2,8 @@
 
 namespace TestFramework.Pages
 {
-    public class MenuItemsPage :BasePage
+    public class MenuItemsPage : BasePage
     {
-        private IWebDriver driver;
-
         public ManageRestaurantPageComponent ManageRestaurantPageComponent { get; }
 
         public MenuItemsPage(IWebDriver driver): base(driver)
