@@ -19,7 +19,7 @@ namespace TestFramework.Pages
         private By _acceptedButton = By.XPath("//header//span[text()='Accepted']");
 
         
-        public WaitingForConfirmListPageComponent ClickWaitingForConfirmButton2(int timeToWait)
+        public WaitingForConfirmListPageComponent ClickWaitingForConfirmButton(int timeToWait)
         {
             driver.WaitUntilElementIsVisible(_waitingForConfirmButton, timeToWait)
                 .Click();

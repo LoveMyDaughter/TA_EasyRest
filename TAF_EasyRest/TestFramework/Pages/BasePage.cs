@@ -29,7 +29,7 @@ namespace TestFramework.Pages
             driver.Navigate().GoToUrl(baseUrl);
         }
 
-        protected void WaitUntilPageIsLoaded(int timeToWait)
+        public void WaitUntilPageIsLoaded(int timeToWait)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
