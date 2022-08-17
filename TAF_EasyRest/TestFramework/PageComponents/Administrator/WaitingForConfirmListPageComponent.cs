@@ -1,7 +1,7 @@
 ﻿
 namespace TestFramework.PageComponents.AdministratorPanelComponents
 {
-    public class WaitingForConfirmListPageComponent : BasePageComponent
+    public class WaitingForConfirmListPageComponent 
     {
         private IWebDriver driver { get; }
 

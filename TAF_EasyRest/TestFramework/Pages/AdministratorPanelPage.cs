@@ -21,14 +21,14 @@ namespace TestFramework.Pages
         
         public WaitingForConfirmListPageComponent ClickWaitingForConfirmButton2(int timeToWait)
         {
-            WaitUntilElementIsVisible(_waitingForConfirmButton, timeToWait)
+            driver.WaitUntilElementIsVisible(_waitingForConfirmButton, timeToWait)
                 .Click();
             return new WaitingForConfirmListPageComponent(driver);
         }
 
         public AcceptedListPageComponent ClickAcceptedButton(int tomeToWait)
         {
-            WaitUntilElementIsVisible(_acceptedButton, tomeToWait)
+            driver.WaitUntilElementIsVisible(_acceptedButton, tomeToWait)
                 .Click();
             return new AcceptedListPageComponent(driver);
         }

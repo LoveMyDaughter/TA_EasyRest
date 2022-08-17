@@ -29,13 +29,6 @@ namespace TestFramework.Pages
             driver.Navigate().GoToUrl(baseUrl);
         }
 
-        protected IWebElement WaitUntilElementIsVisible(By locator, int timeToWait)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
-            var el = wait.Until(ExpectedConditions.ElementIsVisible(locator));
-            return el;  
-        }
-
         protected void WaitUntilPageIsLoaded(int timeToWait)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;

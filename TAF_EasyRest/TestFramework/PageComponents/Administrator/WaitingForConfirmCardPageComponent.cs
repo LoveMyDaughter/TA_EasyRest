@@ -1,6 +1,6 @@
 ﻿namespace TestFramework.PageComponents.AdministratorPanelComponents
 {
-    public class WaitingForConfirmCardPageComponent : BasePageComponent
+    public class WaitingForConfirmCardPageComponent 
     {
         private IWebElement _card { get; }
 
@@ -12,8 +12,9 @@
         private By _acceptButton => By.XPath(".//button//span[text()='Accept']");
 
         public WaitingForConfirmCardPageComponent ClickAcceptButton(int timeToWait)
-        {           
-            WaitUntilElementIsVisible(_acceptButton, _card, timeToWait)
+        {
+            var driver = _card.GetWebDriverFromWebElement();
+            driver.WaitUntilElementIsVisible(_acceptButton, timeToWait)
                 .Click();
             return this;
         }    
