@@ -28,5 +28,12 @@ namespace TestFramework.Pages
         {
             driver.Navigate().GoToUrl(baseUrl);
         }
+
+        public void WaitUntilPageIsLoaded(int timeToWait)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
+        }
     }
 }
