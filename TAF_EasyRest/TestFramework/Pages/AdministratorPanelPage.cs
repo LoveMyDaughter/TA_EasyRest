@@ -5,6 +5,7 @@ namespace TestFramework.Pages
 {
     public class AdministratorPanelPage : BasePage
     {
+        private string _pageUrl = "/administrator-panel";
         public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
         public UserMenuHeaderButtonPageComponent UserMenuHeaderButton { get; }
         
@@ -31,6 +32,11 @@ namespace TestFramework.Pages
             driver.WaitUntilElementIsVisible(_acceptedButton, tomeToWait)
                 .Click();
             return new AcceptedListPageComponent(driver);
+        }
+
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _pageUrl);
         }
     }
 }
