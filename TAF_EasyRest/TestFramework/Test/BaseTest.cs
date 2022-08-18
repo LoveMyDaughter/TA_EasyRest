@@ -14,6 +14,8 @@ namespace TestFramework.Test
             signInPage.SendKeysToEmailField(userEmail)
                 .SendKeysToPasswordField(password)
                 .ClickSignInButton();
+            string currentUrl = driver.Url;
+            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(d => driver.Url != currentUrl);
         }
 
         public void UserLogout(string userEmail)
