@@ -5,7 +5,7 @@ namespace TestFramework.Pages.Moderator
 {
     public class ModeratorPanelUsersPage : BasePage
     {
-
+        private static string _pageUrl = "/moderator/users";
         public NavigationMenuPageComponent NavigationMenu { get; }
         public UserMenuHeaderButtonPageComponent UserButton { get; }
         public ModeratorPanelPageComponent ModeratorLeftsideMenu { get; }
@@ -23,6 +23,11 @@ namespace TestFramework.Pages.Moderator
 
 
         #region Methods
+
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _pageUrl);
+        }
 
         // Find a button to ban/unban the first user in the list and click it
         public ModeratorPanelUsersPage FindAndClickPadlockButton()
