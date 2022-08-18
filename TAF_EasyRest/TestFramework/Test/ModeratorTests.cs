@@ -4,14 +4,14 @@ namespace TestFramework.Test
 {
     public class ModeratorTests : BaseTest
     {
-        private static string userEmail = "petermoderator@test.com";
-        private static string userPassword = "1";
-        IWebDriver driver = new ChromeDriver();
-
+        public IWebDriver driver { get; private set; }
 
         [OneTimeSetUp]
         public void BeforeModeratorsTests()
         {
+            driver = new ChromeDriver();
+            userEmail = "petermoderator@test.com";
+            userPassword = "1";
             UserLogin(driver, userEmail, userPassword);
         }
 
@@ -22,7 +22,7 @@ namespace TestFramework.Test
         public void ChangeUserStatusTest()
         {
             // Arrange
-            ModeratorPanelUsersPage moderatorPanelUsersPage = new ModeratorPanelUsersPage(driver);
+            ModeratorPanelUsersPage moderatorPanelUsersPage = new ModeratorPanelUsersPage(driver); Thread.Sleep(2000);
             moderatorPanelUsersPage.GoToUrl(); Thread.Sleep(1000);
             string initialStatus = moderatorPanelUsersPage.ShowUserStatus();
 
