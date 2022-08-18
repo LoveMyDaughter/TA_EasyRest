@@ -3,6 +3,9 @@ namespace TestFramework.Test
 {
     public class BaseTest
     {
+        protected string userEmail;
+        protected string userPassword;
+
         public void UserLogin(IWebDriver driver, string userEmail, string password)
         {
             SignInPage signInPage = new SignInPage(driver);
