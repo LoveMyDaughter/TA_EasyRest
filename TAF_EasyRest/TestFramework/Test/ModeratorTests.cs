@@ -22,7 +22,7 @@ namespace TestFramework.Test
         public void ChangeUserStatusTest()
         {
             // Arrange
-            ModeratorPanelUsersPage moderatorPanelUsersPage = new ModeratorPanelUsersPage(driver); Thread.Sleep(2000);
+            ModeratorPanelUsersPage moderatorPanelUsersPage = new ModeratorPanelUsersPage(driver); //Thread.Sleep(2000);
             moderatorPanelUsersPage.GoToUrl(); Thread.Sleep(1000);
             string initialStatus = moderatorPanelUsersPage.ShowUserStatus();
 
