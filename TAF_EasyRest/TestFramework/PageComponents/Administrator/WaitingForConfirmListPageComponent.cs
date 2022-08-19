@@ -12,10 +12,9 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
             this.driver = driver;
         }
 
-        public WaitingForConfirmCardPageComponent ExpandTheFirstOrder()
+        public WaitingForConfirmCardPageComponent ExpandTheFirstOrder(int timeToWait)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(d=>_orders.Count>0);
+            driver.WaitUntilCollectionIsFilled(timeToWait, _orders);
 
             var card = _orders.ElementAt(0);
             var expandButton = card.FindElement(By.XPath(".//div[contains(@class, 'MuiExpansionPanelSummary-content')]/following-sibling::div"));
@@ -23,8 +22,9 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
             return new WaitingForConfirmCardPageComponent(card);
         }
 
-        public int CheckTheNumberOfOrdersInTheCurrentTab()
+        public int CheckTheNumberOfOrdersInTheCurrentTab(int timeToWait)
         {
+            driver.WaitUntilCollectionIsFilled(timeToWait, _orders);
             return _orders.Count;
         }
     }
