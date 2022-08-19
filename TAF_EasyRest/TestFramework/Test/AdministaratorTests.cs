@@ -4,6 +4,8 @@
     public class AdministaratorTests : BaseTest
     {
         public IWebDriver ChromeDriver { get; private set; }
+        string email = "eringonzales@test.com";
+        string password = "1";
 
         [OneTimeSetUp]
         public void BeforeAllTests()
@@ -14,12 +16,9 @@
         [SetUp]
         public void SetUp()
         {
-            string email = "eringonzales@test.com";
-            string password = "1";
             UserLogin(ChromeDriver, email, password);
-            //Thread.Sleep(4000);
-            SignInPage signInPage = new SignInPage(ChromeDriver);
-            signInPage.WaitUntilPageIsLoaded(4);
+            ChromeDriver.Manage().Window.Maximize();
+            Thread.Sleep(3000);// to be removed
         }
 
         [Test]
@@ -27,10 +26,23 @@
         {
             //Arrange
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
-            administratorPanelPage.GoToUrl();
-            Thread.Sleep(4000);
-            //Act
+            administratorPanelPage.GoToUrl(); Thread.Sleep(2000);
+            int numberOfOrdersBeforeAccepting = administratorPanelPage.ClickWaitingForConfirmButton(2)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(2);
+
+            //Act           
+            administratorPanelPage.ClickWaitingForConfirmButton(2)
+                                  .ExpandTheFirstOrder(2)
+                                  .ClickAcceptButton(2);
+
+            int numberOfOrdersAfterAccepting = administratorPanelPage.ClickWaitingForConfirmButton(2)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(1);
+            
+            //Thread.Sleep(3000);
+            
             //Assert
+            Assert.That(numberOfOrdersBeforeAccepting, Is.EqualTo(numberOfOrdersAfterAccepting + 1));
+            //Assert.AreEqual(numberOfOrdersBeforeAccepting, numberOfOrdersAfterAccepting + 1);
         }
 
         [TearDown]
