@@ -1,6 +1,6 @@
 ﻿namespace TestFramework.PageComponents.NavigationMenuComponents
 {
-    public class UserMenuDropDownListPageComponent
+    public class UserMenuDropDownListPageComponent 
     {
         IWebDriver driver { get; }
 
@@ -9,17 +9,19 @@
             this.driver = driver;
         }
 
-        private IWebElement _myProfile => driver.FindElement(By.XPath("//a[@role='menuitem']"));
-        private IWebElement _logOut => driver.FindElement(By.XPath("//li[text()='Log Out']"));
+        private By _myProfile = By.XPath("//a[@role='menuitem']");
+        private By _logOut = By.XPath("//li[text()='Log Out']");
 
-        public void ClickMyProfileButton()
+        public void ClickMyProfileButton(int timeToWait)
         {
-            _myProfile.Click();
+            driver.WaitUntilElementIsVisible(_myProfile, timeToWait)
+                .Click();
         }
 
-        public void ClickLogOutButton()
+        public void ClickLogOutButton(int timeToWait)
         {
-            _logOut.Click();
+            driver.WaitUntilElementIsVisible(_logOut, timeToWait)
+                .Click();
         }
     }
 }

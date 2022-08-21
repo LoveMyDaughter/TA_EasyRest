@@ -1,6 +1,6 @@
 ﻿namespace TestFramework.PageComponents.NavigationMenuComponents
 {
-    public class UserMenuHeaderButtonPageComponent
+    public class UserMenuHeaderButtonPageComponent 
     {
         IWebDriver driver { get; }
 
@@ -9,12 +9,12 @@
             this.driver = driver;
         }
 
-        private IWebElement _userMenu => driver.FindElement(By.XPath("//div[contains(@class, 'UserMenu-avatar')]"));
+        private By _userMenu = By.XPath("//div[contains(@class, 'UserMenu-avatar')]");
 
-        public UserMenuDropDownListPageComponent ClickUserMenuButton()
+        public UserMenuDropDownListPageComponent ClickUserMenuButton(int timeToWait)
         {
-            _userMenu.Click();
-            Thread.Sleep(1000);
+            driver.WaitUntilElementIsVisible(_userMenu, timeToWait)
+                .Click();
             return new UserMenuDropDownListPageComponent(driver);
         }
     }
