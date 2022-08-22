@@ -33,6 +33,24 @@ namespace TestFramework.Test
             Assert.That(initialStatus != finalStatus);
         }
 
+        [Test]
+        [Category("Smoke")]
+        [Category("Positive")]
+        public void ChangeOwnerStatusTest()
+        {
+            // Arrange
+            ModeratorPanelOwnersPage moderatorPanelOwnersPage = new ModeratorPanelOwnersPage(driver);
+            moderatorPanelOwnersPage.GoToUrl();
+            string initialStatus = moderatorPanelOwnersPage.ShowOwnerStatus();
+
+            // Act
+            moderatorPanelOwnersPage.FindAndClickPadlockButton();
+            string finalStatus = moderatorPanelOwnersPage.ShowOwnerStatus();
+
+            // Assert
+            Assert.That(initialStatus != finalStatus);
+        }
+
         [OneTimeTearDown]
         public void AfterAllTests()
         {
