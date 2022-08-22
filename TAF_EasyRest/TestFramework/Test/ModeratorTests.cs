@@ -18,7 +18,6 @@ namespace TestFramework.Test
         [Test]
         [Category("Smoke")]
         [Category("Positive")]
-        [Repeat(2)]  // This restores the previous user's status (postcondition of test case)
         public void ChangeUserStatusTest()
         {
             // Arrange
