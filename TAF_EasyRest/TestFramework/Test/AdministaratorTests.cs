@@ -37,10 +37,12 @@
 
             int numberOfOrdersAfterAccepting = administratorPanelPage.ClickWaitingForConfirmButton(2)
                                   .CheckTheNumberOfOrdersInTheCurrentTab(1);
-            
+
             //Thread.Sleep(3000);
-            
+
             //Assert
+            Console.WriteLine($"Before = { numberOfOrdersBeforeAccepting}");
+            Console.WriteLine($"After = {numberOfOrdersAfterAccepting}");
             Assert.That(numberOfOrdersBeforeAccepting, Is.EqualTo(numberOfOrdersAfterAccepting + 1));
             //Assert.AreEqual(numberOfOrdersBeforeAccepting, numberOfOrdersAfterAccepting + 1);
         }
@@ -49,6 +51,7 @@
         public void AfterTests()
         {
             ChromeDriver.Quit();
+            //DBCleanup.ChangeOrderStatus("91", "Waiting for confirm");
         }
     }
 }
