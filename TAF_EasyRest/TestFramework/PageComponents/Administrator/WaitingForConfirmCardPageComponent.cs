@@ -19,6 +19,6 @@
             ((IJavaScriptExecutor)driver)
                 .ExecuteScript("window.scrollTo(0, -document.body.scrollHeight);");
             return this;
-        }    
+        }
     }
 }
