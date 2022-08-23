@@ -15,12 +15,6 @@ namespace TestFramework.Tools
             string currentUrl = driver.Url;
             new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(d => driver.Url != currentUrl);
         }
-
-        public static void WaitUntilCollectionIsFilled(this IWebDriver driver, int timeToWait, IReadOnlyCollection<IWebElement> collection)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
-            wait.Until(d => collection.Count > 0);
-        }
     }
 
 }

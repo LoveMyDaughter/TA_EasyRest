@@ -14,5 +14,11 @@
             string deleteToken = $"delete from tokens where id = (SELECT tokens.id FROM tokens JOIN users ON tokens.user_id = users.id WHERE users.email = '{userEmail}' order by id desc limit 1)";
             DBConnectionWrapper.ExecuteQuery(deleteToken);
         }
+
+        public static void ChangeOrderStatus(string orderId, string orderStatus = "Waiting for confirm")
+        {
+            string changeStatus = $"UPDATE orders SET status = '{orderStatus}' WHERE id = {orderId};";
+            DBConnectionWrapper.ExecuteQuery(changeStatus);
+        }
     }
 }
