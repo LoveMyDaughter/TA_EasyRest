@@ -19,6 +19,23 @@ namespace TestFramework.Test
 
         [Test]
         [Category("Smoke")]
+        [Category("Postitive")]
+        public void ApproveRestaurant()
+        {
+            // Arrange
+            ModeratorPanelRestaurantsPage restaurants = new ModeratorPanelRestaurantsPage(driver);
+            int initialRestaurantsAmount = restaurants.ClickUnapprovedTab().RestaurantsCount();
+
+            // Act
+            restaurants.ClickUnapprovedTab().ClickApproveButton();
+            int finalRestaurantsAmount = restaurants.ClickUnapprovedTab().RestaurantsCount();
+
+            // Assert
+            Assert.That(finalRestaurantsAmount == initialRestaurantsAmount - 1);
+        }
+
+        [Test]
+        [Category("Smoke")]
         [Category("Positive")]
         public void ChangeUserStatusTest()
         {
