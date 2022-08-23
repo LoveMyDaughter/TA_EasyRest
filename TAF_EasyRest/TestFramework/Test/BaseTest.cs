@@ -5,6 +5,7 @@ namespace TestFramework.Test
     {
         protected string userEmail;
         protected string userPassword;
+        protected string restaurantName;
 
         public void UserLogin(IWebDriver driver, string userEmail, string password)
         {
@@ -20,6 +21,16 @@ namespace TestFramework.Test
         public void UserLogout(string userEmail)
         {
             DBCleanup.DeleteLastTokenOfUserByEmail(userEmail);
+        }
+
+        public void AddRestaurant(string name)
+        {
+            DBAddition.AddRestaurantViaDB(name);
+        }
+
+        public void DeleteRestaurant(string restaurantName)
+        {
+            DBCleanup.DeleteRestaurantByName(restaurantName);
         }
 
     }
