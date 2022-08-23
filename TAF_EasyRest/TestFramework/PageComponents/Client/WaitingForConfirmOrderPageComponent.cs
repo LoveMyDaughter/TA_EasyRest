@@ -16,7 +16,6 @@
         public WaitingForConfirmOrderDetailsPageComponent ExpandOrderField()
         {
             _orderField.Click();
-            Thread.Sleep(1000);
             return new WaitingForConfirmOrderDetailsPageComponent(driver, index);
         }
     }

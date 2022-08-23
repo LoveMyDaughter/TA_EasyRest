@@ -1,29 +1,29 @@
-﻿namespace TestFramework.Test
+﻿using TestFramework.Tools.GetData;
+
+namespace TestFramework.Test
 {
     [TestFixture]
-    public class ClientTests
+    public class ClientTests : BaseTest
     {
-        public IWebDriver Chromedriver { get; private set; }
+        public IWebDriver driver { get; private set; }
+        private string email;
+        private string password;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
-            Chromedriver = new ChromeDriver();
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-            SignInPage signInPage = new SignInPage(Chromedriver);
-            string email = "anitacharles@test.com";
-            string password = "1111";
+            driver = new ChromeDriver();
+            SignInPage signInPage = new SignInPage(driver);
+            email = GetRoleCredentials.GetCredentials("Client").Email;
+            password = GetRoleCredentials.GetCredentials("Client").Password;
 
             signInPage.GoToUrl();
             signInPage.SendKeysToEmailField(email)
                 .SendKeysToPasswordField(password)
                 .ClickSignInButton();
-            Thread.Sleep(3000);
         }
+
+        
 
         [Category("Smoke")]
         [Category("Positive")]
@@ -31,34 +31,33 @@
         public void DeclineOrderTest()
         {
             //Arrange
-            CurrentOrdersPage currentOrdersPage = new CurrentOrdersPage(Chromedriver);
+            CurrentOrdersPage currentOrdersPage = new CurrentOrdersPage(driver);
 
             currentOrdersPage.GoToUrl();
-            Thread.Sleep(1000); //change to waiter
-            //Act
-            currentOrdersPage.ClickWaitingForConfirmButton();
 
-            int expected = currentOrdersPage.CountOrders() - 1;
+            //Act
+            currentOrdersPage.ClickWaitingForConfirmButton(3);
+
+            int expected = currentOrdersPage.CountOrders(3) - 1;
 
             currentOrdersPage.orders[0]
-                .ExpandOrderField() //tread.sleep in method
-                .ClickDeclineButton();
+                .ExpandOrderField() 
+                .ClickDeclineButton(3);
 
-            Thread.Sleep(1000);
-            int actual = currentOrdersPage.CountOrders();
+            int actual = currentOrdersPage.CountOrders(3);
 
             currentOrdersPage.UserButton
                 .ClickUserMenuButton(3)
                 .ClickLogOutButton(3);
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.That(expected, Is.EqualTo(actual));
         }
 
         [OneTimeTearDown]
         public void AfterAllTests()
         {
-            Chromedriver.Quit();
+            driver.Quit();
         }
     }
 }

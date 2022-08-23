@@ -1,6 +1,8 @@
 ﻿using TestFramework.PageComponents;
 using TestFramework.PageComponents.NavigationMenuComponents;
 
+using TestFramework.Tools.GetData; 
+
 namespace TestFramework.Pages
 {
     public class CurrentOrdersPage : BasePage
@@ -9,29 +11,29 @@ namespace TestFramework.Pages
         public UserMenuHeaderButtonPageComponent UserButton { get; }
         public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
         public List<WaitingForConfirmOrderPageComponent> orders { get; set; }
-        private static string _pageUrl = "/profile/current_orders/";
+        private static string _pageUrl => GetUrls.getUrl("CurrentOrdersPage").Url;
 
         public CurrentOrdersPage(IWebDriver driver) : base(driver)
         {
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             UserButton = new UserMenuHeaderButtonPageComponent(driver);
-            FillOdersList();
         }
 
 
-        private IWebElement _allButton => driver.FindElement(By.XPath("//span[contains(text(),'All')]/parent::span/parent::span/parent::a"));
-        private IWebElement _waitingForConfirmButton => driver.FindElement(By.XPath("//span[contains(text(),'Waiting for confirm')]/parent::span/parent::span/parent::a"));
+        private By _allButton => By.XPath("//span[contains(text(),'All')]/parent::span/parent::span/parent::a");
+        private By _waitingForConfirmButton => By.XPath("//span[contains(text(),'Waiting for confirm')]/parent::span/parent::span/parent::a");
 
-        public int CountOrders()
+        public int CountOrders(int timeToWait)
         {
+            driver.WaitUntilElementIsVisible(By.XPath("//div[contains(@class,'UserOrders-root')]"), timeToWait);
             IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class,'MuiExpansionPanel-rounded')]"));
             return items.Count();
         }
 
         private void FillOdersList()
         {
-            int countOrders = CountOrders();
+            int countOrders = CountOrders(3);
 
             orders = new List<WaitingForConfirmOrderPageComponent>();
             for (int i = 0; i < countOrders; i++)
@@ -40,23 +42,25 @@ namespace TestFramework.Pages
             }
         }
 
-        public CurrentOrdersPage ClickAllButton()
+        public CurrentOrdersPage ClickAllButton(int timeToWait)
         {
-            _allButton.Click();
+            driver.WaitUntilElementIsVisible(_allButton, timeToWait);
             FillOdersList();
             return this;
         }
 
 
-        public CurrentOrdersPage ClickWaitingForConfirmButton()
+        public CurrentOrdersPage ClickWaitingForConfirmButton(int timeToWait)
         {
-            _waitingForConfirmButton.Click();
+            driver.WaitUntilElementIsVisible(_waitingForConfirmButton, timeToWait)
+                .Click();
             FillOdersList();
             return this;
         }
 
         public override void GoToUrl()
         {
+            driver.WaitUntilUrlIsChanged();
             driver.Navigate().GoToUrl(baseUrl + _pageUrl);
         }
     }

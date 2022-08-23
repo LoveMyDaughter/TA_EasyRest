@@ -10,11 +10,11 @@
             this.index = index;
         }
 
-        private IWebElement _declineButton => driver.FindElement(By.XPath($"//span[text()='Decline'][{index}]"));
+        private By _declineButton => By.XPath($"//span[text()='Decline'][{index}]");
 
-        public WaitingForConfirmOrderDetailsPageComponent ClickDeclineButton()
+        public WaitingForConfirmOrderDetailsPageComponent ClickDeclineButton(int timeToWait)
         {
-            _declineButton.Click();
+            driver.WaitUntilElementIsVisible(_declineButton, timeToWait).Click();
             return this;
         }
     }
