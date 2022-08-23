@@ -14,5 +14,11 @@
             string deleteToken = $"delete from tokens where id = (SELECT tokens.id FROM tokens JOIN users ON tokens.user_id = users.id WHERE users.email = '{userEmail}' order by id desc limit 1)";
             DBConnectionWrapper.ExecuteQuery(deleteToken);
         }
+
+        public static void DeleteRestaurantByName(string restaurantName)
+        {
+            string deleteRest = $"DELETE FROM restaurants WHERE name = '{restaurantName}'";
+            DBConnectionWrapper.ExecuteQuery(deleteRest);
+        }
     }
 }
