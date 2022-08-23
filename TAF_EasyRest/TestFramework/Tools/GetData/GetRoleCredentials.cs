@@ -1,7 +1,6 @@
-﻿//using Newtonsoft.Json;
-using System.Text.Json;
+﻿using System.Text.Json;
 
-namespace TestFramework.Tools.deserialization
+namespace TestFramework.Tools.GetData
 {
     public class GetRoleCredentials
     {

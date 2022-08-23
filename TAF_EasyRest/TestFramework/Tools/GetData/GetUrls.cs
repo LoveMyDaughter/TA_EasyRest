@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace TestFramework.Tools.deserialization
+namespace TestFramework.Tools.GetData
 {
     public class GetUrls
     {

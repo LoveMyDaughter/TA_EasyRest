@@ -1,4 +1,4 @@
-﻿namespace TestFramework.Tools.deserialization
+﻿namespace TestFramework.Tools.GetData
 {
     public class Urls
     {
