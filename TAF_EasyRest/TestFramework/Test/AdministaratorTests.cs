@@ -4,31 +4,38 @@
     public class AdministaratorTests : BaseTest
     {
         public IWebDriver ChromeDriver { get; private set; }
-        string email = "eringonzales@test.com";
-        string password = "1";
+        private string orderId;
+        private string orderStatus;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
             ChromeDriver = new ChromeDriver();
+            userEmail = "eringonzales@test.com";
+            userPassword = "1";
         }
 
         [SetUp]
         public void SetUp()
         {
-            UserLogin(ChromeDriver, email, password);
+            UserLogin(ChromeDriver, userEmail, userPassword);
             ChromeDriver.Manage().Window.Maximize();
-            Thread.Sleep(3000);// to be removed
         }
 
         [Test]
+        [Category("Smoke")]
+        [Category("Positive")]
         public void AcceptPreviouslyCreatedOrderPositiveTest()
         {
             //Arrange
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
-            administratorPanelPage.GoToUrl(); Thread.Sleep(2000);
-            int numberOfOrdersBeforeAccepting = administratorPanelPage.ClickWaitingForConfirmButton(2)
+            int numberOfOrdersBeforeAccepting = administratorPanelPage.ClickWaitingForConfirmButton(3)
                                   .CheckTheNumberOfOrdersInTheCurrentTab(2);
+
+
+            orderId = administratorPanelPage.ClickWaitingForConfirmButton(2)
+                                  .GetIdOfTheFirstOrder();
+            orderStatus = "Waiting for confirm";
 
             //Act           
             administratorPanelPage.ClickWaitingForConfirmButton(2)
@@ -38,20 +45,16 @@
             int numberOfOrdersAfterAccepting = administratorPanelPage.ClickWaitingForConfirmButton(2)
                                   .CheckTheNumberOfOrdersInTheCurrentTab(1);
 
-            //Thread.Sleep(3000);
-
             //Assert
-            Console.WriteLine($"Before = { numberOfOrdersBeforeAccepting}");
-            Console.WriteLine($"After = {numberOfOrdersAfterAccepting}");
             Assert.That(numberOfOrdersBeforeAccepting, Is.EqualTo(numberOfOrdersAfterAccepting + 1));
-            //Assert.AreEqual(numberOfOrdersBeforeAccepting, numberOfOrdersAfterAccepting + 1);
         }
 
         [TearDown]
         public void AfterTests()
         {
+            UserLogout(userEmail);
             ChromeDriver.Quit();
-            //DBCleanup.ChangeOrderStatus("91", "Waiting for confirm");
+            DBCleanup.ChangeOrderStatus(orderId, orderStatus);
         }
     }
 }
