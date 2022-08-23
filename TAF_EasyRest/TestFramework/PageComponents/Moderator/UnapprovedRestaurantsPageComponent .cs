@@ -11,11 +11,17 @@
 
         private IReadOnlyCollection<IWebElement> _restaurantsGrid => driver.FindElements(By.XPath("//div[contains(@class, 'Grid-item')]"));
 
+        public int RestaurantsCount()
+        {
+            return _restaurantsGrid.Count();
+        }
+
         public UnapprovedRestaurantsPageComponent ClickApproveButton()
         {
             var firstRestaurantFromGrid = _restaurantsGrid.ElementAt(0);
             var approveButton = firstRestaurantFromGrid.FindElement(By.XPath(".//span[text() = 'Approve']/parent::button"));
             approveButton.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(ExpectedConditions.StalenessOf(approveButton));
             return new UnapprovedRestaurantsPageComponent(driver);
         }
     }
