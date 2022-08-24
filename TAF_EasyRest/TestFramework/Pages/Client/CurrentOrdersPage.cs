@@ -18,7 +18,6 @@ namespace TestFramework.Pages
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             UserButton = new UserMenuHeaderButtonPageComponent(driver);
-            FillOdersList();
         }
 
 
@@ -62,7 +61,6 @@ namespace TestFramework.Pages
 
         public override void GoToUrl()
         {
-            driver.WaitUntilUrlIsChanged();
             driver.Navigate().GoToUrl(baseUrl + _pageUrl);
         }
     }

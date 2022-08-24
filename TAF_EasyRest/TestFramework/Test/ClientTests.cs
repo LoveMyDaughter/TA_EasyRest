@@ -17,10 +17,7 @@ namespace TestFramework.Test
             email = GetRoleCredentials.GetCredentials("Client").Email;
             password = GetRoleCredentials.GetCredentials("Client").Password;
 
-            signInPage.GoToUrl();
-            signInPage.SendKeysToEmailField(email)
-                .SendKeysToPasswordField(password)
-                .ClickSignInButton();
+            UserLogin(driver, email, password);
         }
 
         
@@ -39,19 +36,12 @@ namespace TestFramework.Test
             currentOrdersPage.ClickWaitingForConfirmButton(3);
 
             int expected = currentOrdersPage.CountOrders(3) - 1;
-            Console.WriteLine(expected);
             
             currentOrdersPage.orders[0]
                 .ExpandOrderField()
                 .ClickDeclineButton(3);
 
-            //Thread.Sleep(3000);
             int actual = currentOrdersPage.CountOrders(3);
-            Console.WriteLine("actual:" + actual);
-
-            currentOrdersPage.UserButton
-                .ClickUserMenuButton(3)
-                .ClickLogOutButton(3);
 
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
@@ -60,6 +50,7 @@ namespace TestFramework.Test
         [OneTimeTearDown]
         public void AfterAllTests()
         {
+            UserLogout(email);
             driver.Quit();
         }
     }
