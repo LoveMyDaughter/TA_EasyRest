@@ -18,6 +18,7 @@ namespace TestFramework.Pages
             PersonalInfoPageComponent = new PersonalInfoPageComponent(driver);
             NavigationMenuPageComponent = new NavigationMenuPageComponent(driver);
             UserButton = new UserMenuHeaderButtonPageComponent(driver);
+            FillOdersList();
         }
 
 
@@ -26,7 +27,8 @@ namespace TestFramework.Pages
 
         public int CountOrders(int timeToWait)
         {
-            driver.WaitUntilElementIsVisible(By.XPath("//div[contains(@class,'UserOrders-root')]"), timeToWait);
+            driver.WaitUntilElementIsVisible(By.XPath("//div[contains(@class,'MuiExpansionPanel-rounded')]"), timeToWait);
+            
             IReadOnlyCollection<IWebElement> items = driver.FindElements(By.XPath("//div[contains(@class,'MuiExpansionPanel-rounded')]"));
             return items.Count();
         }
@@ -44,7 +46,7 @@ namespace TestFramework.Pages
 
         public CurrentOrdersPage ClickAllButton(int timeToWait)
         {
-            driver.WaitUntilElementIsVisible(_allButton, timeToWait);
+            driver.WaitUntilElementIsVisible(_allButton, timeToWait).Click();
             FillOdersList();
             return this;
         }

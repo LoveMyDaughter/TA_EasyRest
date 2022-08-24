@@ -39,12 +39,15 @@ namespace TestFramework.Test
             currentOrdersPage.ClickWaitingForConfirmButton(3);
 
             int expected = currentOrdersPage.CountOrders(3) - 1;
-
+            Console.WriteLine(expected);
+            
             currentOrdersPage.orders[0]
-                .ExpandOrderField() 
+                .ExpandOrderField()
                 .ClickDeclineButton(3);
 
+            //Thread.Sleep(3000);
             int actual = currentOrdersPage.CountOrders(3);
+            Console.WriteLine("actual:" + actual);
 
             currentOrdersPage.UserButton
                 .ClickUserMenuButton(3)

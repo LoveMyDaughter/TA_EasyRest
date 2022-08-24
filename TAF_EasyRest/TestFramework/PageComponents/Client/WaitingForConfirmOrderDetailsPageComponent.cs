@@ -12,10 +12,11 @@
 
         private By _declineButton => By.XPath($"//span[text()='Decline'][{index}]");
 
-        public WaitingForConfirmOrderDetailsPageComponent ClickDeclineButton(int timeToWait)
+        public CurrentOrdersPage ClickDeclineButton(int timeToWait)
         {
             driver.WaitUntilElementIsVisible(_declineButton, timeToWait).Click();
-            return this;
+
+            return new CurrentOrdersPage(driver);
         }
     }
 }
