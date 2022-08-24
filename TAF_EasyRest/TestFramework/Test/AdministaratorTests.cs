@@ -9,8 +9,7 @@
 
         [OneTimeSetUp]
         public void BeforeAllTests()
-        {
-            ChromeDriver = new ChromeDriver();
+        {           
             userEmail = "eringonzales@test.com";
             userPassword = "1";
         }
@@ -18,19 +17,19 @@
         [SetUp]
         public void SetUp()
         {
+            ChromeDriver = new ChromeDriver();
             UserLogin(ChromeDriver, userEmail, userPassword);
             ChromeDriver.Manage().Window.Maximize();
         }
 
         [Test]
-        [Category("Smoke")]
         [Category("Positive")]
         public void AcceptPreviouslyCreatedOrderPositiveTest()
         {
             //Arrange
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
             int numberOfOrdersBeforeAccepting = administratorPanelPage.ClickWaitingForConfirmButton(3)
-                                  .CheckTheNumberOfOrdersInTheCurrentTab(2);
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(3);
 
 
             orderId = administratorPanelPage.ClickWaitingForConfirmButton(2)
@@ -49,12 +48,40 @@
             Assert.That(numberOfOrdersBeforeAccepting, Is.EqualTo(numberOfOrdersAfterAccepting + 1));
         }
 
+        [Test]
+        [Category("Positive")]
+        public void AssignAvailableWaiterForAcceptedOrderPositiveTest()
+        {
+            //Arrange
+            AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
+            int numberOfOrdersBeforeAssigning = administratorPanelPage.ClickAcceptedButton(2)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(2);
+            
+            orderId = administratorPanelPage.ClickAcceptedButton(2)
+                                  .GetIdOfTheFirstOrder();
+            orderStatus = "Accepted";
+
+            //Act
+            administratorPanelPage.ClickAcceptedButton(2)
+                                  .ExpandTheFirstOrder(3)
+                                  .SelectTheFirstWaiter(4)
+                                  .ClickAssignButton();
+
+            int numberOfOrdersAfterAssigning = administratorPanelPage.ClickAcceptedButton(2)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(2);
+
+            //Assert
+            Assert.That(numberOfOrdersBeforeAssigning, Is.EqualTo(numberOfOrdersAfterAssigning + 1));
+        }
+
         [TearDown]
         public void AfterTests()
         {
             UserLogout(userEmail);
             ChromeDriver.Quit();
             DBCleanup.ChangeOrderStatus(orderId, orderStatus);
+            Console.WriteLine(orderId);
+            Console.WriteLine(orderStatus);
         }
     }
 }
