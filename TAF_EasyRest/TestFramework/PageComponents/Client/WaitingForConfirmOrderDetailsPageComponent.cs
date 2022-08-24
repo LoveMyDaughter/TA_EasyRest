@@ -17,7 +17,7 @@
         public CurrentOrdersPage ClickDeclineButton(int timeToWait)
         {
             driver.WaitUntilElementIsVisible(_declineButton, timeToWait).Click();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(ExpectedConditions.ElementIsVisible(By.XPath($"//p[text()='{number}']//parent::div")));
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait)).Until(ExpectedConditions.ElementIsVisible(By.XPath($"//p[text()='{number}']//parent::div")));
 
             return new CurrentOrdersPage(driver);
         }
