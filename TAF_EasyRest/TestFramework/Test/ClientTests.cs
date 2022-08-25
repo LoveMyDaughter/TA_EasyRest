@@ -9,12 +9,13 @@ namespace TestFramework.Test
         public IWebDriver driver { get; private set; }
         private string email;
         private string password;
+        private string orderNumber;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
             driver = new ChromeDriver();
-            SignInPage signInPage = new SignInPage(driver);
+
             email = GetRoleCredentials.GetCredentials("Client").Email;
             password = GetRoleCredentials.GetCredentials("Client").Password;
 
@@ -44,8 +45,8 @@ namespace TestFramework.Test
 
             int actual = currentOrdersPage.CountOrders(3);
 
+            orderNumber = currentOrdersPage.orders[0].number;
             Console.WriteLine(currentOrdersPage.orders[0].number);
-            DBCleanup.ChangeOrderStatus("Waiting for confirm", currentOrdersPage.orders[0].number);
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
         }
@@ -54,6 +55,7 @@ namespace TestFramework.Test
         public void AfterAllTests()
         {
             UserLogout(email);
+            DBCleanup.ChangeOrderStatus("Waiting for confirm", orderNumber);
             driver.Quit();
         }
     }
