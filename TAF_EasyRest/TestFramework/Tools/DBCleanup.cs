@@ -15,7 +15,6 @@
             DBConnectionWrapper.ExecuteQuery(deleteToken);
         }
 
-
         public static void DeleteRestaurantByName(string restaurantName)
         {
             string deleteRest = $"DELETE FROM restaurants WHERE name = '{restaurantName}'";
