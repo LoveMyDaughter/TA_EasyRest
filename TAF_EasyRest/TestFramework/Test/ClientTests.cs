@@ -1,4 +1,5 @@
 ﻿using TestFramework.Tools.GetData;
+using TestFramework.Tools;
 
 namespace TestFramework.Test
 {
@@ -43,6 +44,8 @@ namespace TestFramework.Test
 
             int actual = currentOrdersPage.CountOrders(3);
 
+            Console.WriteLine(currentOrdersPage.orders[0].number);
+            DBCleanup.ChangeOrderStatus("Waiting for confirm", currentOrdersPage.orders[0].number);
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
         }

@@ -4,7 +4,7 @@
     {
         private IWebDriver driver;
         private int index;
-        private string number;
+        public string number { get; }
         public WaitingForConfirmOrderDetailsPageComponent(IWebDriver driver, int index, string number)
         {
             this.driver = driver;
