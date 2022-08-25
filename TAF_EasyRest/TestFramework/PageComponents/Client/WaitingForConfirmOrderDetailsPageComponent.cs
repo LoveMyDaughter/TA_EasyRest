@@ -4,7 +4,7 @@
     {
         private IWebDriver driver;
         private int index;
-        public string number { get; }
+        private string number;
         public WaitingForConfirmOrderDetailsPageComponent(IWebDriver driver, int index, string number)
         {
             this.driver = driver;
@@ -17,7 +17,7 @@
         public CurrentOrdersPage ClickDeclineButton(int timeToWait)
         {
             driver.WaitUntilElementIsVisible(_declineButton, timeToWait).Click();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait)).Until(ExpectedConditions.ElementIsVisible(By.XPath($"//p[text()='{number}']//parent::div")));
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait)).Until(ExpectedConditions.InvisibilityOfElementWithText(By.XPath($"//p[text()='{number}']//parent::div"), number));
 
             return new CurrentOrdersPage(driver);
         }

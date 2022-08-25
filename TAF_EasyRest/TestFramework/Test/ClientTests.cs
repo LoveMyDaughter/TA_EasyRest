@@ -46,7 +46,6 @@ namespace TestFramework.Test
 
             int actual = currentOrdersPage.CountOrders(3);
 
-            Console.WriteLine(currentOrdersPage.orders[0].number);
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
         }
