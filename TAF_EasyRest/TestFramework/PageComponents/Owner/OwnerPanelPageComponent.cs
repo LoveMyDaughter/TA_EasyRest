@@ -16,7 +16,8 @@ namespace TestFramework.PageComponents
         public OwnerEditRestaurantPage ClickManageButton()
         {
             _manageButton.Click();
-            Thread.Sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            wait.Until(ExpectedConditions.UrlContains("/edit/info"));
             return new OwnerEditRestaurantPage(driver);
         }
 
