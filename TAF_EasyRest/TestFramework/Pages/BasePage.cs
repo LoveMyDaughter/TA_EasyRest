@@ -1,10 +1,10 @@
-﻿
+﻿using TestFramework.Tools.GetData;
 namespace TestFramework.Pages
 {
     public class BasePage
     {
         protected IWebDriver driver { get; private set; }
-        protected static string baseUrl = "http://localhost:3000"; //move to json
+        protected static string baseUrl => GetUrls.getUrl("basePage").Url;
 
         public BasePage(IWebDriver driver)
         {
