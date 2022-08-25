@@ -20,5 +20,11 @@
             string changeStatus = $"UPDATE orders SET status = '{orderStatus}' WHERE id = {orderId};";
             DBConnectionWrapper.ExecuteQuery(changeStatus);
         }
+        
+        public static void UnlinkAdministratorFromRestaurant(string administratorEmail)
+        {
+            string unlinkAdministrator = $"UPDATE restaurants SET administrator_id = NULL WHERE administrator_id = (SELECT id FROM users WHERE email = '{administratorEmail}')";
+            DBConnectionWrapper.ExecuteQuery(unlinkAdministrator);
+        }
     }
 }
