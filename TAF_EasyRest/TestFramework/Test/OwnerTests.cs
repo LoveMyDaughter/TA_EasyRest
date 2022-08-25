@@ -47,7 +47,7 @@ namespace TestFramework.Test
         public void AddAdministratorTest()
         {
             //Arrange
-            OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(ChromeDriver);
+            OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
             ownerPanelRestaurantsPage.GoToUrl();
             var expected = new
             {
