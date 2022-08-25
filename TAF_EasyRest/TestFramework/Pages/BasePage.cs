@@ -3,7 +3,7 @@ namespace TestFramework.Pages
 {
     public class BasePage
     {
-        protected IWebDriver driver { get; }
+        protected IWebDriver driver { get; private set; }
         protected static string baseUrl => GetUrls.getUrl("basePage").Url;
 
         public BasePage(IWebDriver driver)
