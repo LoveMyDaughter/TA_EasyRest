@@ -38,14 +38,14 @@ namespace TestFramework.Test
             currentOrdersPage.ClickWaitingForConfirmButton(3);
 
             int expected = currentOrdersPage.CountOrders(3) - 1;
-            
+            orderNumber = currentOrdersPage.orders[0].number;
+
             currentOrdersPage.orders[0]
                 .ExpandOrderField()
                 .ClickDeclineButton(3);
 
             int actual = currentOrdersPage.CountOrders(3);
 
-            orderNumber = currentOrdersPage.orders[0].number;
             Console.WriteLine(currentOrdersPage.orders[0].number);
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
@@ -55,6 +55,7 @@ namespace TestFramework.Test
         public void AfterAllTests()
         {
             UserLogout(email);
+            
             DBCleanup.ChangeOrderStatus("Waiting for confirm", orderNumber);
             driver.Quit();
         }
