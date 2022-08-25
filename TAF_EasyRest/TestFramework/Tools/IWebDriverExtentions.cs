@@ -16,4 +16,5 @@ namespace TestFramework.Tools
             new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(d => driver.Url != currentUrl);
         }
     }
+
 }
