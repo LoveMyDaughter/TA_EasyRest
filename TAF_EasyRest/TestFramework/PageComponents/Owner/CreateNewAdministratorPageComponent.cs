@@ -16,42 +16,34 @@
         private IWebElement _addButton => driver.FindElement(By.XPath("//span[contains(text(),'Add')]/parent::button"));
         private IWebElement _cancelButton => driver.FindElement(By.XPath("//span[contains(text(),'Cancel')]/parent::button"));
 
-        public CreateNewAdministratorPageComponent ClickNameField()
+        public CreateNewAdministratorPageComponent SendKeysToFields(string name, string email, string password, string phonenumber)
         {
-            _nameField.Click();
-            return this;
-        }
-        public CreateNewAdministratorPageComponent ClickEmailField()
-        {
-            _emailField.Click();
+            SendKeysToNameField(name);
+            SendKeysToEmailField(email);
+            SendKeysToPasswordField(password);
+            SendKeysToPhoneNumberField(phonenumber);
             return this;
         }
 
-        public CreateNewAdministratorPageComponent ClickPasswordField()
-        {
-            _passwordField.Click();
-            return this;
-        }
-        public CreateNewAdministratorPageComponent ClickPhoneNumberField()
-        {
-            _phoneNumberField.Click();
-            return this;
-        }
-        public CreateNewAdministratorPageComponent ClickAddButton()
+        public ManageAdministratorPage ClickAddButton()
         {
             _addButton.Click();
-            return new CreateNewAdministratorPageComponent(driver);
+            Thread.Sleep(3000); // change to waiter
+            return new ManageAdministratorPage(driver);
         }
+
         public CreateNewAdministratorPageComponent ClickCancelButton()
         {
             _cancelButton.Click();
             return new CreateNewAdministratorPageComponent(driver);
         }
+
         public CreateNewAdministratorPageComponent SendKeysToNameField(string name)
         {
             _nameField.SendKeys(name);
             return this;
         }
+
         public CreateNewAdministratorPageComponent SendKeysToEmailField(string email)
         {
             _emailField.SendKeys(email);
@@ -63,6 +55,7 @@
             _passwordField.SendKeys(password);
             return this;
         }
+
         public CreateNewAdministratorPageComponent SendKeysToPhoneNumberField(string phone_number)
         {
             _phoneNumberField.SendKeys(phone_number);
