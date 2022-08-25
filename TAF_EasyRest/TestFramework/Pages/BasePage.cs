@@ -4,7 +4,7 @@ namespace TestFramework.Pages
     public class BasePage
     {
         protected IWebDriver driver { get; }
-        protected static string baseUrl => GetUrls.getUrl("basePage").Url; //move to json
+        protected static string baseUrl => GetUrls.getUrl("basePage").Url;
 
         public BasePage(IWebDriver driver)
         {
