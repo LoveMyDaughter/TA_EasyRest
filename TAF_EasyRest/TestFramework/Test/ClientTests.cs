@@ -55,7 +55,7 @@ namespace TestFramework.Test
         {
             UserLogout(email);
             
-            DBCleanup.ChangeOrderStatus("Waiting for confirm", orderNumber);
+            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
             driver.Quit();
         }
     }
