@@ -20,8 +20,8 @@ namespace TestFramework.Pages
             UserMenuHeaderButtonPageComponent = new UserMenuHeaderButtonPageComponent(driver);
         }
 
-        private IList<IWebElement> _items => _waitersParent?.FindElements(By.XPath("//li")).ToList() ?? new List<IWebElement>();
         private IWebElement? _waitersParent => driver.FindElementSafe(By.XPath("//li/parent::ul/parent::div"));
+        private IList<IWebElement> _items => _waitersParent?.FindElements(By.XPath("//li")).ToList() ?? new List<IWebElement>();
         private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter"));
 
         public CreateNewWaiterPageComponent ClickAddWaiterButton()

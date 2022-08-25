@@ -83,8 +83,8 @@ namespace TestFramework.Test
             var actual = manageAdminPage.AdministratorItem;
 
             //Assert
-            Assert.AreEqual(expected.Name, actual.Name);
-            Assert.AreEqual($"{expected.PhoneNumber} / {expected.Email}", actual.Contacts);
+            Assert.That(actual?.Name, Is.EqualTo(expected.Name));
+            Assert.That(actual.Contacts, Is.EqualTo($"{expected.PhoneNumber} / {expected.Email}"));
         }
 
         [OneTimeTearDown]

@@ -19,7 +19,11 @@ namespace TestFramework.Pages
                 if (element != null)
                 {
                     return new AdministratorItemPageComponent(element);
-                } else { return null; }
+                } 
+                else
+                { 
+                    return null; 
+                }
             }
         }
         public ManageAdministratorPage(IWebDriver driver) : base(driver)
