@@ -1,0 +1,82 @@
+[
+  {
+    "Url": "http://localhost:3000",
+    "PageName": "basePage"
+  },
+  {
+    "Url": "/admin/moderators/create",
+    "PageName": "AdminPanelCreateModeratorPage"
+  },
+  {
+    "Url": "/admin/moderators",
+    "PageName": "AdminPanelModeratorsPage"
+  },
+  {
+    "Url": "/profile/current_orders",
+    "PageName": "CurrentOrdersPage"
+  },
+  {
+    "Url": "/moderator/owners",
+    "PageName": "ModeratorPanelOwnersPage"
+  },
+  {
+    "Url": "/moderator/restaurants",
+    "PageName": "ModeratorPanelRestaurantsPage"
+  },
+  {
+    "Url": "/moderator/users",
+    "PageName": "ModeratorPanelUsersPage"
+  },
+  {
+    "Url": "/administrator-panel",
+    "PageName": "OrderHistoryPage"
+  },
+  {
+    "Url": "/restaurants",
+    "PageName": "RestaurantsListPage"
+  },
+  {
+    "Url": "/log-in",
+    "PageName": "SignInPage"
+  },
+  {
+    "Url": "/sign-up",
+    "PageName": "SignUpPage"
+  },
+  {
+    "Url": "/profile/personal_info",
+    "PageName": "PersonalInfoPage"
+  },
+  {
+    "Url": "/profile/order_history",
+    "PageName": "OrderHistoryPage"
+  },
+  {
+    "Url": "/profile/current_orders",
+    "PageName": "CurrentOrdersPage"
+  },
+  {
+    "Url": "/profile/restaurants/1/edit/menues/1",
+    "PageName": "ManageMenuPage"
+  },
+  {
+    "Url": "/profile/restaurants",
+    "PageName": "OwnerPanelRestaurantsPage"
+  },
+  {
+    "Url": "/profile/restaurants/1/edit/info",
+    "PageName": "OwnerEditRestaurantPage"
+  },
+  {
+    "Url": "/profile/restaurants/1/edit/waiters",
+    "PageName": "ManageWaitersPage"
+  },
+  {
+    "Url": "/profile/restaurants/1/edit/administrators",
+    "PageName": "ManageAdministratorPage"
+  },
+  {
+    "Url": "/profile/restaurants/8/edit/menues/create_menu",
+    "PageName": "CreateMenuPage"
+  }
+]

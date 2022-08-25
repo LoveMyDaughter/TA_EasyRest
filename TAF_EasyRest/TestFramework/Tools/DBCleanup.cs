@@ -15,10 +15,30 @@
             DBConnectionWrapper.ExecuteQuery(deleteToken);
         }
 
+
         public static void DeleteRestaurantByName(string restaurantName)
         {
             string deleteRest = $"DELETE FROM restaurants WHERE name = '{restaurantName}'";
             DBConnectionWrapper.ExecuteQuery(deleteRest);
+        }
+		
+        public static void ChangeOrderStatusByNumber(string status, string number)
+        {
+            string id = number.Remove(0, 1);
+            string query = $"UPDATE orders SET status = '{status}' WHERE id={id};";
+            DBConnectionWrapper.ExecuteQuery(query);
+        }
+		
+        public static void ChangeOrderStatus(string orderId, string orderStatus = "Waiting for confirm")
+        {
+            string changeStatus = $"UPDATE orders SET status = '{orderStatus}' WHERE id = {orderId};";
+            DBConnectionWrapper.ExecuteQuery(changeStatus);
+        }
+        
+        public static void UnlinkAdministratorFromRestaurant(string administratorEmail)
+        {
+            string unlinkAdministrator = $"UPDATE restaurants SET administrator_id = NULL WHERE administrator_id = (SELECT id FROM users WHERE email = '{administratorEmail}')";
+            DBConnectionWrapper.ExecuteQuery(unlinkAdministrator);
         }
     }
 }
