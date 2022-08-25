@@ -27,10 +27,11 @@ namespace TestFramework.PageComponents.Owner
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
             return new ManageWaitersPage(driver);
         }
-        public ManageRestaurantPageComponent ClickAdministratorsButton()
+        public ManageAdministratorPage ClickAdministratorsButton()
         {
             _administratorsButton.Click();
-            return this;
+            Thread.Sleep(1000); //change to waiter
+            return new ManageAdministratorPage(driver);
         }
     }
 
