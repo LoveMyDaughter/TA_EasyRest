@@ -15,6 +15,12 @@
             DBConnectionWrapper.ExecuteQuery(deleteToken);
         }
 
+        public static void ChangeOrderStatusByNumber(string status, string number)
+        {
+            string id = number.Remove(0, 1);
+            string query = $"UPDATE orders SET status = '{status}' WHERE id={id};";
+            DBConnectionWrapper.ExecuteQuery(query);
+        }
         public static void ChangeOrderStatus(string orderId, string orderStatus = "Waiting for confirm")
         {
             string changeStatus = $"UPDATE orders SET status = '{orderStatus}' WHERE id = {orderId};";

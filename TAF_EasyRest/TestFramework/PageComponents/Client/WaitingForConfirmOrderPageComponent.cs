@@ -4,6 +4,7 @@
     {
         private IWebDriver driver;
         private int index;
+        public string number => _orderField.FindElement(By.XPath($"//div[@class='MuiGrid-item-120 MuiGrid-grid-xs-1-148'][1]")).Text;
 
         public WaitingForConfirmOrderPageComponent(IWebDriver driver, int index)
         {
@@ -16,8 +17,7 @@
         public WaitingForConfirmOrderDetailsPageComponent ExpandOrderField()
         {
             _orderField.Click();
-            Thread.Sleep(1000);
-            return new WaitingForConfirmOrderDetailsPageComponent(driver, index);
+            return new WaitingForConfirmOrderDetailsPageComponent(driver, index, number);
         }
     }
 }
