@@ -10,8 +10,8 @@
         [OneTimeSetUp]
         public void BeforeAllTests()
         {           
-            userEmail = "eringonzales@test.com";
-            userPassword = "1";
+            userEmail = GetRoleCredentials.GetCredentials("Administrator").Email;
+            userPassword = GetRoleCredentials.GetCredentials("Administrator").Password;
         }
 
         [SetUp]
@@ -30,7 +30,6 @@
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
             int numberOfOrdersBeforeAccepting = administratorPanelPage.ClickWaitingForConfirmButton(3)
                                   .CheckTheNumberOfOrdersInTheCurrentTab(3);
-
 
             orderId = administratorPanelPage.ClickWaitingForConfirmButton(2)
                                   .GetIdOfTheFirstOrder();
@@ -80,8 +79,6 @@
             UserLogout(userEmail);
             ChromeDriver.Quit();
             DBCleanup.ChangeOrderStatus(orderId, orderStatus);
-            Console.WriteLine(orderId);
-            Console.WriteLine(orderStatus);
         }
     }
 }
