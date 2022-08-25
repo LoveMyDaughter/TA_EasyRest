@@ -6,6 +6,7 @@ namespace TestFramework.Test
     public class OwnerTests : BaseTest
     {
         public IWebDriver driver { get; private set; }
+        public string AdministratorEmail { get; private set; }
 
         [OneTimeSetUp]
         public void BeforeModeratorsTests()
@@ -13,6 +14,7 @@ namespace TestFramework.Test
             driver = new ChromeDriver();
             userEmail = "jasonbrown@test.com";
             userPassword = "1111";
+            AdministratorEmail = "admin.test@test.com";
             UserLogin(driver, userEmail, userPassword);
         }
 
@@ -52,7 +54,7 @@ namespace TestFramework.Test
             var expected = new
             {
                 Name = "Test Admin",
-                Email = "admin.test@test.com",
+                Email = AdministratorEmail,
                 Password = "12345678",
                 PhoneNumber = "0987654321"
             };
@@ -79,6 +81,8 @@ namespace TestFramework.Test
         [OneTimeTearDown]
         public void AfterAllTests()
         {
+            DBCleanup.UnlinkAdministratorFromRestaurant(AdministratorEmail);
+            DBCleanup.DeleteUserByEmail(AdministratorEmail);
             driver.Quit();
         }
     }
