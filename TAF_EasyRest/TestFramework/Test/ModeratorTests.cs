@@ -12,7 +12,26 @@ namespace TestFramework.Test
             driver = new ChromeDriver();
             userEmail = "petermoderator@test.com";
             userPassword = "1";
+            restaurantName = "Rest Created via DB";
+            AddRestaurant(restaurantName);
             UserLogin(driver, userEmail, userPassword);
+        }
+
+        [Test]
+        [Category("Smoke")]
+        [Category("Postitive")]
+        public void ApproveRestaurantTest()
+        {
+            // Arrange
+            ModeratorPanelRestaurantsPage restaurants = new ModeratorPanelRestaurantsPage(driver);
+            int initialRestaurantsAmount = restaurants.ClickUnapprovedTab().RestaurantsCount();
+
+            // Act
+            restaurants.ClickUnapprovedTab().ClickApproveButton();
+            int finalRestaurantsAmount = restaurants.ClickUnapprovedTab().RestaurantsCount();
+
+            // Assert
+            Assert.That(finalRestaurantsAmount == initialRestaurantsAmount - 1);
         }
 
         [Test]
@@ -54,6 +73,7 @@ namespace TestFramework.Test
         [OneTimeTearDown]
         public void AfterAllTests()
         {
+            DeleteRestaurant(restaurantName);
             UserLogout(userEmail);
             driver.Quit();
         }
