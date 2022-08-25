@@ -20,7 +20,7 @@ namespace TestFramework.Test
         [Test]
         [Category("Smoke")]
         [Category("Postitive")]
-        public void ApproveRestaurant()
+        public void ApproveRestaurantTest()
         {
             // Arrange
             ModeratorPanelRestaurantsPage restaurants = new ModeratorPanelRestaurantsPage(driver);
