@@ -16,7 +16,9 @@
             var driver = _card.GetWebDriverFromWebElement();
             driver.WaitUntilElementIsVisible(_acceptButton, timeToWait)
                 .Click();
+            ((IJavaScriptExecutor)driver)
+                .ExecuteScript("window.scrollTo(0, -document.body.scrollHeight);");
             return this;
-        }    
+        }
     }
 }
