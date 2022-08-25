@@ -9,7 +9,7 @@ namespace TestFramework.Test
         public string AdministratorEmail { get; private set; }
 
         [OneTimeSetUp]
-        public void BeforeModeratorsTests()
+        public void BeforeOwnersTests()
         {
             driver = new ChromeDriver();
             userEmail = "jasonbrown@test.com";
