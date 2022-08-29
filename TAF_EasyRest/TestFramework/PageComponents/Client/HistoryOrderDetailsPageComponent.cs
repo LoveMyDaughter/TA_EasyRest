@@ -4,20 +4,24 @@
     {
         private IWebDriver driver;
         private int index;
+        private string number;
 
-        public HistoryOrderDetailsPageComponent(IWebDriver driver, int index)
+        public HistoryOrderDetailsPageComponent(IWebDriver driver, int index, string number)
         {
             this.driver = driver;
             this.index = index;
+            this.number = number;
         }
 
-        
-        private IWebElement _reorderButton => driver.FindElement(By.XPath($"(//div[@class='UserOrders-root-1340']/child::div)[{index}]//button"));
 
-        public HistoryOrderDetailsPageComponent ClickReorderButton()
+        private By _reorderButton => By.XPath($"//span[text()='Reorder']//ancestor::button[{index}]");
+
+        public OrderHistoryPage ClickReorderButton(int timeToWait)
         {
-            _reorderButton.Click();
-            return this;
+            driver.WaitUntilElementIsVisible(_reorderButton, timeToWait).Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(ExpectedConditions.ElementIsVisible(By.XPath($"//p[text()='{number}']//parent::div")));
+
+            return new OrderHistoryPage(driver);
         }
     }
 }
