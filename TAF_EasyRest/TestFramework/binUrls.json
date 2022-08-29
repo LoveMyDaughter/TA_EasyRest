@@ -28,7 +28,7 @@
     "PageName": "ModeratorPanelUsersPage"
   },
   {
-    "Url": "/administrator-panel",
+    "Url": "/profile/order_history",
     "PageName": "OrderHistoryPage"
   },
   {

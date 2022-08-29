@@ -50,6 +50,30 @@ namespace TestFramework.Test
             Assert.That(expected, Is.EqualTo(actual));
         }
 
+        [Test]
+        public void ReorderTest()
+        {
+            //Arrange
+            OrderHistoryPage orderHistoryPage = new OrderHistoryPage(driver);
+
+            orderHistoryPage.GoToUrl();
+
+            //Act
+            orderHistoryPage.ClickHistoryButton(3);
+
+            int expected = 0;
+
+            orderHistoryPage.orders[0]
+                .ExpandOrderDetails()
+                .ClickReorderButton(3)
+                .ClickSubmitButton(3);
+
+            int actual = 0;
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
         [OneTimeTearDown]
         public void AfterAllTests()
         {

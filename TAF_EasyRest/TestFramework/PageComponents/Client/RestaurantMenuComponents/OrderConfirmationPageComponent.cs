@@ -12,8 +12,8 @@ namespace TestFramework.Pages
         }
 
         #region Elements
-        private IWebElement _cancelButton => driver.FindElement(By.XPath("//span[text()='Cancel']//parent::button"));
-        private IWebElement _submitButton => driver.FindElement(By.XPath("//span[text()='Submit']//parent::button"));
+        private By _cancelButton => By.XPath("//span[text()='Cancel']//parent::button");
+        private By _submitButton => By.XPath("//span[text()='Submit']//parent::button");
         #endregion
 
         #region Methods
@@ -32,15 +32,19 @@ namespace TestFramework.Pages
             }
         }
 
-        public RestaurantMenuPage ClickCancelButton()
+        public RestaurantMenuPage ClickCancelButton(int timeToWait)
         {
-            _cancelButton.Click();
+            driver.WaitUntilElementIsVisible(_cancelButton, timeToWait)
+                .Click();
+          
             return new RestaurantMenuPage(driver);
         }
 
-        public RestaurantMenuPage ClickSubmitButton()
+        public RestaurantMenuPage ClickSubmitButton(int timeToWait)
         {
-            _submitButton.Click();
+            driver.WaitUntilElementIsVisible(_submitButton, timeToWait)
+                .Click();
+            
             return new RestaurantMenuPage(driver);
         }
         #endregion

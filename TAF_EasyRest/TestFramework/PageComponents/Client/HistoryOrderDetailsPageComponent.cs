@@ -16,12 +16,11 @@
 
         private By _reorderButton => By.XPath($"//span[text()='Reorder']//ancestor::button[{index}]");
 
-        public OrderHistoryPage ClickReorderButton(int timeToWait)
+        public OrderConfirmationPageComponent ClickReorderButton(int timeToWait)
         {
             driver.WaitUntilElementIsVisible(_reorderButton, timeToWait).Click();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(ExpectedConditions.ElementIsVisible(By.XPath($"//p[text()='{number}']//parent::div")));
 
-            return new OrderHistoryPage(driver);
+            return new OrderConfirmationPageComponent(driver);
         }
     }
 }
