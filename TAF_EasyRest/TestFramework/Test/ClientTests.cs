@@ -10,6 +10,7 @@ namespace TestFramework.Test
         private string email;
         private string password;
         private string orderNumber;
+        private string _restaurantName;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
@@ -22,7 +23,7 @@ namespace TestFramework.Test
             UserLogin(driver, email, password);
         }
 
-        
+
 
         [Category("Smoke")]
         [Category("Positive")]
@@ -50,13 +51,37 @@ namespace TestFramework.Test
             Assert.That(expected, Is.EqualTo(actual));
         }
 
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
+        public void AddRestaurant()
+        {
+            //Arrange
+            NewRestaurantPage newRestaurantPage = new NewRestaurantPage(driver);
+
+            newRestaurantPage.GoToUrl();
+
+            _restaurantName = "name1";
+            string restaurantAdress = "adress1";
+
+            //Act
+            newRestaurantPage.ClickAddButton(3)
+                .ClickNameField(3)
+                .SendKeysNameField(_restaurantName)
+                .ClickAdressField(3)
+                .SendKeysAdressField(restaurantAdress)
+                .ClickAddButton();
+
+            DBCleanup.ChangeUserRole(1, email);
+        }
+
         [OneTimeTearDown]
         public void AfterAllTests()
         {
             UserLogout(email);
-            
-            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
             driver.Quit();
+            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
+            DBCleanup.DeleteRestaurantByName(_restaurantName);
         }
     }
 }

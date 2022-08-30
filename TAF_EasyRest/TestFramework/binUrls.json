@@ -78,5 +78,9 @@
   {
     "Url": "/profile/restaurants/8/edit/menues/create_menu",
     "PageName": "CreateMenuPage"
+  },
+  {
+    "Url": "/profile/restaurants",
+    "PageName": "NewRestaurantPage"
   }
 ]
