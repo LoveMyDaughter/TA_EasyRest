@@ -78,6 +78,41 @@ namespace TestFramework.Test
             Assert.That(actual.Contacts, Is.EqualTo($"{expected.PhoneNumber} / {expected.Email}"));
         }
 
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
+        public void AddWaiterTest()
+        {
+            //Arrange
+            OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
+            ownerPanelRestaurantsPage.GoToUrl();
+            var expected = new
+            {
+                Name = "Test Waiter1",
+                Email = "waiter.test1@test.com",
+                Password = "11111111",
+                PhoneNumber = "0981111111"
+            };
+
+            //Act
+            OwnerEditRestaurantPage editRestaurantPage = ownerPanelRestaurantsPage.RestaurantItems[0]
+                .ClickThreeDotButton()
+                .ClickManageButton();
+            ManageWaitersPage manageWaitersPage = editRestaurantPage.ManageRestaurantPageComponent.ClickWaitersButton();
+
+            int expect = manageWaitersPage.WaiterItems.Count + 1;
+
+            CreateNewWaiterPageComponent createWaiterComponent = manageWaitersPage.ClickAddWaiterButton();
+
+            ManageWaitersPage manageWaiterPage = createWaiterComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
+                .ClickAddButton();
+
+            int actual = manageWaiterPage.WaiterItems.Count;
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expect));
+        }
+
         [OneTimeTearDown]
         public void AfterAllTests()
         {
