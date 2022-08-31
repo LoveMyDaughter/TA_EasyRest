@@ -1,4 +1,6 @@
-﻿namespace TestFramework.Test
+﻿using TestFramework.Tools.DB;
+
+namespace TestFramework.Test
 {
     [TestFixture]
     public class AdministaratorTests : BaseTest

@@ -1,4 +1,5 @@
-using TestFramework.Tools;
+using TestFramework.Tools.DB;
+
 namespace TestFramework.Test
 {
     public class BaseTest
@@ -32,6 +33,6 @@ namespace TestFramework.Test
         {
             DBCleanup.DeleteRestaurantByName(restaurantName);
         }
-
+         
     }
 }

@@ -1,5 +1,5 @@
 ﻿using TestFramework.Tools.GetData;
-using TestFramework.Tools;
+using TestFramework.Tools.DB;
 
 namespace TestFramework.Test
 {

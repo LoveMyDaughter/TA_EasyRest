@@ -1,4 +1,5 @@
 ﻿using TestFramework.PageComponents;
+using TestFramework.Tools.DB;
 
 namespace TestFramework.Test
 {
