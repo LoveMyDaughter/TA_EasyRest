@@ -61,14 +61,14 @@ namespace TestFramework.Test
             //Act
             orderHistoryPage.ClickHistoryButton(3);
 
-            int expected = 0;
+            int expected = DBSelections.GetOrdersCountByStatus(email, "Waiting for confirm");
 
             orderHistoryPage.orders[0]
                 .ExpandOrderDetails()
                 .ClickReorderButton(3)
                 .ClickSubmitButton(3);
 
-            int actual = 0;
+            int actual = DBSelections.GetOrdersCountByStatus(email, "Waiting for confirm") - 1;
 
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
