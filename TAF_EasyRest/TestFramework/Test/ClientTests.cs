@@ -81,7 +81,7 @@ namespace TestFramework.Test
             UserLogout(email);
             driver.Quit();
             DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
-            DBCleanup.DeleteRestaurantByName(_restaurantName);
+            //DBCleanup.DeleteRestaurantByName(_restaurantName);
         }
     }
 }

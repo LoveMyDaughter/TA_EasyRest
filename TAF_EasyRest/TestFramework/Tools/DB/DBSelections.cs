@@ -19,5 +19,19 @@
             return Convert.ToInt32(orderId);
         }
         #endregion
+
+        public static int GetRestaurantByName(string name, string user_id)
+        {
+            string query = $"SELECT * FROM restaurants WHERE name = '{name}' AND owner_id = {user_id}";
+            object restaurantCount = DBConnectionWrapper.GetCellFromDB(query);
+            return Convert.ToInt32(restaurantCount);
+        }
+
+        public static int GetUserId(string email)
+        {
+            string query = $"SELECT id FROM users WHERE email = '{email}'";
+            object userId = DBConnectionWrapper.GetCellFromDB(query);
+            return Convert.ToInt32(userId);
+        }
     }
 }
