@@ -101,9 +101,10 @@
         }
 
         //List of restaurants are needed
-        public OwnerPanelRestaurantsPage ClickAddButton()
+        public OwnerPanelRestaurantsPage ClickAddButton(int timeToWait)
         {
             _addButton.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'RestaurantListItem-card')]")));
             return new OwnerPanelRestaurantsPage(driver);
         }
 

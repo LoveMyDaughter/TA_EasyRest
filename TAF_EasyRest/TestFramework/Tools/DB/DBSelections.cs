@@ -20,11 +20,15 @@
         }
         #endregion
 
-        public static int GetRestaurantByName(string name, string user_id)
+        public static bool GetRestaurantByName(string name, string user_id)
         {
-            string query = $"SELECT * FROM restaurants WHERE name = '{name}' AND owner_id = {user_id}";
+            string query = $"SELECT count(*) FROM restaurants WHERE name = '{name}' AND owner_id = {user_id}";
             object restaurantCount = DBConnectionWrapper.GetCellFromDB(query);
-            return Convert.ToInt32(restaurantCount);
+            if (Convert.ToInt32(restaurantCount) > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public static int GetUserId(string email)
