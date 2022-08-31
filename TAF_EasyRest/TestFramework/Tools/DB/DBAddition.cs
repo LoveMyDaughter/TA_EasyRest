@@ -1,5 +1,4 @@
-﻿
-namespace TestFramework.Tools
+﻿namespace TestFramework.Tools.DB
 {
     public class DBAddition
     {
