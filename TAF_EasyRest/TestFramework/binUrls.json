@@ -4,6 +4,10 @@
     "PageName": "basePage"
   },
   {
+    "Url": "Host=localhost;Username=admin;Password=12345678;Database=easyrest",
+    "PageName": "DBCredentials"
+  },
+  {
     "Url": "/admin/moderators/create",
     "PageName": "AdminPanelCreateModeratorPage"
   },
