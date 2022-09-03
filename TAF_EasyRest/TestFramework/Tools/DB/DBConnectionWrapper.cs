@@ -11,18 +11,18 @@ namespace TestFramework.Tools.DB
             using (var connection = new NpgsqlConnection(pg_connectionString))
             {
                 var command = new NpgsqlCommand(queryString, connection);
-                command.Connection.Open();
+                command.Connection?.Open();
                 NpgsqlDataReader reader = command.ExecuteReader();
             }
         }
 
-        public static object GetCellFromDB(string queryString)
+        public static object? GetCellFromDB(string queryString)
         {
             using (var connection = new NpgsqlConnection(pg_connectionString))
             {
                 var command = new NpgsqlCommand(queryString, connection);
-                command.Connection.Open();
-                object responseCell = command.ExecuteScalar();  //Returns the first column of the first row in the result set returned by the query
+                command.Connection?.Open();
+                object? responseCell = command.ExecuteScalar();  //Returns the first column of the first row in the result set returned by the query
                 return responseCell;
             }
             
