@@ -19,6 +19,8 @@
         public OrderConfirmationPageComponent ClickReorderButton(int timeToWait)
         {
             driver.WaitUntilElementIsVisible(_reorderButton, timeToWait).Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait)).Until(ExpectedConditions.InvisibilityOfElementWithText(By.XPath($"//p[text()='{number}']//parent::div"), number));
+
 
             return new OrderConfirmationPageComponent(driver);
         }

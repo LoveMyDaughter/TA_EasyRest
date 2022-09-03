@@ -22,8 +22,6 @@ namespace TestFramework.Test
             UserLogin(driver, email, password);
         }
 
-        
-
         [Category("Smoke")]
         [Category("Positive")]
         [Test]
@@ -50,6 +48,8 @@ namespace TestFramework.Test
             Assert.That(expected, Is.EqualTo(actual));
         }
 
+        [Category("Smoke")]
+        [Category("Positive")]
         [Test]
         public void ReorderTest()
         {
@@ -68,6 +68,8 @@ namespace TestFramework.Test
                 .ClickReorderButton(3)
                 .ClickSubmitButton(3);
 
+            Thread.Sleep(1000); //There is not enough time for base restoring
+
             int actual = DBSelections.GetOrdersCountByStatus(email, "Waiting for confirm") - 1;
 
             //Assert
@@ -78,9 +80,8 @@ namespace TestFramework.Test
         public void AfterAllTests()
         {
             UserLogout(email);
-            
-            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
             driver.Quit();
+            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
         }
     }
 }
