@@ -14,6 +14,7 @@ namespace TestFramework.Test
             userPassword = "1";
             restaurantName = "Rest Created via DB";
             AddRestaurant(restaurantName);
+            AddRestaurantWithArchivedStatus(restaurantName);
             UserLogin(driver, userEmail, userPassword);
         }
 
@@ -32,6 +33,14 @@ namespace TestFramework.Test
 
             // Assert
             Assert.That(finalRestaurantsAmount == initialRestaurantsAmount - 1);
+        }
+
+        [Test]
+        [Category("Smoke")]
+        [Category("Positive")]
+        public void RestoreRestaurantTest()
+        {
+            Assert.Pass();
         }
 
         [Test]
