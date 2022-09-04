@@ -40,7 +40,17 @@ namespace TestFramework.Test
         [Category("Positive")]
         public void RestoreRestaurantTest()
         {
-            Assert.Pass();
+            // Arrange
+            ModeratorPanelRestaurantsPage restaurants = new ModeratorPanelRestaurantsPage(driver);
+            int initialRestaurantsAmount = restaurants.ClickArchivedTab().RestaurantsCount();
+         Console.WriteLine(initialRestaurantsAmount);
+            // Act
+            restaurants.ClickArchivedTab().FindAndClickRestoreButton();
+            int finalRestaurantsAmount = restaurants.ClickArchivedTab().RestaurantsCount();
+         Console.WriteLine(finalRestaurantsAmount);
+
+            // Assert
+            Assert.That(finalRestaurantsAmount == initialRestaurantsAmount - 1);
         }
 
         [Test]
