@@ -11,7 +11,11 @@
 
         private IReadOnlyCollection<IWebElement> _restaurantsGrid => driver.FindElements(By.XPath("//div[contains(@class, 'Grid-item')]"));
 
-
+        public int RestaurantsCount()
+        {
+            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(d => _restaurantsGrid.Count > 0);
+            return _restaurantsGrid.Count();
+        }
 
         public ArchivedRestaurantsPageComponent FindAndClickRestoreButton()
         {
