@@ -92,9 +92,9 @@ namespace TestFramework.Test
         [OneTimeTearDown]
         public void AfterAllTests()
         {
+            driver.Quit();
             DeleteRestaurant(restaurantName);
             UserLogout(userEmail);
-            driver.Quit();
         }
 
     }
