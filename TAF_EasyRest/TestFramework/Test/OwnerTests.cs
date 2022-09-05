@@ -6,15 +6,19 @@ namespace TestFramework.Test
     public class OwnerTests : BaseTest
     {
         public IWebDriver driver { get; private set; }
-        public string AdministratorEmail { get; private set; }
+        public string UserEmail { get; private set; }
+        public string RestaurantName { get; private set; }
+
 
         [OneTimeSetUp]
         public void BeforeOwnersTests()
         {
             driver = new ChromeDriver();
-            userEmail = "jasonbrown@test.com";
-            userPassword = "1111";
-            AdministratorEmail = "admin.test@test.com";
+            userEmail = GetRoleCredentials.GetCredentials("Owner").Email;
+            userPassword = GetRoleCredentials.GetCredentials("Owner").Password;
+            UserEmail = "test@test.com";
+            RestaurantName = "A Test Restaurant";
+            DBAddition.AddRestaurantViaDB(RestaurantName);
             UserLogin(driver, userEmail, userPassword);
         }
 
@@ -24,6 +28,12 @@ namespace TestFramework.Test
         public void RemoveWaiterTest()
         {
             //Arrange
+            var waiter = new
+            {
+                Email = UserEmail,
+                Name = "Test Waiter"
+            };
+            DBAddition.AddWaiterViaDB(waiter.Name, waiter.Email, RestaurantName);
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
 
             ownerPanelRestaurantsPage.GoToUrl();
@@ -34,7 +44,7 @@ namespace TestFramework.Test
                 .ClickManageButton();
 
             ManageWaitersPage manageWaitersPage = editRestaurantPage.ManageRestaurantPageComponent.ClickWaitersButton();
-            
+
             int expected = manageWaitersPage.WaiterItems.Count - 1;
             manageWaitersPage.WaiterItems[0].ClickRemoveButton();
             int actual = manageWaitersPage.WaiterItems.Count;
@@ -54,7 +64,7 @@ namespace TestFramework.Test
             var expected = new
             {
                 Name = "Test Admin",
-                Email = AdministratorEmail,
+                Email = UserEmail,
                 Password = "12345678",
                 PhoneNumber = "0987654321"
             };
@@ -89,7 +99,7 @@ namespace TestFramework.Test
             var expected = new
             {
                 Name = "Test Waiter1",
-                Email = "waiter.test1@test.com",
+                Email = UserEmail,
                 Password = "11111111",
                 PhoneNumber = "0981111111"
             };
@@ -113,11 +123,17 @@ namespace TestFramework.Test
             Assert.That(actual, Is.EqualTo(expect));
         }
 
+        [TearDown]
+        public void AfterEachTest()
+        {
+            DBCleanup.UnlinkAdministratorFromRestaurant(UserEmail);
+            DBCleanup.DeleteUserByEmail(UserEmail);
+        }
+
         [OneTimeTearDown]
         public void AfterAllTests()
         {
-            DBCleanup.UnlinkAdministratorFromRestaurant(AdministratorEmail);
-            DBCleanup.DeleteUserByEmail(AdministratorEmail);
+            DBCleanup.DeleteRestaurantByName(RestaurantName);
             driver.Quit();
         }
     }

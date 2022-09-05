@@ -10,5 +10,10 @@ namespace TestFramework.Tools
             DBConnectionWrapper.ExecuteQuery(addRestaurant);
         }
 
+        public static void AddWaiterViaDB(string name, string email, string restaurantName, string phoneNumber = "1234567890", string password = "1111")
+        {
+            string addWaiter = $"INSERT INTO users (name, email, phone_number, password, role_id, restaurant_id, is_active) SELECT '{name}', '{email}', '{phoneNumber}', '{password}', 6, id, true from restaurants where name = '{restaurantName}'";
+            DBConnectionWrapper.ExecuteQuery(addWaiter);
+        }
     }
 }
