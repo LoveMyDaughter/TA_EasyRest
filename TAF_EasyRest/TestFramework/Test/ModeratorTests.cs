@@ -10,8 +10,8 @@ namespace TestFramework.Test
         public void BeforeModeratorsTests()
         {
             driver = new ChromeDriver();
-            userEmail = "petermoderator@test.com";
-            userPassword = "1";
+            userEmail = GetRoleCredentials.GetCredentials("Moderator").Email;
+            userPassword = GetRoleCredentials.GetCredentials("Moderator").Password;
             restaurantName = "Rest Created via DB";
             AddRestaurant(restaurantName);
             AddRestaurantWithArchivedStatus(restaurantName);
