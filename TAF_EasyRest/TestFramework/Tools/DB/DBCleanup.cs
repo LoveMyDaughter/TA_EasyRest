@@ -39,5 +39,14 @@
             string unlinkAdministrator = $"UPDATE restaurants SET administrator_id = NULL WHERE administrator_id = (SELECT id FROM users WHERE email = '{administratorEmail}')";
             DBConnectionWrapper.ExecuteQuery(unlinkAdministrator);
         }
+
+        public static void DeleteLastOrder()
+        {
+            int id = DBSelections.GetLastOrderIdByStatus();
+            string query = $"DELETE FROM order_associations WHERE order_id = {id}";
+            DBConnectionWrapper.ExecuteQuery(query);
+            query = $"DELETE FROM orders WHERE id = {id}";
+            DBConnectionWrapper.ExecuteQuery(query);
+        }
     }
 }
