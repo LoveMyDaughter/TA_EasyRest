@@ -25,12 +25,10 @@ namespace TestFramework.Test
             userButton.ClickUserMenuButton(1).ClickMyProfileButton(1);
             AdminPanelModeratorsPage moderators = new AdminPanelModeratorsPage(driver).AdminLeftsideMenu.ClickModeratorsButton();
             string initialStatus = moderators.GetModeratorStatus();
-        Console.WriteLine(initialStatus);
 
             // Act
             moderators.FindAndClickPadlockButton();
             string finalStatus = moderators.GetModeratorStatus();
-        Console.WriteLine(finalStatus);
 
             // Assert
             Assert.That(finalStatus != initialStatus);
