@@ -23,11 +23,10 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
         }
 
         public AcceptedCardPageComponent ClickAssignButton(int timeToWait)
-        {
-            var driver = _card.GetWebDriverFromWebElement();
-            
+        {          
             _card.FindElement(_assignButton).Click();
             
+            var driver = _card.GetWebDriverFromWebElement();
             new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
                 .Until(ExpectedConditions.InvisibilityOfElementLocated(_assignButton));
             
