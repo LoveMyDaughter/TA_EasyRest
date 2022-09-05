@@ -13,9 +13,10 @@ namespace TestFramework.Test
             userEmail = GetRoleCredentials.GetCredentials("Moderator").Email;
             userPassword = GetRoleCredentials.GetCredentials("Moderator").Password;
             restaurantName = "Rest Created via DB";
+            UserLogin(driver, userEmail, userPassword);
             AddRestaurant(restaurantName);
             AddRestaurantWithArchivedStatus(restaurantName);
-            UserLogin(driver, userEmail, userPassword);
+            
         }
 
         [Test]
