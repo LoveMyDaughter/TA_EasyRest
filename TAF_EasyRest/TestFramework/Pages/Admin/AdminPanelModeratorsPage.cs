@@ -35,10 +35,13 @@ namespace TestFramework.Pages
         /// </summary>
         public AdminPanelModeratorsPage FindAndClickPadlockButton()
         {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            string status = GetModeratorStatus();
+
             var firstModeratorFromList = _moderatorsList.ElementAt(0);
             var padlockButton = firstModeratorFromList.FindElement(By.XPath("./td/button"));
-
             padlockButton.Click();
+            wait.Until(d => GetModeratorStatus() != status);
 
             return this;
         }
@@ -46,12 +49,14 @@ namespace TestFramework.Pages
         /// <summary>
         /// With this method we'll check if moderator status changes after click on padlockButton
         /// </summary>
-        public string ShowModeratorStatus()
+        public string GetModeratorStatus()
         {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            wait.Until(d => _moderatorsList.Count > 0);
+
             var firstModeratorFromList = _moderatorsList.ElementAt(0);
             var moderatorStatusLabel = firstModeratorFromList.FindElement(By.XPath("./td/p"));
             string moderatorStatus = moderatorStatusLabel.Text;
-
             return moderatorStatus;
         }
 
