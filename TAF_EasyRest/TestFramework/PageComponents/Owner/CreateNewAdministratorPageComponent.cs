@@ -28,7 +28,7 @@
         public ManageAdministratorPage ClickAddButton()
         {
             _addButton.Click();
-            Thread.Sleep(3000); // change to waiter
+            Thread.Sleep(3000);        
             return new ManageAdministratorPage(driver);
         }
 

@@ -23,8 +23,9 @@ namespace TestFramework.PageComponents.Owner
         public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@title='Add Waiter']")));
+            Thread.Sleep(000);        
+            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+           // wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
             return new ManageWaitersPage(driver);
         }
         public ManageAdministratorPage ClickAdministratorsButton()

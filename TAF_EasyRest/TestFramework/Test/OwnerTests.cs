@@ -40,14 +40,14 @@ namespace TestFramework.Test
             ownerPanelRestaurantsPage.GoToUrl();
 
             //Act
-            OwnerEditRestaurantPage editRestaurantPage = ownerPanelRestaurantsPage.RestaurantItems[0]
-                .ClickThreeDotButton()
-                .ClickManageButton();
+            var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
+            OwnerEditRestaurantPage editRestaurantPage = restaurant
+                .ClickThreeDotButton(5)
+                .ClickManageButton(5);
 
             ManageWaitersPage manageWaitersPage = editRestaurantPage.ManageRestaurantPageComponent.ClickWaitersButton();
-
             int expected = manageWaitersPage.WaiterItems.Count - 1;
-            manageWaitersPage.WaiterItems[0].ClickRemoveButton();
+            manageWaitersPage.WaiterItems[0].ClickRemoveButton(3);
             int actual = manageWaitersPage.WaiterItems.Count;
 
             //Assert
@@ -71,9 +71,10 @@ namespace TestFramework.Test
             };
 
             //Act
-            OwnerEditRestaurantPage editRestaurantPage = ownerPanelRestaurantsPage.RestaurantItems[0]
-                .ClickThreeDotButton()
-                .ClickManageButton();
+            var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
+            OwnerEditRestaurantPage editRestaurantPage = restaurant
+                .ClickThreeDotButton(5)
+                .ClickManageButton(5);
 
             CreateNewAdministratorPageComponent createAdminComponent = editRestaurantPage.ManageRestaurantPageComponent
                 .ClickAdministratorsButton()
@@ -106,9 +107,10 @@ namespace TestFramework.Test
             };
 
             //Act
-            OwnerEditRestaurantPage editRestaurantPage = ownerPanelRestaurantsPage.RestaurantItems[0]
-                .ClickThreeDotButton()
-                .ClickManageButton();
+            var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
+            OwnerEditRestaurantPage editRestaurantPage = restaurant
+                .ClickThreeDotButton(5)
+                .ClickManageButton(5);
             ManageWaitersPage manageWaitersPage = editRestaurantPage.ManageRestaurantPageComponent.ClickWaitersButton();
 
             int expect = manageWaitersPage.WaiterItems.Count + 1;
