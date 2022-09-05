@@ -33,6 +33,11 @@ namespace TestFramework.Test
         {
             DBCleanup.DeleteRestaurantByName(restaurantName);
         }
+
+        public void CreateModerator(string email)
+        {
+            DBAddition.AddUserViaDB("0 Fake Moderator", email, 3, true);
+        }
          
     }
 }
