@@ -78,12 +78,36 @@ namespace TestFramework.Test
             DBCleanup.ChangeUserRole(email);
 
             Assert.True(checkIfRestaurantExist);
+
+        public void SubmitOrderTest()
+        {
+            //Arrange
+            RestaurantsListPage restaurantsListPage = new RestaurantsListPage(driver);
+
+            restaurantsListPage.GoToUrl();
+
+            int expected = DBSelections.GetOrdersCountByStatus(email);
+
+            //Act
+            restaurantsListPage.ClickWatchMenuButton(3)
+                .AddTheFistDishToTheCart(3)
+                .ClickSubmitButton(3)
+                .ClickSubmitButton(3);
+
+            int actual = DBSelections.GetOrdersCountByStatus(email);
+
+            //Assert
+            Assert.That(expected + 1, Is.EqualTo(actual));
         }
 
         [OneTimeTearDown]
         public void AfterAllTests()
         {
             UserLogout(email);
+            
+            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
+            DBCleanup.DeleteLastOrder();
+
             driver.Quit();
             DeleteRestaurant(_restaurantName);
             DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);

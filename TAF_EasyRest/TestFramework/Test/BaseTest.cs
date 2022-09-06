@@ -29,6 +29,11 @@ namespace TestFramework.Test
             DBAddition.AddRestaurantViaDB(name);
         }
 
+        public void AddRestaurantWithArchivedStatus(string name)
+        {
+            DBAddition.AddRestaurantViaDB(name, "3807 Brook Street, Huston, TX 77030, USA", 1, 2);
+        }
+
         public void DeleteRestaurant(string restaurantName)
         {
             DBCleanup.DeleteRestaurantByName(restaurantName);

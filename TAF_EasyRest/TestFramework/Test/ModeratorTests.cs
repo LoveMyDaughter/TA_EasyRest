@@ -10,11 +10,13 @@ namespace TestFramework.Test
         public void BeforeModeratorsTests()
         {
             driver = new ChromeDriver();
-            userEmail = "petermoderator@test.com";
-            userPassword = "1";
+            userEmail = GetRoleCredentials.GetCredentials("Moderator").Email;
+            userPassword = GetRoleCredentials.GetCredentials("Moderator").Password;
             restaurantName = "Rest Created via DB";
-            AddRestaurant(restaurantName);
             UserLogin(driver, userEmail, userPassword);
+            AddRestaurant(restaurantName);
+            AddRestaurantWithArchivedStatus(restaurantName);
+            
         }
 
         [Test]
@@ -29,6 +31,24 @@ namespace TestFramework.Test
             // Act
             restaurants.ClickUnapprovedTab().ClickApproveButton();
             int finalRestaurantsAmount = restaurants.ClickUnapprovedTab().RestaurantsCount();
+
+            // Assert
+            Assert.That(finalRestaurantsAmount == initialRestaurantsAmount - 1);
+        }
+
+        [Test]
+        [Category("Smoke")]
+        [Category("Positive")]
+        public void RestoreRestaurantTest()
+        {
+            // Arrange
+            ModeratorPanelRestaurantsPage restaurants = new ModeratorPanelRestaurantsPage(driver);
+            restaurants.ModeratorLeftsideMenu.ClickRestaurantsButton();
+            int initialRestaurantsAmount = restaurants.ClickArchivedTab().RestaurantsCount();
+
+            // Act
+            restaurants.ClickArchivedTab().FindAndClickRestoreButton();
+            int finalRestaurantsAmount = restaurants.ClickArchivedTab().RestaurantsCount();
 
             // Assert
             Assert.That(finalRestaurantsAmount == initialRestaurantsAmount - 1);
@@ -73,9 +93,9 @@ namespace TestFramework.Test
         [OneTimeTearDown]
         public void AfterAllTests()
         {
+            driver.Quit();
             DeleteRestaurant(restaurantName);
             UserLogout(userEmail);
-            driver.Quit();
         }
 
     }

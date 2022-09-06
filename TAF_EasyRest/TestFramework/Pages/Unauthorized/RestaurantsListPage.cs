@@ -6,25 +6,36 @@ namespace TestFramework.Pages
     public class RestaurantsListPage : BasePage
     {
         public NavigationMenuPageComponent NavigationMenu { get; }
+        private static string _pageUrl => GetUrls.getUrl("RestaurantsListPage").Url;
 
         public RestaurantsListPage(IWebDriver driver) : base(driver)
         {
             NavigationMenu = new NavigationMenuPageComponent(driver);
         }
 
-        private IWebElement _DetailsButton => driver.FindElement(By.XPath("//span[text()='details']"));
-        private IWebElement _WatchMenuButton => driver.FindElement(By.XPath("Watch Menu"));
+        private By _DetailsButton => By.XPath("//span[text()='details']");
+        private By _WatchMenuButton => By.XPath("//span[text()='Watch Menu']//parent::a//parent::div");
 
-        public RestaurantsListPage ClickDetailsButton()
+        public RestaurantsListPage ClickDetailsButton(int timeToWait)
         {
-            _DetailsButton.Click();
+
+            driver.WaitUntilElementIsVisible(_DetailsButton, timeToWait)
+                .Click(); 
+            
             return this;
         }
 
-        public RestaurantsListPage ClickWatchMenuButton()
+        public RestaurantMenuPage ClickWatchMenuButton(int timeToWait)
         {
-            _WatchMenuButton.Click();
-            return this;
+            driver.WaitUntilElementIsVisible(_WatchMenuButton, timeToWait)
+                .Click();
+
+            return new RestaurantMenuPage(driver);
+        }
+
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _pageUrl);
         }
     }
 }
