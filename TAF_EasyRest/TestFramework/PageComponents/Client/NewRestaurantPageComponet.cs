@@ -9,8 +9,8 @@
         }
 
         #region Elements
-        private IWebElement _nameField => driver.FindElement(By.XPath("//input[@name='name']"));
-        private IWebElement _adressField => driver.FindElement(By.XPath("//input[@name='address']"));
+        private By _nameField => By.XPath("//input[@name='name']");
+        private By _adressField => By.XPath("//input[@name='address']");
         private IWebElement _phoneField => driver.FindElement(By.XPath("//input[@name='phone']"));
         private IWebElement _textField => driver.FindElement(By.XPath("//textarea"));
         private IWebElement _tagsSelector => driver.FindElement(By.XPath("//div[@id='select-tags']"));
@@ -31,14 +31,16 @@
 
         #region Click Methods
 
-        public NewRestaurantPageComponet ClickNameField()
+        public NewRestaurantPageComponet ClickNameField(int timeToWait)
         {
-            _nameField.Click();
+            driver.WaitUntilElementIsVisible(_nameField, timeToWait)
+                .Click();
             return this;
         }
-        public NewRestaurantPageComponet ClickAdressField()
+        public NewRestaurantPageComponet ClickAdressField(int timeToWait)
         {
-            _adressField.Click();
+            driver.WaitUntilElementIsVisible(_adressField, timeToWait)
+                .Click();
             return this;
         }
         public NewRestaurantPageComponet ClickPhoneField()
@@ -99,9 +101,10 @@
         }
 
         //List of restaurants are needed
-        public OwnerPanelRestaurantsPage ClickAddButton()
+        public OwnerPanelRestaurantsPage ClickAddButton(int timeToWait)
         {
             _addButton.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'RestaurantListItem-card')]")));
             return new OwnerPanelRestaurantsPage(driver);
         }
 
@@ -112,28 +115,24 @@
 
         public NewRestaurantPageComponet SendKeysNameField(string name)
         {
-            _nameField.Clear();
-            _nameField.SendKeys(name);
+            driver.FindElement(_nameField).SendKeys(name);
             return this;
         }
 
         public NewRestaurantPageComponet SendKeysAdressField(string adress)
         {
-            _adressField.Clear();
-            _adressField.SendKeys(adress);
+            driver.FindElement(_adressField).SendKeys(adress);
             return this;
         }
 
         public NewRestaurantPageComponet SendKeysPhoneField(string phone)
         {
-            _phoneField.Clear();
             _phoneField.SendKeys(phone);
             return this;
         }
 
         public NewRestaurantPageComponet SendKeysTextField(string text)
         {
-            _textField.Clear();
             _textField.SendKeys(text);
             return this;
         }
