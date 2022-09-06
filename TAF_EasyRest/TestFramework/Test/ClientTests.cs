@@ -72,12 +72,13 @@ namespace TestFramework.Test
                 .ClickAdressField(3)
                 .SendKeysAdressField(restaurantAdress)
                 .ClickAddButton(3);
-            
+
             bool checkIfRestaurantExist = DBSelections.CheckIfRestaurantExistsByName(_restaurantName, userId.ToString());
 
             DBCleanup.ChangeUserRole(email);
 
             Assert.True(checkIfRestaurantExist);
+        }
 
         public void SubmitOrderTest()
         {
