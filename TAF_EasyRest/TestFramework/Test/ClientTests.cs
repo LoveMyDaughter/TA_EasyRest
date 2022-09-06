@@ -73,9 +73,9 @@ namespace TestFramework.Test
                 .SendKeysAdressField(restaurantAdress)
                 .ClickAddButton(3);
             
-            bool checkIfRestaurantExist = DBSelections.GetRestaurantByName(_restaurantName, userId.ToString());
+            bool checkIfRestaurantExist = DBSelections.CheckIfRestaurantExistsByName(_restaurantName, userId.ToString());
 
-            DBCleanup.ChangeUserRole(1, email);
+            DBCleanup.ChangeUserRole(email);
 
             Assert.True(checkIfRestaurantExist);
         }
@@ -85,7 +85,7 @@ namespace TestFramework.Test
         {
             UserLogout(email);
             driver.Quit();
-            DBCleanup.DeleteRestaurantByName(_restaurantName);
+            DeleteRestaurant(_restaurantName);
             DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
         }
     }

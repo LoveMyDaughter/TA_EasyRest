@@ -20,7 +20,7 @@
         }
         #endregion
 
-        public static bool GetRestaurantByName(string name, string user_id)
+        public static bool CheckIfRestaurantExistsByName(string name, string user_id)
         {
             string query = $"SELECT count(*) FROM restaurants WHERE name = '{name}' AND owner_id = {user_id}";
             object restaurantCount = DBConnectionWrapper.GetCellFromDB(query);
