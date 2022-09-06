@@ -4,7 +4,7 @@ namespace TestFramework.Tools.DB
 {
     internal class DBConnectionWrapper
     {
-        private static readonly string pg_connectionString = "Host=localhost;Username=admin;Password=12345678;Database=easyrest";
+        private static readonly string pg_connectionString = GetUrls.getUrl("DBCredentials").Url;
 
         public static void ExecuteQuery(string queryString)
         {

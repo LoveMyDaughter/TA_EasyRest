@@ -40,8 +40,25 @@
             DBConnectionWrapper.ExecuteQuery(unlinkAdministrator);
         }
 
+
         public static void DeleteOrderById(int id)
         {
+        }
+
+
+        public static void ChangeUserRole(string email, string roleName = "Client")
+        {
+            string query = $"UPDATE users SET role_id = (SELECT id FROM user_roles WHERE name = '{roleName}') WHERE email = '{email}'";
+            //string query = $"UPDATE users SET role_id = {role_id} WHERE email = '{email}'";
+        }
+
+        public static void DeleteLastOrder()
+        {
+            int id = DBSelections.GetLastOrderIdByStatus();
+            string query = $"DELETE FROM order_associations WHERE order_id = {id}";
+            DBConnectionWrapper.ExecuteQuery(query);
+            query = $"DELETE FROM orders WHERE id = {id}";
+            DBConnectionWrapper.ExecuteQuery(query);
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using TestFramework.PageComponents.NavigationMenuComponents;
 using TestFramework.PageComponents.RestaurantMenuComponents;
+using TestFramework.Tools.GetData;
 
 namespace TestFramework.Pages
 {
@@ -7,30 +8,31 @@ namespace TestFramework.Pages
     {
         public NavigationMenuPageComponent NavigationMenu { get; }
         private IReadOnlyCollection<IWebElement> _menuItemSummaryCards => driver.FindElements(By.XPath("//div[contains(@class,'MenuItem-root')]"));
-
+        
 
         public RestaurantMenuPage(IWebDriver driver) : base(driver)
         {
             NavigationMenu = new NavigationMenuPageComponent(driver);          
         }
 
-        private IWebElement _showCartButton => driver.FindElement(By.XPath("//button[@aria-label='Show cart']"));
+        private By _showCartButton => By.XPath("//button[@aria-label='Show cart']");
 
-        public CartPageComponent ClickShowCartButton()
+        public CartPageComponent ClickShowCartButton(int timeToWait)
         {
-            _showCartButton.Click();
+            driver.WaitUntilElementIsVisible(_showCartButton, timeToWait)
+                .Click();
+            
             return new CartPageComponent(driver);
         }
 
-        public RestaurantMenuPage AddTheFistDishToTheCart()
+        public CartPageComponent AddTheFistDishToTheCart(int timeToWait)
         {
-            var menuItem = _menuItemSummaryCards.ElementAt(0);
-            
-            var addToCartButton = menuItem.FindElement(By.XPath(".//button[contains(@class,'addButton')]"));
+            var addToCartButton = By.XPath("//button[contains(@class,'addButton')][1]");
 
-            addToCartButton.Click();
+            driver.WaitUntilElementIsVisible(addToCartButton, timeToWait)
+                .Click();
 
-            return this;
+            return new CartPageComponent(driver);
         }
     }
 }

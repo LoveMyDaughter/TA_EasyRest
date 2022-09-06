@@ -36,7 +36,7 @@ namespace TestFramework.Pages
         {
             driver.WaitUntilElementIsVisible(_cancelButton, timeToWait)
                 .Click();
-          
+
             return new RestaurantMenuPage(driver);
         }
 
@@ -44,7 +44,7 @@ namespace TestFramework.Pages
         {
             driver.WaitUntilElementIsVisible(_submitButton, timeToWait)
                 .Click();
-            
+
             return new RestaurantMenuPage(driver);
         }
         #endregion

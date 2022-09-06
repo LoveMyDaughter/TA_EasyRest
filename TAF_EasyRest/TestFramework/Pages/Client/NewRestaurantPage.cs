@@ -7,6 +7,7 @@ namespace TestFramework.Pages
     {
         public NavigationMenuPageComponent NavigationMenu { get;}
         public PersonalInfoPage PersonalInfo { get;}
+        private static string _pageUrl => GetUrls.getUrl("NewRestaurantPage").Url;
 
         public NewRestaurantPage(IWebDriver driver) : base(driver)
         {
@@ -14,12 +15,19 @@ namespace TestFramework.Pages
             PersonalInfo = new PersonalInfoPage(driver);
         }
 
-        private IWebElement _AddButton => driver.FindElement(By.XPath("//button[@title='Add restaurant']"));
+        private By _addButton => By.XPath("//button[@title='Add restaurant']");
         
-        public NewRestaurantPageComponet ClickAddButton()
+        public NewRestaurantPageComponet ClickAddButton(int timeToWait)
         {
-            _AddButton.Click();
+            driver.WaitUntilElementIsVisible(_addButton, timeToWait)
+                .Click();
+        
             return new NewRestaurantPageComponet(driver);
+        }
+
+        public override void GoToUrl()
+        {
+            driver.Navigate().GoToUrl(baseUrl + _pageUrl);
         }
     }
 }
