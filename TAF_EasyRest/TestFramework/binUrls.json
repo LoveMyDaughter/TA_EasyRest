@@ -1,10 +1,18 @@
 [
   {
     "Url": "http://localhost:3000",
+    "PageName": "basePageLocal"
+  },
+  {
+    "Url": "http://rv093-easyrest.ddns.net:8880",
     "PageName": "basePage"
   },
   {
     "Url": "Host=localhost;Username=admin;Password=12345678;Database=easyrest",
+    "PageName": "DBCredentialsLocal"
+  },
+  {
+    "Url": "Host=rv093-easyrest.ddns.net;Username=admin;Password=rv093-TA_EasyRest;Database=easyrest",
     "PageName": "DBCredentials"
   },
   {
