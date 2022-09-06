@@ -23,7 +23,7 @@ namespace TestFramework.PageComponents.Owner
         public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            Thread.Sleep(000);        
+            Thread.Sleep(3000);        
             //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
            // wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
             return new ManageWaitersPage(driver);
