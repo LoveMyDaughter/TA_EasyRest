@@ -9,10 +9,10 @@ namespace TestFramework.Test
         [OneTimeSetUp]
         public void BeforeModeratorsTests()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--headless");
-            driver = new ChromeDriver(options);
-            //driver = new ChromeDriver();
+            //ChromeOptions options = new ChromeOptions();
+            //options.AddArguments("--headless");
+            //driver = new ChromeDriver(options);
+            driver = new ChromeDriver();
             userEmail = GetRoleCredentials.GetCredentials("Moderator").Email;
             userPassword = GetRoleCredentials.GetCredentials("Moderator").Password;
             restaurantName = "Rest Created via DB";
