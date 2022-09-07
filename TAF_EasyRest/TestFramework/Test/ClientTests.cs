@@ -77,6 +77,8 @@ namespace TestFramework.Test
             Assert.That(expected, Is.EqualTo(actual));
         }
 
+        [Category("Smoke")]
+        [Category("Positive")]
         [Test]
         public void AddRestaurant()
         {
@@ -104,6 +106,9 @@ namespace TestFramework.Test
             Assert.True(checkIfRestaurantExist);
         }
 
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
         public void SubmitOrderTest()
         {
             //Arrange
@@ -129,15 +134,13 @@ namespace TestFramework.Test
         public void AfterAllTests()
         {
             UserLogout(email);
+
             driver.Quit();
             
             DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
             DBCleanup.DeleteLastOrder();
-
-            driver.Quit();
+            DBCleanup.DeleteLastOrder();
             DeleteRestaurant(_restaurantName);
-
-            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
         }
     }
 }
