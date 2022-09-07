@@ -22,11 +22,12 @@ namespace TestFramework.Pages
 
         private IWebElement? _waitersParent => driver.FindElementSafe(By.XPath("//li/parent::ul/parent::div"));
         private IList<IWebElement> _items => _waitersParent?.FindElements(By.XPath("//li")).ToList() ?? new List<IWebElement>();
-        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter"));
+        private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter']"));
 
         public CreateNewWaiterPageComponent ClickAddWaiterButton()
         {
             _addWaiterButton.Click();
+            Thread.Sleep(3000);
             return new CreateNewWaiterPageComponent(driver);
         }
        

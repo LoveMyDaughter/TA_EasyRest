@@ -16,7 +16,20 @@
         private IWebElement _addButton => driver.FindElement(By.XPath("//span[contains(text(),'Add')]/parent::button"));
         private IWebElement _cancelButton => driver.FindElement(By.XPath("//span[contains(text(),'Cancel')]/parent::button"));
 
-
+        public CreateNewWaiterPageComponent SendKeysToFields(string name, string email, string password, string phonenumber)
+        {
+            SendKeysToNameField(name);
+            SendKeysToEmailField(email);
+            SendKeysToPasswordField(password);
+            SendKeysToPhoneNumberField(phonenumber);
+            return this;
+        }
+        public ManageWaitersPage ClickAddButton()
+        {
+            _addButton.Click();
+            Thread.Sleep(3000); // change to waiter
+            return new ManageWaitersPage(driver);
+        }
         public CreateNewWaiterPageComponent ClickNameField()
         {
             _nameField.Click();

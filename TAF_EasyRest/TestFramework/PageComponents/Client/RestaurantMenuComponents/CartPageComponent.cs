@@ -9,11 +9,13 @@
             this.driver = driver;
         }
 
-        private IWebElement _submitButton => driver.FindElement(By.XPath("//button/span[text()='Submit order']"));
+        private By _submitButton => By.XPath("//button/span[text()='Submit order']");
 
-        public OrderConfirmationPageComponent ClickSubmitButton()
+        public OrderConfirmationPageComponent ClickSubmitButton(int timeToWait)
         {
-            _submitButton.Click();
+            driver.WaitUntilElementIsVisible(_submitButton, timeToWait)
+                .Click();
+            
             return new OrderConfirmationPageComponent(driver);
         }
     }

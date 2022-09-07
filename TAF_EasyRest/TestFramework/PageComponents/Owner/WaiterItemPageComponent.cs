@@ -10,10 +10,13 @@
 
         private IWebElement _removeButton => _waiterElement.FindElement(By.TagName("button"));
 
-        public void ClickRemoveButton()
+        public void ClickRemoveButton(int timeToWait)
         {
-            _removeButton.Click();
-            Thread.Sleep(1000);
+            var driver = _waiterElement.GetWebDriverFromWebElement();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+                .Until(ExpectedConditions.ElementToBeClickable(_removeButton))
+                .Click();
+            Thread.Sleep(5000);
         }
     }
 }

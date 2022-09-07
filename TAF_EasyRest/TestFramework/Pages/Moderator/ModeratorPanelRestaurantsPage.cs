@@ -37,7 +37,7 @@ namespace TestFramework.Pages
 
         public ArchivedRestaurantsPageComponent ClickArchivedTab()
         {
-            _unapprovedTab.Click();
+            _archivedTab.Click();
             return new ArchivedRestaurantsPageComponent(driver);
         }
 
