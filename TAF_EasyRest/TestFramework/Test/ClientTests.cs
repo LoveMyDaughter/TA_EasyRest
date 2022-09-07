@@ -15,7 +15,10 @@ namespace TestFramework.Test
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--headless");
+            driver = new ChromeDriver(options);
+            //driver = new ChromeDriver();
 
             email = GetRoleCredentials.GetCredentials("Client").Email;
             password = GetRoleCredentials.GetCredentials("Client").Password;
