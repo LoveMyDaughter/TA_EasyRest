@@ -65,7 +65,6 @@ namespace TestFramework.Pages
 
         public override void GoToUrl()
         {
-            Console.WriteLine(baseUrl + _pageUrl);
             driver.Navigate().GoToUrl(baseUrl + _pageUrl);
         }
 
