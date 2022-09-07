@@ -13,7 +13,7 @@ namespace TestFramework.Tools
         public static void WaitUntilUrlIsChanged (this IWebDriver driver)
         {
             string currentUrl = driver.Url;
-            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(d => driver.Url != currentUrl);
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => driver.Url != currentUrl);
         }
     }
 
