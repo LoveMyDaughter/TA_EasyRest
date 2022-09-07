@@ -25,11 +25,10 @@
             return this;
         }
 
-        public ManageAdministratorPage ClickAddButton(int timeToWait)
+        public ManageAdministratorPage ClickAddButton()
         {
             _addButton.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
+            Thread.Sleep(3000);
             return new ManageAdministratorPage(driver);
         }
 

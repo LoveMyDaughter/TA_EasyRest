@@ -78,10 +78,10 @@ namespace TestFramework.Test
 
             CreateNewAdministratorPageComponent createAdminComponent = editRestaurantPage.ManageRestaurantPageComponent
                 .ClickAdministratorsButton(3)
-                .ClickAddAdministratorButton(3);
+                .ClickAddAdministratorButton();
 
             ManageAdministratorPage manageAdminPage = createAdminComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
-                .ClickAddButton(3);
+                .ClickAddButton();
 
             var actual = manageAdminPage.AdministratorItem;
 
