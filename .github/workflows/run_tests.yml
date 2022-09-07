@@ -19,4 +19,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore TAF_EasyRest
     - name: Test
-      run: dotnet test --no-build --verbosity normal --filter FullyQualifiedName=TestFramework.Test.ModeratorTests.ApproveRestaurantTest TAF_EasyRest
+      run: dotnet test --no-build --verbosity normal --filter FullyQualifiedName=TestFramework.Test.ModeratorTests TAF_EasyRest
