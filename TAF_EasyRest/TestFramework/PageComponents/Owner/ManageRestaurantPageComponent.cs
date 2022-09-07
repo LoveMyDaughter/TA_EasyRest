@@ -23,14 +23,14 @@ namespace TestFramework.PageComponents.Owner
         public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
+            Thread.Sleep(3000); //use in two tests with different logic
             return new ManageWaitersPage(driver);
         }
-        public ManageAdministratorPage ClickAdministratorsButton()
+        public ManageAdministratorPage ClickAdministratorsButton(int timeToWait)
         {
             _administratorsButton.Click();
-            Thread.Sleep(1000); //change to waiter
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@title = 'Add Administrator']")));
             return new ManageAdministratorPage(driver);
         }
     }
