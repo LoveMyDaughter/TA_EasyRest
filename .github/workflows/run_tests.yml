@@ -16,6 +16,8 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore TAF_EasyRest
+    - name: setup-chromedriver
+      uses: nanasess/setup-chromedriver@v1.0.8
     - name: Build
       run: dotnet build --no-restore TAF_EasyRest
     - name: Test
