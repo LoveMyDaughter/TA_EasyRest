@@ -18,7 +18,5 @@ jobs:
       run: dotnet restore TAF_EasyRest
     - name: Build
       run: dotnet build --no-restore TAF_EasyRest
-    - name: Setup X client
-      run: xvfb-run --auto-servernum
-    - name: Test
-      run: dotnet test --no-build --verbosity normal TAF_EasyRest
+    - name: Test with X client
+      run: xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
