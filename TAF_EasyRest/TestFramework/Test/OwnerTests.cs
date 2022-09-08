@@ -81,7 +81,7 @@ namespace TestFramework.Test
                 .ClickAddAdministratorButton();
 
             ManageAdministratorPage manageAdminPage = createAdminComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
-                .ClickAddButton();
+                .ClickAddButton(3);
 
             var actual = manageAdminPage.AdministratorItem;
 
@@ -124,6 +124,37 @@ namespace TestFramework.Test
 
             //Assert
             Assert.That(actual, Is.EqualTo(expect));
+        }
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
+        public void RemoveAdministratorTest()
+        {
+            //Arrange
+            var administrator = new
+            {
+                Email = UserEmail,
+                Name = "Test Administrator"
+            };
+            DBAddition.AddAdministratorViaDB(administrator.Name, administrator.Email, RestaurantName);
+            OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
+
+            ownerPanelRestaurantsPage.GoToUrl();
+
+            //Act
+            var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
+            OwnerEditRestaurantPage editRestaurantPage = restaurant
+                .ClickThreeDotButton(5)
+                .ClickManageButton(5);
+            Thread.Sleep(3000);
+
+            ManageAdministratorPage manageAdministratorPage = editRestaurantPage.ManageRestaurantPageComponent.ClickAdministratorsButton(3);
+            Thread.Sleep(3000);
+            manageAdministratorPage.AdministratorItem.ClickRemoveButton(3);
+            
+
+            //Assert
+            //Assert.That(actual, Is.EqualTo(expected));
         }
 
         [TearDown]

@@ -14,5 +14,10 @@
             string addWaiter = $"INSERT INTO users (name, email, phone_number, password, role_id, restaurant_id, is_active) SELECT '{name}', '{email}', '{phoneNumber}', '{password}', 6, id, true from restaurants where name = '{restaurantName}'";
             DBConnectionWrapper.ExecuteQuery(addWaiter);
         }
+        public static void AddAdministratorViaDB(string name, string email, string restaurantName, string phoneNumber = "0987654321", string password = "1111")
+        {
+            string addAdministrator = $"INSERT INTO users (name, email, phone_number, password, role_id, restaurant_id, is_active) SELECT '{name}', '{email}', '{phoneNumber}', '{password}', 5, id, true from restaurants where name = '{restaurantName}'";
+            DBConnectionWrapper.ExecuteQuery(addAdministrator);
+        }
     }
 }

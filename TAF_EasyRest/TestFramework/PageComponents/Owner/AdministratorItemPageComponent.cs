@@ -12,5 +12,14 @@ namespace TestFramework.PageComponents.Owner
 
         public string? Name => _adminElement.FindElementSafe(By.XPath("./div/span"))?.Text;
         public string? Contacts => _adminElement.FindElementSafe(By.XPath("./div/p/span"))?.Text;
+        private IWebElement _removeButton => _adminElement.FindElement(By.TagName("button"));
+        public void ClickRemoveButton(int timeToWait)
+        {
+            var driver = _adminElement.GetWebDriverFromWebElement();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+                .Until(ExpectedConditions.ElementToBeClickable(_removeButton))
+                .Click();
+            Thread.Sleep(5000);
+        }
     }
 }
