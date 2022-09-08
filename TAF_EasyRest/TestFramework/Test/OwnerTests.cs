@@ -34,7 +34,8 @@ namespace TestFramework.Test
                 Email = UserEmail,
                 Name = "Test Waiter"
             };
-            DBAddition.AddWaiterViaDB(waiter.Name, waiter.Email, RestaurantName);
+            int restaurant_id = DBSelections.GetRestaurantId(RestaurantName);
+            DBAddition.AddUserViaDB(waiter.Name, waiter.Email, 6, true, restaurant_id);
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
 
             ownerPanelRestaurantsPage.GoToUrl();
@@ -78,7 +79,7 @@ namespace TestFramework.Test
 
             CreateNewAdministratorPageComponent createAdminComponent = editRestaurantPage.ManageRestaurantPageComponent
                 .ClickAdministratorsButton(3)
-                .ClickAddAdministratorButton();
+                .ClickAddAdministratorButton(3);
 
             ManageAdministratorPage manageAdminPage = createAdminComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
                 .ClickAddButton(3);
@@ -115,7 +116,7 @@ namespace TestFramework.Test
 
             int expect = manageWaitersPage.WaiterItems.Count + 1;
 
-            CreateNewWaiterPageComponent createWaiterComponent = manageWaitersPage.ClickAddWaiterButton();
+            CreateNewWaiterPageComponent createWaiterComponent = manageWaitersPage.ClickAddWaiterButton(3);
 
             ManageWaitersPage manageWaiterPage = createWaiterComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
                 .ClickAddButton();
@@ -136,7 +137,8 @@ namespace TestFramework.Test
                 Email = UserEmail,
                 Name = "Test Administrator"
             };
-            DBAddition.AddAdministratorViaDB(administrator.Name, administrator.Email, RestaurantName);
+
+            CreateAdministrator(administrator.Name, administrator.Email, RestaurantName);
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
 
             ownerPanelRestaurantsPage.GoToUrl();
@@ -146,7 +148,6 @@ namespace TestFramework.Test
             OwnerEditRestaurantPage editRestaurantPage = restaurant
                 .ClickThreeDotButton(5)
                 .ClickManageButton(5);
-            Thread.Sleep(3000);
 
             ManageAdministratorPage manageAdministratorPage = editRestaurantPage.ManageRestaurantPageComponent.ClickAdministratorsButton(3);
             Thread.Sleep(3000);
@@ -154,7 +155,7 @@ namespace TestFramework.Test
             
 
             //Assert
-            //Assert.That(actual, Is.EqualTo(expected));
+            Assert.IsNull(manageAdministratorPage.AdministratorItem);
         }
 
         [TearDown]

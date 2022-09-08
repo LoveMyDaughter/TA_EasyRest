@@ -34,10 +34,11 @@ namespace TestFramework.Pages
         
         private IWebElement _addAdministratorButton => driver.FindElement(By.XPath("//button[@title = 'Add Administrator']"));
 
-       public CreateNewAdministratorPageComponent ClickAddAdministratorButton()
+       public CreateNewAdministratorPageComponent ClickAddAdministratorButton(int timeToWait)
         {
             _addAdministratorButton.Click();
-            Thread.Sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//input[@name = 'phone_number']")));
             return new CreateNewAdministratorPageComponent(driver);
         }
 

@@ -9,21 +9,16 @@
             DBConnectionWrapper.ExecuteQuery(addRestaurant);
         }
 
-        public static void AddUserViaDB(string name, string email, int role_id, bool is_active)
+        public static void AddUserViaDB(string name, string email, int role_id, bool is_active, int restaurant_id = 0)
         {
-            string addUser = $"INSERT INTO users (name, email, role_id, is_active) VALUES ('{name}', '{email}', {role_id}, {is_active})";
+            string addUser = $"INSERT INTO users (name, email, role_id, restaurant_id, is_active) VALUES ('{name}', '{email}', {role_id}, {restaurant_id}, {is_active})";
             DBConnectionWrapper.ExecuteQuery(addUser);
-        }
+        } 
 
-        public static void AddWaiterViaDB(string name, string email, string restaurantName, string phoneNumber = "1234567890", string password = "1111")
+        public static void SetRestaurantAdministrator(int restaurant_id, int administrator_id)
         {
-            string addWaiter = $"INSERT INTO users (name, email, phone_number, password, role_id, restaurant_id, is_active) SELECT '{name}', '{email}', '{phoneNumber}', '{password}', 6, id, true from restaurants where name = '{restaurantName}'";
-            DBConnectionWrapper.ExecuteQuery(addWaiter);
-        }
-        public static void AddAdministratorViaDB(string name, string email, string restaurantName, string phoneNumber = "0987654321", string password = "1111")
-        {
-            string addAdministrator = $"INSERT INTO users (name, email, phone_number, password, role_id, restaurant_id, is_active) SELECT '{name}', '{email}', '{phoneNumber}', '{password}', 5, id, true from restaurants where name = '{restaurantName}'";
-            DBConnectionWrapper.ExecuteQuery(addAdministrator);
+            string updateRestaurant = $"UPDATE restaurants SET administrator_id = {administrator_id} WHERE id = {restaurant_id}";
+            DBConnectionWrapper.ExecuteNonQuery(updateRestaurant);
         }
     }
 }
