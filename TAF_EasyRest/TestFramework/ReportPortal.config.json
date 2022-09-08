@@ -1,0 +1,16 @@
+﻿{
+  "enabled": true,
+  "server": {
+    "url": "http://65.108.212.114:8080/api/v1/",
+    "project": "TAF_EasyRest",
+    "authentication": {
+      "uuid": "8b373406-0ca3-4b71-a9c8-6e22bd70902f"
+    }
+  },
+  "launch": {
+    "name": "Launch",
+    "description": "Test UI of EasyRest",
+    "debugMode": false,
+    "attributes": [ "EasyRest" ]
+  }
+}

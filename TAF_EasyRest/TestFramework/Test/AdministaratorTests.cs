@@ -19,7 +19,9 @@ namespace TestFramework.Test
         [SetUp]
         public void SetUp()
         {
-            ChromeDriver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--headless");
+            ChromeDriver = new ChromeDriver(options);
             UserLogin(ChromeDriver, userEmail, userPassword);
             ChromeDriver.Manage().Window.Maximize();
         }

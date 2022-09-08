@@ -14,7 +14,10 @@ namespace TestFramework.Test
         [OneTimeSetUp]
         public void BeforeOwnersTests()
         {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--headless");
+            driver = new ChromeDriver(options);
+            //driver = new ChromeDriver();
             userEmail = GetRoleCredentials.GetCredentials("Owner").Email;
             userPassword = GetRoleCredentials.GetCredentials("Owner").Password;
             UserEmail = "test@test.com";

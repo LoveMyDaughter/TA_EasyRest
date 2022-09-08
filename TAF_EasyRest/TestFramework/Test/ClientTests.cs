@@ -15,7 +15,10 @@ namespace TestFramework.Test
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--headless");
+            driver = new ChromeDriver(options);
+            //driver = new ChromeDriver();
 
             email = GetRoleCredentials.GetCredentials("Client").Email;
             password = GetRoleCredentials.GetCredentials("Client").Password;
@@ -36,9 +39,9 @@ namespace TestFramework.Test
             currentOrdersPage.GoToUrl();
 
             //Act
-            currentOrdersPage.ClickWaitingForConfirmButton(3);
+            currentOrdersPage.ClickWaitingForConfirmButton(11);
 
-            int expected = currentOrdersPage.CountOrders(3) - 1;
+            int expected = currentOrdersPage.CountOrders(11) - 1;
             orderNumber = currentOrdersPage.orders[0].number;
 
             currentOrdersPage.orders[0]
@@ -66,7 +69,7 @@ namespace TestFramework.Test
             string restaurantAdress = "adress1";
 
             //Act
-            newRestaurantPage.ClickAddButton(3)
+            newRestaurantPage.ClickAddButton(9)
                 .ClickNameField(3)
                 .SendKeysNameField(_restaurantName)
                 .ClickAdressField(3)
