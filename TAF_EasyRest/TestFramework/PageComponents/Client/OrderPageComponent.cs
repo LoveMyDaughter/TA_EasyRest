@@ -4,6 +4,7 @@
     {
         private IWebDriver driver;
         private int index;
+        private string number => _orderField.FindElement(By.XPath($"//div[@class='MuiGrid-item-120 MuiGrid-grid-xs-1-148'][1]")).Text;
 
         public OrderPageComponent(IWebDriver driver, int index)
         {
@@ -11,12 +12,12 @@
             this.index = index;
         }
 
-        private IWebElement _orderField => driver.FindElement(By.XPath($"((//div[@class='MuiPaper-root-10 MuiPaper-elevation1-13 MuiPaper-rounded-11 MuiExpansionPanel-root-404 MuiExpansionPanel-rounded-405'])[{index}]"));
-    
+        private IWebElement _orderField => driver.FindElement(By.XPath($"//div[contains(@class,'MuiExpansionPanel-rounded')][{index}]"));
+
         public HistoryOrderDetailsPageComponent ExpandOrderDetails()
         {
             _orderField.Click();
-            return new HistoryOrderDetailsPageComponent(driver, index);
+            return new HistoryOrderDetailsPageComponent(driver, index, number);
         }
     }
 }

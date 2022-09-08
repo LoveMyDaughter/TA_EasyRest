@@ -26,8 +26,6 @@ namespace TestFramework.Test
             UserLogin(driver, email, password);
         }
 
-
-
         [Category("Smoke")]
         [Category("Positive")]
         [Test]
@@ -49,6 +47,34 @@ namespace TestFramework.Test
                 .ClickDeclineButton(3);
 
             int actual = currentOrdersPage.CountOrders(3);
+
+            //Assert
+            Assert.That(expected, Is.EqualTo(actual));
+        }
+
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
+        public void ReorderTest()
+        {
+            //Arrange
+            OrderHistoryPage orderHistoryPage = new OrderHistoryPage(driver);
+
+            orderHistoryPage.GoToUrl();
+
+            //Act
+            orderHistoryPage.ClickHistoryButton(3);
+
+            int expected = DBSelections.GetOrdersCountByStatus(email, "Waiting for confirm");
+
+            orderHistoryPage.orders[0]
+                .ExpandOrderDetails()
+                .ClickReorderButton(3)
+                .ClickSubmitButton(3);
+
+            Thread.Sleep(1000); //There is not enough time for base restoring
+
+            int actual = DBSelections.GetOrdersCountByStatus(email, "Waiting for confirm") - 1;
 
             //Assert
             Assert.That(expected, Is.EqualTo(actual));
@@ -83,6 +109,9 @@ namespace TestFramework.Test
             Assert.True(checkIfRestaurantExist);
         }
 
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
         public void SubmitOrderTest()
         {
             //Arrange
@@ -108,13 +137,13 @@ namespace TestFramework.Test
         public void AfterAllTests()
         {
             UserLogout(email);
+
+            driver.Quit();
             
             DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
             DBCleanup.DeleteLastOrder();
-
-            driver.Quit();
+            DBCleanup.DeleteLastOrder();
             DeleteRestaurant(_restaurantName);
-            DBCleanup.ChangeOrderStatusByNumber("Waiting for confirm", orderNumber);
         }
     }
 }

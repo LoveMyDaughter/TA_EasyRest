@@ -43,7 +43,7 @@
         public static void ChangeUserRole(string email, string roleName = "Client")
         {
             string query = $"UPDATE users SET role_id = (SELECT id FROM user_roles WHERE name = '{roleName}') WHERE email = '{email}'";
-            //string query = $"UPDATE users SET role_id = {role_id} WHERE email = '{email}'";
+            DBConnectionWrapper.ExecuteQuery(query);
         }
 
         public static void DeleteLastOrder()
