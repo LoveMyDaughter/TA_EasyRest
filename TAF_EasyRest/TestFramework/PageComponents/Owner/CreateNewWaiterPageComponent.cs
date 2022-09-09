@@ -24,10 +24,11 @@
             SendKeysToPhoneNumberField(phonenumber);
             return this;
         }
-        public ManageWaitersPage ClickAddButton()
+        public ManageWaitersPage ClickAddButton(int timeToWait)
         {
             _addButton.Click();
-            Thread.Sleep(1000); // change to waiter
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
             return new ManageWaitersPage(driver);
         }
         public CreateNewWaiterPageComponent ClickNameField()

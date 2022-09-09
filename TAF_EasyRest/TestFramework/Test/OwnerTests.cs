@@ -119,7 +119,7 @@ namespace TestFramework.Test
             CreateNewWaiterPageComponent createWaiterComponent = manageWaitersPage.ClickAddWaiterButton(3);
 
             ManageWaitersPage manageWaiterPage = createWaiterComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
-                .ClickAddButton();
+                .ClickAddButton(3);
 
             int actual = manageWaiterPage.WaiterItems.Count;
 
