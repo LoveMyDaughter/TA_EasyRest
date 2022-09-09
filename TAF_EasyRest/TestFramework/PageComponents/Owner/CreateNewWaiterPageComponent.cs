@@ -27,7 +27,7 @@
         public ManageWaitersPage ClickAddButton()
         {
             _addButton.Click();
-            Thread.Sleep(3000); // change to waiter
+            Thread.Sleep(1000); // change to waiter
             return new ManageWaitersPage(driver);
         }
         public CreateNewWaiterPageComponent ClickNameField()

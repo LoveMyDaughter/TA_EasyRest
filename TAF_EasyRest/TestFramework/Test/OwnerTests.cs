@@ -78,7 +78,7 @@ namespace TestFramework.Test
                 .ClickManageButton(5);
 
             CreateNewAdministratorPageComponent createAdminComponent = editRestaurantPage.ManageRestaurantPageComponent
-                .ClickAdministratorsButton(3)
+                .ClickAdministratorsButton()
                 .ClickAddAdministratorButton(3);
 
             ManageAdministratorPage manageAdminPage = createAdminComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
@@ -149,8 +149,7 @@ namespace TestFramework.Test
                 .ClickThreeDotButton(5)
                 .ClickManageButton(5);
 
-            ManageAdministratorPage manageAdministratorPage = editRestaurantPage.ManageRestaurantPageComponent.ClickAdministratorsButton(3);
-            Thread.Sleep(3000);
+            ManageAdministratorPage manageAdministratorPage = editRestaurantPage.ManageRestaurantPageComponent.ClickAdministratorsButton();
             manageAdministratorPage.AdministratorItem.ClickRemoveButton(3);
             
 
