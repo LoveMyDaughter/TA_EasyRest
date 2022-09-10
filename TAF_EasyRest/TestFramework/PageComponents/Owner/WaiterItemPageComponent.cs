@@ -16,7 +16,8 @@
             new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
                 .Until(ExpectedConditions.ElementToBeClickable(_removeButton))
                 .Click();
-            Thread.Sleep(5000);
+            new WebDriverWait(driver, TimeSpan.FromSeconds(5))
+                .Until(ExpectedConditions.ElementExists(By.XPath("//h6")));
         }
     }
 }

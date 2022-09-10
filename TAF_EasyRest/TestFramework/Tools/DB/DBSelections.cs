@@ -37,5 +37,11 @@
             object userId = DBConnectionWrapper.GetCellFromDB(query);
             return Convert.ToInt32(userId);
         }
+        public static int GetRestaurantId(string restaurantName)
+        {
+            string query = $"SELECT id FROM restaurants where name = '{restaurantName}'";
+            object restaurantId = DBConnectionWrapper.GetCellFromDB(query);
+            return Convert.ToInt32(restaurantId);
+        }
     }
 }

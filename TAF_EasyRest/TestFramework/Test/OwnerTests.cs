@@ -34,7 +34,8 @@ namespace TestFramework.Test
                 Email = UserEmail,
                 Name = "Test Waiter"
             };
-            DBAddition.AddWaiterViaDB(waiter.Name, waiter.Email, RestaurantName);
+            int restaurant_id = DBSelections.GetRestaurantId(RestaurantName);
+            DBAddition.AddUserViaDB(waiter.Name, waiter.Email, 6, true, restaurant_id);
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
 
             ownerPanelRestaurantsPage.GoToUrl();
@@ -77,7 +78,7 @@ namespace TestFramework.Test
                 .ClickManageButton(5);
 
             CreateNewAdministratorPageComponent createAdminComponent = editRestaurantPage.ManageRestaurantPageComponent
-                .ClickAdministratorsButton(3)
+                .ClickAdministratorsButton()
                 .ClickAddAdministratorButton(3);
 
             ManageAdministratorPage manageAdminPage = createAdminComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
@@ -115,15 +116,45 @@ namespace TestFramework.Test
 
             int expect = manageWaitersPage.WaiterItems.Count + 1;
 
-            CreateNewWaiterPageComponent createWaiterComponent = manageWaitersPage.ClickAddWaiterButton();
+            CreateNewWaiterPageComponent createWaiterComponent = manageWaitersPage.ClickAddWaiterButton(3);
 
             ManageWaitersPage manageWaiterPage = createWaiterComponent.SendKeysToFields(expected.Name, expected.Email, expected.Password, expected.PhoneNumber)
-                .ClickAddButton();
+                .ClickAddButton(3);
 
             int actual = manageWaiterPage.WaiterItems.Count;
 
             //Assert
             Assert.That(actual, Is.EqualTo(expect));
+        }
+        [Category("Smoke")]
+        [Category("Positive")]
+        [Test]
+        public void RemoveAdministratorTest()
+        {
+            //Arrange
+            var administrator = new
+            {
+                Email = UserEmail,
+                Name = "Test Administrator"
+            };
+
+            CreateAdministrator(administrator.Name, administrator.Email, RestaurantName);
+            OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
+
+            ownerPanelRestaurantsPage.GoToUrl();
+
+            //Act
+            var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
+            OwnerEditRestaurantPage editRestaurantPage = restaurant
+                .ClickThreeDotButton(5)
+                .ClickManageButton(5);
+
+            ManageAdministratorPage manageAdministratorPage = editRestaurantPage.ManageRestaurantPageComponent.ClickAdministratorsButton();
+            manageAdministratorPage.AdministratorItem.ClickRemoveButton(3);
+            
+
+            //Assert
+            Assert.IsNull(manageAdministratorPage.AdministratorItem);
         }
 
         [TearDown]
