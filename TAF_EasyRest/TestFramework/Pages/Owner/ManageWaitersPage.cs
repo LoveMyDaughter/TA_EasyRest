@@ -31,6 +31,10 @@ namespace TestFramework.Pages
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//input[@name = 'phone_number']")));
             return new CreateNewWaiterPageComponent(driver);
         }
-       
+        public void WaitUntilWaitersLoaded(int timeToWait)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(d => _items.Count > 0);
+        }      
     }
 }

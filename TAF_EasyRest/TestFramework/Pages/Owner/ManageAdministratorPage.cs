@@ -41,6 +41,10 @@ namespace TestFramework.Pages
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//input[@name = 'phone_number']")));
             return new CreateNewAdministratorPageComponent(driver);
         }
-
+        public void WaitUntilAdministratorLoaded(int timeToWait)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//li")));
+        }
     }
 }
