@@ -23,13 +23,11 @@ namespace TestFramework.PageComponents.Owner
         public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            Thread.Sleep(1000); //use in two tests with different logic
             return new ManageWaitersPage(driver);
         }
         public ManageAdministratorPage ClickAdministratorsButton()
         {
             _administratorsButton.Click();
-            Thread.Sleep(1000); //use in two tests with different logic
             return new ManageAdministratorPage(driver);
         }
     }

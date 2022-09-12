@@ -39,6 +39,7 @@ namespace TestFramework.Test
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
 
             ownerPanelRestaurantsPage.GoToUrl();
+            ownerPanelRestaurantsPage.WaitUntilRestaurantsLoaded(3);
 
             //Act
             var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
@@ -47,6 +48,7 @@ namespace TestFramework.Test
                 .ClickManageButton(5);
 
             ManageWaitersPage manageWaitersPage = editRestaurantPage.ManageRestaurantPageComponent.ClickWaitersButton();
+            manageWaitersPage.WaitUntilWaitersLoaded(3);
             int expected = manageWaitersPage.WaiterItems.Count - 1;
             manageWaitersPage.WaiterItems[0].ClickRemoveButton(3);
             int actual = manageWaitersPage.WaiterItems.Count;
@@ -63,6 +65,8 @@ namespace TestFramework.Test
             //Arrange
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
             ownerPanelRestaurantsPage.GoToUrl();
+            ownerPanelRestaurantsPage.WaitUntilRestaurantsLoaded(3);
+
             var expected = new
             {
                 Name = "Test Admin",
@@ -99,6 +103,8 @@ namespace TestFramework.Test
             //Arrange
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
             ownerPanelRestaurantsPage.GoToUrl();
+            ownerPanelRestaurantsPage.WaitUntilRestaurantsLoaded(3);
+
             var expected = new
             {
                 Name = "Test Waiter1",
@@ -142,6 +148,7 @@ namespace TestFramework.Test
             OwnerPanelRestaurantsPage ownerPanelRestaurantsPage = new OwnerPanelRestaurantsPage(driver);
 
             ownerPanelRestaurantsPage.GoToUrl();
+            ownerPanelRestaurantsPage.WaitUntilRestaurantsLoaded(3);
 
             //Act
             var restaurant = ownerPanelRestaurantsPage.RestaurantItems.Where(r => r.Name == RestaurantName).FirstOrDefault();
@@ -150,9 +157,9 @@ namespace TestFramework.Test
                 .ClickManageButton(5);
 
             ManageAdministratorPage manageAdministratorPage = editRestaurantPage.ManageRestaurantPageComponent.ClickAdministratorsButton();
+            manageAdministratorPage.WaitUntilAdministratorLoaded(3);
             manageAdministratorPage.AdministratorItem.ClickRemoveButton(3);
             
-
             //Assert
             Assert.IsNull(manageAdministratorPage.AdministratorItem);
         }

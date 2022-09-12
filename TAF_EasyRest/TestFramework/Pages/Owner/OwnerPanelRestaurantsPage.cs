@@ -9,7 +9,7 @@ public class OwnerPanelRestaurantsPage : BasePage
 
     public NavigationMenuPageComponent NavigationMenuPageComponent { get; }
     public PersonalInfoPageComponent PersonalInfoPageComponent { get; }
-    public List<RestaurantItemPageComponent> RestaurantItems { 
+    public List<RestaurantItemPageComponent> RestaurantItems {
         get {
             return driver.FindElements(By.XPath("//*[@id=\"root\"]/main/div/div/div/div[1]/div[1]/div"))
                 .Select(e => new RestaurantItemPageComponent(e, driver)).ToList();
@@ -32,6 +32,10 @@ public class OwnerPanelRestaurantsPage : BasePage
     public override void GoToUrl()
     {
         driver.Navigate().GoToUrl(baseUrl + _pageUrl);
-        Thread.Sleep(3000);
+    }
+    public void WaitUntilRestaurantsLoaded(int timeToWait) 
+    {
+        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+        wait.Until(d => RestaurantItems.Count > 0);
     }
 }
