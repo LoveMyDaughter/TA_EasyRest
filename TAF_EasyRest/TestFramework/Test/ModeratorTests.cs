@@ -1,10 +1,12 @@
 ﻿using TestFramework.Pages.Moderator;
+using TestFramework.Tools.DB;
 
 namespace TestFramework.Test
 {
     public class ModeratorTests : BaseTest
     {
         public IWebDriver driver { get; private set; }
+        private string _fakeUserEmail;
 
         [OneTimeSetUp]
         public void BeforeModeratorsTests()
@@ -12,11 +14,11 @@ namespace TestFramework.Test
             driver = new ChromeDriver();
             userEmail = GetRoleCredentials.GetCredentials("Moderator").Email;
             userPassword = GetRoleCredentials.GetCredentials("Moderator").Password;
+            _fakeUserEmail = "fakeuser@test.com";
             restaurantName = "Rest Created via DB";
             UserLogin(driver, userEmail, userPassword);
             AddRestaurant(restaurantName);
             AddRestaurantWithArchivedStatus(restaurantName);
-            
         }
 
         [Test]
@@ -60,6 +62,7 @@ namespace TestFramework.Test
         public void ChangeUserStatusTest()
         {
             // Arrange
+            CreateUser(_fakeUserEmail);
             ModeratorPanelUsersPage moderatorPanelUsersPage = new ModeratorPanelUsersPage(driver);
             moderatorPanelUsersPage.GoToUrl();
             string initialStatus = moderatorPanelUsersPage.ShowUserStatus();
@@ -95,6 +98,7 @@ namespace TestFramework.Test
         {
             driver.Quit();
             DeleteRestaurant(restaurantName);
+            DBCleanup.DeleteUserByEmail(_fakeUserEmail);
             UserLogout(userEmail);
         }
 
