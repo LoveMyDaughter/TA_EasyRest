@@ -2,6 +2,10 @@ name: Tests_on_Linux
 
 on:
   workflow_dispatch:
+  schedule:
+    # Runs every day at midnight
+    - cron: '0 0 * * *'
+    - cron: '19 0 * * *'
 
 jobs:
   build:
