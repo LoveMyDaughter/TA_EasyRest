@@ -16,6 +16,10 @@
             var driver = _card.GetWebDriverFromWebElement();
             driver.WaitUntilElementIsVisible(_acceptButton, timeToWait)
                 .Click();
+            
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+                .Until(ExpectedConditions.InvisibilityOfElementLocated(_acceptButton));
+            
             ((IJavaScriptExecutor)driver)
                 .ExecuteScript("window.scrollTo(0, -document.body.scrollHeight);");
             return this;
