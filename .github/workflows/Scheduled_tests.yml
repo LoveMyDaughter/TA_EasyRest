@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   
   schedule:
-    # Runs every day at midnight    
-    - cron: '*/5 * * * *'
+    # Runs every day at midnight and every 3 hours
+    - cron: '30 */3 * * *'
     - cron: '0 0 * * *'
 
 jobs:
