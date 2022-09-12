@@ -13,6 +13,7 @@
 
         public int RestaurantsCount()
         {
+            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(d => _restaurantsGrid.Count > 0);
             return _restaurantsGrid.Count();
         }
 
