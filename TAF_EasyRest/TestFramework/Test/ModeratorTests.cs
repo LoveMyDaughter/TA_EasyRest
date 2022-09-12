@@ -28,6 +28,7 @@ namespace TestFramework.Test
         {
             // Arrange
             ModeratorPanelRestaurantsPage restaurants = new ModeratorPanelRestaurantsPage(driver);
+            restaurants.ModeratorLeftsideMenu.ClickRestaurantsButton();
             int initialRestaurantsAmount = restaurants.ClickUnapprovedTab().RestaurantsCount();
 
             // Act
