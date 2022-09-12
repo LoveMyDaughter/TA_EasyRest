@@ -20,4 +20,5 @@ jobs:
       run: dotnet build --no-restore TAF_EasyRest
     - name: Test with X client
       run: xvfb-run --auto-servernum dotnet test --no-build --verbosity normal --filter FullyQualifiedName=TestFramework.Test.ReorderTest TAF_EasyRest
-      run: xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
+    #- name: Test with X client
+    #  run: xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
