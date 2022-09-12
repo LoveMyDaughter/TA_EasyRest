@@ -55,10 +55,11 @@ namespace TestFramework.Test
         {
             //Arrange
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
-            int numberOfOrdersBeforeAssigning = administratorPanelPage.ClickAcceptedButton(2)
-                                  .CheckTheNumberOfOrdersInTheCurrentTab(2);
-            
-            orderId = administratorPanelPage.ClickAcceptedButton(2)
+            int numberOfOrdersBeforeAssigning = administratorPanelPage.ClickAcceptedButton(4)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(4);
+            Console.WriteLine(numberOfOrdersBeforeAssigning);
+
+            orderId = administratorPanelPage.ClickAcceptedButton(4)
                                   .GetIdOfTheFirstOrder();
             orderStatus = "Accepted";
 
@@ -66,11 +67,13 @@ namespace TestFramework.Test
             administratorPanelPage.ClickAcceptedButton(2)
                                   .ExpandTheFirstOrder(3)
                                   .SelectTheFirstWaiter(4)
-                                  .ClickAssignButton();
+                                  .ClickAssignButton(3);
 
             int numberOfOrdersAfterAssigning = administratorPanelPage.ClickAcceptedButton(2)
                                   .CheckTheNumberOfOrdersInTheCurrentTab(2);
 
+            Console.WriteLine(numberOfOrdersAfterAssigning);
+            
             //Assert
             Assert.That(numberOfOrdersBeforeAssigning, Is.EqualTo(numberOfOrdersAfterAssigning + 1));
         }
