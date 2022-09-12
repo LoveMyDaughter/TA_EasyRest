@@ -38,7 +38,7 @@ namespace TestFramework.Pages
 
         private void FillOdersList()
         {
-            int countOrders = CountOrders(10);
+            int countOrders = CountOrders(30);
 
             orders = new List<OrderPageComponent>();
             for (int i = 0; i < countOrders; i++)
