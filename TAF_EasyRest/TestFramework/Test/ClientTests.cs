@@ -66,7 +66,7 @@ namespace TestFramework.Test
 
             orderHistoryPage.orders[0]
                 .ExpandOrderDetails()
-                .ClickReorderButton(30)
+                .ClickReorderButton(100)
                 .ClickSubmitButton(10);
 
             Thread.Sleep(1000); //There is not enough time for base restoring
