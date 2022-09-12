@@ -23,14 +23,11 @@ namespace TestFramework.PageComponents.Owner
         public ManageWaitersPage ClickWaitersButton()
         {
             _waitersButton.Click();
-            Thread.Sleep(3000); //use in two tests with different logic
             return new ManageWaitersPage(driver);
         }
-        public ManageAdministratorPage ClickAdministratorsButton(int timeToWait)
+        public ManageAdministratorPage ClickAdministratorsButton()
         {
             _administratorsButton.Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@title = 'Add Administrator']")));
             return new ManageAdministratorPage(driver);
         }
     }

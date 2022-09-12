@@ -38,9 +38,13 @@ namespace TestFramework.Pages
         {
             _addAdministratorButton.Click();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath(" //h6[contains(text(), 'Create New Administrator')]/parent::span/parent::div/parent::div/parent::div")));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//input[@name = 'phone_number']")));
             return new CreateNewAdministratorPageComponent(driver);
         }
-
+        public void WaitUntilAdministratorLoaded(int timeToWait)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//li")));
+        }
     }
 }

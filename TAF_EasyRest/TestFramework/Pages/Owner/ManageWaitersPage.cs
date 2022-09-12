@@ -24,12 +24,17 @@ namespace TestFramework.Pages
         private IList<IWebElement> _items => _waitersParent?.FindElements(By.XPath("//li")).ToList() ?? new List<IWebElement>();
         private IWebElement _addWaiterButton => driver.FindElement(By.XPath("//button[@title = 'Add Waiter']"));
 
-        public CreateNewWaiterPageComponent ClickAddWaiterButton()
+        public CreateNewWaiterPageComponent ClickAddWaiterButton(int timeToWait)
         {
             _addWaiterButton.Click();
-            Thread.Sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//input[@name = 'phone_number']")));
             return new CreateNewWaiterPageComponent(driver);
         }
-       
+        public void WaitUntilWaitersLoaded(int timeToWait)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(d => _items.Count > 0);
+        }      
     }
 }

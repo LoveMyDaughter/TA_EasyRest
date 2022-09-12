@@ -47,6 +47,14 @@ namespace TestFramework.Test
         public void CreateUser(string email)
         {
             DBAddition.AddUserViaDB("0 Fake User", email, 1, true);
+        }    
+
+        public void CreateAdministrator(string name, string email, string restaurantName)
+        {
+            int restaurant_id = DBSelections.GetRestaurantId(restaurantName);
+            DBAddition.AddUserViaDB(name, email, 5, true, restaurant_id);
+            int user_id = DBSelections.GetUserId(email);
+            DBAddition.SetRestaurantAdministrator(restaurant_id, user_id);
         }
 
     }

@@ -11,7 +11,7 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
         }
 
         private IWebElement _selectWaiterRadioButton => _card.FindElement(By.XPath(".//input[@name = 'waiters']/.."));
-        private IWebElement _assignButton => _card.FindElement(By.XPath("(.//span[text()='Assign'])[1]"));
+        private By _assignButton = By.XPath("(.//span[text()='Assign'])[1]");
 
         public AcceptedCardPageComponent SelectTheFirstWaiter(int timeToWait)
         {
@@ -22,10 +22,14 @@ namespace TestFramework.PageComponents.AdministratorPanelComponents
             return this;
         }
 
-        public AcceptedCardPageComponent ClickAssignButton()
-        {
+        public AcceptedCardPageComponent ClickAssignButton(int timeToWait)
+        {          
+            _card.FindElement(_assignButton).Click();
+            
             var driver = _card.GetWebDriverFromWebElement();
-            _assignButton.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+                .Until(ExpectedConditions.InvisibilityOfElementLocated(_assignButton));
+            
             ((IJavaScriptExecutor)driver)
                 .ExecuteScript("window.scrollTo(0, -document.body.scrollHeight);");
             return this;

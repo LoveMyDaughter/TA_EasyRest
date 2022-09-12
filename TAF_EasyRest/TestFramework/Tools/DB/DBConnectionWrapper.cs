@@ -25,8 +25,15 @@ namespace TestFramework.Tools.DB
                 object responseCell = command.ExecuteScalar();  //Returns the first column of the first row in the result set returned by the query
                 return responseCell;
             }
-            
-
+        }
+        public static void ExecuteNonQuery(string queryString)
+        {
+            using (var connection = new NpgsqlConnection(pg_connectionString))
+            {
+                var command = new NpgsqlCommand(queryString, connection);
+                command.Connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
