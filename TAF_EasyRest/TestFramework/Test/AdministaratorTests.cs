@@ -31,19 +31,19 @@ namespace TestFramework.Test
             //Arrange
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
             int numberOfOrdersBeforeAccepting = administratorPanelPage.ClickWaitingForConfirmButton(3)
-                                  .CheckTheNumberOfOrdersInTheCurrentTab(3);
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(10);
 
-            orderId = administratorPanelPage.ClickWaitingForConfirmButton(2)
+            orderId = administratorPanelPage.ClickWaitingForConfirmButton(10)
                                   .GetIdOfTheFirstOrder();
             orderStatus = "Waiting for confirm";
 
             //Act           
-            administratorPanelPage.ClickWaitingForConfirmButton(2)
-                                  .ExpandTheFirstOrder(2)
-                                  .ClickAcceptButton(2);
+            administratorPanelPage.ClickWaitingForConfirmButton(10)
+                                  .ExpandTheFirstOrder(10)
+                                  .ClickAcceptButton(10);
 
-            int numberOfOrdersAfterAccepting = administratorPanelPage.ClickWaitingForConfirmButton(2)
-                                  .CheckTheNumberOfOrdersInTheCurrentTab(1);
+            int numberOfOrdersAfterAccepting = administratorPanelPage.ClickWaitingForConfirmButton(10)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(10);
 
             //Assert
             Assert.That(numberOfOrdersBeforeAccepting, Is.EqualTo(numberOfOrdersAfterAccepting + 1));
@@ -55,22 +55,22 @@ namespace TestFramework.Test
         {
             //Arrange
             AdministratorPanelPage administratorPanelPage = new AdministratorPanelPage(ChromeDriver);
-            int numberOfOrdersBeforeAssigning = administratorPanelPage.ClickAcceptedButton(4)
-                                  .CheckTheNumberOfOrdersInTheCurrentTab(4);
+            int numberOfOrdersBeforeAssigning = administratorPanelPage.ClickAcceptedButton(10)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(10);
             Console.WriteLine(numberOfOrdersBeforeAssigning);
 
-            orderId = administratorPanelPage.ClickAcceptedButton(4)
+            orderId = administratorPanelPage.ClickAcceptedButton(10)
                                   .GetIdOfTheFirstOrder();
             orderStatus = "Accepted";
 
             //Act
-            administratorPanelPage.ClickAcceptedButton(2)
-                                  .ExpandTheFirstOrder(3)
-                                  .SelectTheFirstWaiter(4)
-                                  .ClickAssignButton(3);
+            administratorPanelPage.ClickAcceptedButton(10)
+                                  .ExpandTheFirstOrder(10)
+                                  .SelectTheFirstWaiter(10)
+                                  .ClickAssignButton(10);
 
-            int numberOfOrdersAfterAssigning = administratorPanelPage.ClickAcceptedButton(2)
-                                  .CheckTheNumberOfOrdersInTheCurrentTab(2);
+            int numberOfOrdersAfterAssigning = administratorPanelPage.ClickAcceptedButton(10)
+                                  .CheckTheNumberOfOrdersInTheCurrentTab(10);
 
             Console.WriteLine(numberOfOrdersAfterAssigning);
             

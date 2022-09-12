@@ -41,7 +41,7 @@ namespace TestFramework.Test
 
             currentOrdersPage.orders[0]
                 .ExpandOrderField()
-                .ClickDeclineButton(3);
+                .ClickDeclineButton(10);
 
             int actual = currentOrdersPage.CountOrders(3);
 
@@ -66,8 +66,8 @@ namespace TestFramework.Test
 
             orderHistoryPage.orders[0]
                 .ExpandOrderDetails()
-                .ClickReorderButton(3)
-                .ClickSubmitButton(3);
+                .ClickReorderButton(10)
+                .ClickSubmitButton(10);
 
             Thread.Sleep(1000); //There is not enough time for base restoring
 
@@ -92,12 +92,12 @@ namespace TestFramework.Test
             string restaurantAdress = "adress1";
 
             //Act
-            newRestaurantPage.ClickAddButton(3)
-                .ClickNameField(3)
+            newRestaurantPage.ClickAddButton(10)
+                .ClickNameField(10)
                 .SendKeysNameField(_restaurantName)
-                .ClickAdressField(3)
+                .ClickAdressField(10)
                 .SendKeysAdressField(restaurantAdress)
-                .ClickAddButton(3);
+                .ClickAddButton(10);
 
             bool checkIfRestaurantExist = DBSelections.CheckIfRestaurantExistsByName(_restaurantName, userId.ToString());
 
@@ -119,10 +119,10 @@ namespace TestFramework.Test
             int expected = DBSelections.GetOrdersCountByStatus(email);
 
             //Act
-            restaurantsListPage.ClickWatchMenuButton(3)
-                .AddTheFistDishToTheCart(3)
-                .ClickSubmitButton(3)
-                .ClickSubmitButton(3);
+            restaurantsListPage.ClickWatchMenuButton(10)
+                .AddTheFistDishToTheCart(10)
+                .ClickSubmitButton(10)
+                .ClickSubmitButton(10);
 
             int actual = DBSelections.GetOrdersCountByStatus(email);
 
