@@ -9,7 +9,7 @@
             DBConnectionWrapper.ExecuteQuery(addRestaurant);
         }
 
-        public static void AddUserViaDB(string name, string email, int role_id, bool is_active, int restaurant_id = 0)
+        public static void AddUserViaDB(string name, string email, int role_id, bool is_active, int restaurant_id = 1)
         {
             string addUser = $"INSERT INTO users (name, email, role_id, restaurant_id, is_active) VALUES ('{name}', '{email}', {role_id}, {restaurant_id}, {is_active})";
             DBConnectionWrapper.ExecuteQuery(addUser);
