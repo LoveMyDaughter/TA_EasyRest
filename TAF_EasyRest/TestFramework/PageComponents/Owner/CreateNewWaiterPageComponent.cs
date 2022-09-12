@@ -16,7 +16,21 @@
         private IWebElement _addButton => driver.FindElement(By.XPath("//span[contains(text(),'Add')]/parent::button"));
         private IWebElement _cancelButton => driver.FindElement(By.XPath("//span[contains(text(),'Cancel')]/parent::button"));
 
-
+        public CreateNewWaiterPageComponent SendKeysToFields(string name, string email, string password, string phonenumber)
+        {
+            SendKeysToNameField(name);
+            SendKeysToEmailField(email);
+            SendKeysToPasswordField(password);
+            SendKeysToPhoneNumberField(phonenumber);
+            return this;
+        }
+        public ManageWaitersPage ClickAddButton(int timeToWait)
+        {
+            _addButton.Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//li/parent::ul/parent::div")));
+            return new ManageWaitersPage(driver);
+        }
         public CreateNewWaiterPageComponent ClickNameField()
         {
             _nameField.Click();

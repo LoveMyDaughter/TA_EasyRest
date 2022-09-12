@@ -40,7 +40,7 @@
     "PageName": "ModeratorPanelUsersPage"
   },
   {
-    "Url": "/administrator-panel",
+    "Url": "/profile/order_history",
     "PageName": "OrderHistoryPage"
   },
   {
@@ -90,5 +90,9 @@
   {
     "Url": "/profile/restaurants/8/edit/menues/create_menu",
     "PageName": "CreateMenuPage"
+  },
+  {
+    "Url": "/profile/restaurants",
+    "PageName": "NewRestaurantPage"
   }
 ]

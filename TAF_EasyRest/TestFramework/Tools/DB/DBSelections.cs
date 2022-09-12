@@ -19,5 +19,29 @@
             return Convert.ToInt32(orderId);
         }
         #endregion
+
+        public static bool CheckIfRestaurantExistsByName(string name, string user_id)
+        {
+            string query = $"SELECT count(*) FROM restaurants WHERE name = '{name}' AND owner_id = {user_id}";
+            object restaurantCount = DBConnectionWrapper.GetCellFromDB(query);
+            if (Convert.ToInt32(restaurantCount) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static int GetUserId(string email)
+        {
+            string query = $"SELECT id FROM users WHERE email = '{email}'";
+            object userId = DBConnectionWrapper.GetCellFromDB(query);
+            return Convert.ToInt32(userId);
+        }
+        public static int GetRestaurantId(string restaurantName)
+        {
+            string query = $"SELECT id FROM restaurants where name = '{restaurantName}'";
+            object restaurantId = DBConnectionWrapper.GetCellFromDB(query);
+            return Convert.ToInt32(restaurantId);
+        }
     }
 }

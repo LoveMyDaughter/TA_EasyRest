@@ -9,5 +9,16 @@
             DBConnectionWrapper.ExecuteQuery(addRestaurant);
         }
 
+        public static void AddUserViaDB(string name, string email, int role_id, bool is_active, int restaurant_id = 0)
+        {
+            string addUser = $"INSERT INTO users (name, email, role_id, restaurant_id, is_active) VALUES ('{name}', '{email}', {role_id}, {restaurant_id}, {is_active})";
+            DBConnectionWrapper.ExecuteQuery(addUser);
+        } 
+
+        public static void SetRestaurantAdministrator(int restaurant_id, int administrator_id)
+        {
+            string updateRestaurant = $"UPDATE restaurants SET administrator_id = {administrator_id} WHERE id = {restaurant_id}";
+            DBConnectionWrapper.ExecuteNonQuery(updateRestaurant);
+        }
     }
 }
