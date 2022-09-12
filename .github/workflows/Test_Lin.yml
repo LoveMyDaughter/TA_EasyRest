@@ -3,7 +3,7 @@ name: Tests_on_Linux
 on:
   #workflow_dispatch:
   schedule:
-    # Runs every day at midnight    
+    # Runs every day at midnight
     - cron: '*/5 * * * *'
     #- cron: '0 0 * * *'
 
