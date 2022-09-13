@@ -3,10 +3,10 @@ name: Tests_Scheduled
 on:
   workflow_dispatch:
   
-  schedule:
+  #schedule:
     # Runs every day at midnight and every 3 hours
-    - cron: '30 */3 * * *'
-    - cron: '0 0 * * *'
+    #- cron: '30 */3 * * *'
+    #- cron: '0 0 * * *'
 
 jobs:
   build:
