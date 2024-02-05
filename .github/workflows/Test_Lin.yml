@@ -30,4 +30,4 @@ jobs:
       run: |
         xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
       env:
-        CHROMEDRIVER_PATH: /tmp/chromedriver
+        CHROMEDRIVER_PATH: /tmp/chrome-headless-shell-linux64
