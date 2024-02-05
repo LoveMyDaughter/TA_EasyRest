@@ -1,0 +1,31 @@
+name: Tests_on_Linux
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore TAF_EasyRest
+    - name: Build
+      run: dotnet build --no-restore TAF_EasyRest    
+    - name: Download ChromeDriver
+      run: |
+        CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+        unzip -q /tmp/chromedriver.zip -d /tmp
+        chmod +x /tmp/chromedriver
+    - name: Test with X client
+      run: |
+        xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
+      env:
+        CHROMEDRIVER_PATH: /tmp/chromedriver
