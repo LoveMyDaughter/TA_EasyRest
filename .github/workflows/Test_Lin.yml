@@ -26,5 +26,3 @@ jobs:
     - name: Test with X client
       run: |
         xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
-      env:
-        CHROMEDRIVER_PATH: /usr/local/bin
