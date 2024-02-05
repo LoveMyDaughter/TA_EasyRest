@@ -24,6 +24,7 @@ jobs:
         unzip -d /tmp /tmp/chromedriver.zip
     - name: Test with X client
       run: |
+        export CHROMEDRIVER_VERSION='121.0.6167.85'
         xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
       env:
         CHROMEDRIVER_PATH: /tmp/chrome-headless-shell-linux64
