@@ -14,14 +14,19 @@ jobs:
         options: --shm-size=2g
         
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: '6.x'
+
     - name: Restore dependencies
-      run: dotnet restore TAF_EasyRest
+      run: dotnet restore
+      
     - name: Build
-      run: dotnet build TAF_EasyRest    
+      run: dotnet build --configuration Release TAF_EasyRest    
+      
     - name: Test with X client
-      run: dotnet test TAF_EasyRest
+      run: dotnet test --configuration Release TAF_EasyRest
