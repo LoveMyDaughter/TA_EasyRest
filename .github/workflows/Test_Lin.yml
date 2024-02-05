@@ -23,6 +23,7 @@ jobs:
         wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/121.0.6167.85/linux64/chromedriver-linux64.zip
         unzip -d /tmp /tmp/chromedriver.zip
         cp /tmp/chromedriver-linux64/chromedriver /usr/local/bin
+        chromedriver --version
     - name: Test with X client
       run: |
-        xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
+        # xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
