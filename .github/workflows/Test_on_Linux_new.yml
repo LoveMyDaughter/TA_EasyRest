@@ -1,0 +1,27 @@
+name: Tests_on_Linux_new
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        options: --shm-size=2g
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore TAF_EasyRest
+    - name: Build
+      run: dotnet build --no-restore TAF_EasyRest    
+    - name: Test with Selenium
+      run: dotnet test --no-restore TAF_EasyRest
