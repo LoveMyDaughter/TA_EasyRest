@@ -8,6 +8,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        options: --shm-size=2g
+        
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -19,4 +24,4 @@ jobs:
     - name: Build
       run: dotnet build TAF_EasyRest    
     - name: Test with X client
-      run: xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
+      run: dotnet test TAF_EasyRest
