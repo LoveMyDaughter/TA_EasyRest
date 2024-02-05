@@ -20,13 +20,12 @@ jobs:
       run: dotnet build --no-restore TAF_EasyRest    
     - name: Download ChromeDriver
       run: |
-        ls -la
         wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/121.0.6167.85/linux64/chrome-headless-shell-linux64.zip
-        ls -la
+        ls /tmp
         unzip -d /tmp /tmp/chromedriver.zip
-        ls -la
+        ls /tmp
         chmod +x /tmp/chromedriver
-        ls -la
+        ls /tmp
     - name: Test with X client
       run: |
         xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
