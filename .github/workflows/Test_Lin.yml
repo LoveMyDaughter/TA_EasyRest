@@ -24,7 +24,7 @@ jobs:
         ls /tmp
         unzip -d /tmp /tmp/chromedriver.zip
         ls /tmp
-        chmod +x /tmp/chromedriver
+        chmod -R +x /tmp
         ls /tmp
     - name: Test with X client
       run: |
