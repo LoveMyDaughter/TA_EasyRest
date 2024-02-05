@@ -21,11 +21,8 @@ jobs:
     - name: Download ChromeDriver
       run: |
         wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/121.0.6167.85/linux64/chrome-headless-shell-linux64.zip
-        ls /tmp
         unzip -d /tmp /tmp/chromedriver.zip
-        ls /tmp
-        chmod -R +x /tmp
-        ls /tmp
+        chmod +x /tmp/chrome-headless-shell-linux64/chrome-headless-shell
     - name: Test with X client
       run: |
         xvfb-run --auto-servernum dotnet test --no-build --verbosity normal TAF_EasyRest
