@@ -23,10 +23,10 @@ jobs:
         dotnet-version: '6.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore TAF_EasyRest
       
     - name: Build
-      run: dotnet build --configuration Release TAF_EasyRest    
+      run: dotnet build --configuration Release TAF_EasyRest
       
     - name: Test with X client
       run: dotnet test --configuration Release TAF_EasyRest
