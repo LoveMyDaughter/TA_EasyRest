@@ -3,4 +3,4 @@
 
 Automation testing framework for "Easyrest" product
 
-See all the information on the [Wiki](../../wiki/Home)
+See the information on the [Wiki](../../wiki/Home)
